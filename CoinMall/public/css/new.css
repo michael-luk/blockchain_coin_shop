@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+#captcha, .captcha{
+    vertical-align: bottom;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.value_captcha{
+    height: 30px;
+    width: 60px;
+    text-align: center;
+}
+
+.changeCaptcha{
+    cursor: pointer;
+}

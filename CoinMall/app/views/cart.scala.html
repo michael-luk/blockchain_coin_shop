@@ -1,0 +1,122 @@
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("plugins/spinner/bootstrap-spinner.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("css/car.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("css/pop.css")' rel="stylesheet" type="text/css">
+    <script src="@routes.Assets.at("plugins/clipboard.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/controllers/cart_controller.js")'></script>
+
+    <div class="main padding-top-20" ng-app="CartApp" ng-controller="CartController" ng-init="init()">
+        <div class=" container">
+            <div class="row" >
+                <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20 j_car_m_title">
+                    <span class="color_black">@play.i18n.Messages.get("cart")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container j_car" style="background-color: #fff" >
+            <div class="row j_row_bor j_car_tops" style="border-bottom: 1px #ecebeb solid;
+                margin: 0 10px;">
+                <div class="col-xs-3 col-md-2">
+                    <span class="">@play.i18n.Messages.get("cart.product")</span>
+                </div>
+                <div class="col-xs-9 col-md-10">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <span>@play.i18n.Messages.get("cart.product.name")</span>
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                            <span>@play.i18n.Messages.get("cart.price.spec")</span>
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                            <span >@play.i18n.Messages.get("cart.quantity")</span>
+                        </div>
+                        <div class="col-xs-12 col-md-2">
+                            <span>@play.i18n.Messages.get("cart.action")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no_pro" ng-show="cart.items.length == 0">@play.i18n.Messages.get("cart.empty")</div>
+
+                <!--BEGIN LIST  id="car_list_1" id="1" 相对应-->
+            <div class="row j_row_bor car_li" id="car_list_1" ng-repeat="item in cart.items">
+                <div class="col-xs-4 col-md-2 j_mobile_padding">
+                    <div class="checkbox">
+                        <div ng-class="{true:'checkimg checkbox_yes',false:'checkimg checkbox_no'}[item.select]"
+                        ng-click="checkProduct($index)"></div>
+                    </div>
+                    <div class="text-center">
+                        <a href="/product/{{item.theme.refProductId}}">
+                            <img src="/showimg/thumb/{{item.theme.images}}@session.get("lang")">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-xs-8 col-md-10 j_mobile_padding">
+                    <div class="row">
+                        <div class="col-xs-7 col-md-4 j_car_height">
+                            <a href="/product/{{item.theme.refProductId}}">
+                                <span class="j_car_pro_title" ng-bind="item.productName"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-5 col-md-3 j_center_price j_car_height">
+                            <div class="j_car_pro_price"><span ng-bind="item.theme.price"></span> @biz.ConfigBiz.getStrConfig("currency.unit.name")</div>
+                            <div class="j_car_pro_spec"><span ng-bind="item.theme.name@session.get("lang")"></span></div>
+                        </div>
+
+                        <div class="col-xs-7 col-md-3 mobile_n">
+                            <div class="input-append spinner">
+                                <input type="text" ng-model="item.num" class="j_add" id="quantity" readonly>
+                                <div class="add-on">
+                                    <a class="spin-up" ng-click="setAdd($index)"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a class="spin-down" ng-click="setMinus($index)"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-5 col-md-2 j_center">
+                            <span class="car_del" ng-click="deleteItem($index)">@play.i18n.Messages.get("delete")</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+                <!--END LIST-->
+
+            <div class="row " ng-show="cart.items.length > 0">
+                <div class="col-sm-6 col-xs-6 col-md-4 text-left mobile_choose">
+                    <div class="checkbox j_car_choose">
+                        <div ng-class="{true:'checkimg checkbox_yes',false:'checkimg checkbox_no'}[selectAllFlag]" ng-click="toggleSelectAll()"></div>
+                        <div style="float:left">&nbsp;&nbsp;@play.i18n.Messages.get("cart.select.all") / @play.i18n.Messages.get("cart.select.none")</div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6 col-md-8 text-right">
+                    <div class="j_car_total">
+                        @play.i18n.Messages.get("cart.total"): <span class="j_car_pro_total" ng-bind="cart | selectProductAmout"></span> @biz.ConfigBiz.getStrConfig("currency.unit.name")
+                    </div>
+                </div>
+            </div>
+
+            <div class="row j_car_total" ><a href="/">
+                <div class="col-sm-6 col-xs-6 col-md-6 text-left">
+                    <span class="j_car_continue" style="background-color:black">@play.i18n.Messages.get("cart.continue")</span>
+                </div></a>
+                <div class="col-sm-6 col-xs-6 col-md-6 text-right" ng-show="cart.items.length > 0">
+                    <span class="j_car_balance j_pop_pay"
+                    ng-click="checkOut('@play.i18n.Messages.get("checkout.on.empty.cart")')">
+                    @play.i18n.Messages.get("cart.checkout")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 30px;
+        background-color: #f9f9f9"></div>
+
+    <div class="disappare" style="display: none;">
+        <p><i class="icon iconfont icon-chenggong"></i></p>
+        <h4 class="j_disappare_text"></h4>
+    </div>
+}

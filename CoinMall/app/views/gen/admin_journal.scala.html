@@ -1,0 +1,11 @@
+@(adminJournalList: List[AdminJournal]) @front_frame(TableInfoReader.getTableComment("AdminJournal"), "AdminJournalApp", "AdminJournalController") {
+    @for(adminJournal <- adminJournalList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("AdminJournal", "id"): @adminJournal.id</li>
+            <li>@TableInfoReader.getFieldComment("AdminJournal", "name"): @adminJournal.name</li>
+            <li>@TableInfoReader.getFieldComment("AdminJournal", "actor"): @adminJournal.actor</li>
+            <li>@TableInfoReader.getFieldComment("AdminJournal", "actorLevel"): @adminJournal.actorLevel</li>
+            <li>@TableInfoReader.getFieldComment("AdminJournal", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(adminJournal.createdAt)</li>
+        </ul>
+    }
+}

@@ -1,0 +1,237 @@
+@(hotProducts: List[Product], saleProducts: List[Product])
+@front_frame("XWC Mall", "HomeApp", "HomeController") {
+<link href='@routes.Assets.at("css/index.css")' rel="stylesheet" type="text/css">
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="row margin-bottom-40">
+            <div class="j_user_banner padding-top-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 j_user_banner_img">
+                            <img src="@routes.Assets.at("images/banner01.jpg")" style="width:100%"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h3 style="color:red">@play.i18n.Messages.get("hot.product")</h3>
+                <div class="bxslider-wrapper">
+                    <ul class="bxslider" data-slides-phone="3" data-slides-tablet="3"
+                        data-slides-desktop="5" data-slide-margin="15">
+                        @for(item <- hotProducts) {
+                        <li>
+                            <div class="product-item">
+                                <a href="/product/@item.id">
+                                    <div class="pi-img-wrapper">
+                                        @if(item.themes != null && item.themes.size() > 0){
+                                        <img src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(item.themes.get(0), "images" + session.get("lang"))"
+                                        }else{
+                                        <img src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(item, "images" + session.get("lang"))"
+                                        }
+                                        class="img-responsive"
+                                        alt="@BaseController.getFieldValue(item, "name" + session.get("lang"))">
+                                    </div>
+                                    <div class="j_title">
+                                        @BaseController.getFieldValue(item, "name" + session.get("lang"))
+                                    </div>
+                                </a>
+                                <div class="pi-price" style="color:#ff373a">
+                                    <a href="/product/@item.id">
+                                    @if(item.themes != null && item.themes.size() > 0){
+                                    @item.themes.get(0).price
+                                    }else{
+                                    @item.price
+                                    }
+                                    </a>
+                                    @biz.ConfigBiz.getStrConfig("currency.unit.name")
+
+									
+                                    @if(item.themes!=null && item.themes.size() > 0 && item.themes.get(0).price==0){
+                                    <span style="float:right">@play.i18n.Messages.get("await")</span>
+                                    }
+									<div class="j_sells">
+                                    @if(Application.getSoldOut(item.themes)){
+                                    @play.i18n.Messages.get("sold.out")
+                                    }
+									</div>
+									
+                                </div>
+                                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                                    <div class="nav navbar-nav pi-price" style="margin-left: -15px">
+
+                                        <a href="/product/@item.id">
+                                            @if(item.themes != null && item.themes.size() > 0){
+                                            @if(biz.ConfigBiz.getFloatConfig("coin.exchange.rate")!=0){
+                                            @((item.themes.get(0).price.toDouble/biz.ConfigBiz.getFloatConfig("coin.exchange.rate")).formatted("%.2f"))
+                                            }else{
+                                            0.0
+                                            }
+                                            }else{
+                                            @item.price
+                                            }
+                                        </a>
+                                        @biz.ConfigBiz.getStrConfig("coin.short.name")
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <!---->
+        <!-- BEGIN SIDEBAR -->
+        @for(item <- Application.getAllAvailableCatalogs()) {
+        <div class="row margin-bottom-40 ">
+            <div class="col-md-12 col-sm-12">
+                <h3>
+                    <a href="/catalog/@item.id">
+                        <span style="height:25px; width:1px; border-left:10px red solid"></span>&nbsp; @BaseController.getFieldValue(item, "name" + session.get("lang"))
+                    </a>
+                </h3>
+                <div class="bxslider-wrapper">
+                    <ul class="bxslider" data-slides-phone="3" data-slides-tablet="3"
+                        data-slides-desktop="5" data-slide-margin="15">
+                        @for(list <- Application.getCatalogProducts(item.id)){
+                        <li>
+                            <div class="product-item">
+                                <a href="/product/@list.id">
+                                    <div class="pi-img-wrapper">
+                                        @if(list.themes != null && list.themes.size() > 0){
+                                        <img src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(list.themes.get(0), "images" + session.get("lang"))"
+                                        }else{
+                                        <img src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(list, "images" + session.get("lang"))"
+                                        }
+                                        class="img-responsive"
+                                        alt="@BaseController.getFieldValue(list, "name" + session.get("lang"))">
+                                    </div>
+                                    <div class="j_title">
+                                        @BaseController.getFieldValue(list, "name" + session.get("lang"))
+                                    </div>
+                                </a>
+                                <div class="pi-price" style="color:#ff373a"><a href="/product/@list.id">
+                                    @if(list.themes != null && list.themes.size() > 0){
+                                    @list.themes.filter(_.status == 0).get(0).price
+                                    }else{
+                                    @list.price
+                                    }
+                                </a>
+                                    @biz.ConfigBiz.getStrConfig("currency.unit.name")
+
+                                    @if(list.themes!=null && list.themes.size() > 0 && list.themes.get(0).price==0){
+                                    <span style="float:right">@play.i18n.Messages.get("await")</span>
+                                    }
+									
+									<div class="j_sells">
+                                    @if(Application.getSoldOut(list.themes)){
+                                    @play.i18n.Messages.get("sold.out")
+                                    }
+									</div>
+                                </div>
+                                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                                    <div class="nav navbar-nav pi-price" style="margin-left: -15px">
+
+                                        <a href="/product/@item.id">
+                                            @if(list.themes != null && list.themes.size() > 0){
+                                            @if(biz.ConfigBiz.getFloatConfig("coin.exchange.rate")!=0){
+                                            @((list.themes.get(0).price.toDouble/biz.ConfigBiz.getFloatConfig("coin.exchange.rate")).formatted("%.2f"))
+                                            }else{
+                                            0.0
+                                            }
+                                            }else{
+                                            @list.price
+                                            }
+                                        </a>
+                                        @biz.ConfigBiz.getStrConfig("coin.short.name")
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        }
+        <!-- END SIDEBAR -->
+
+        <!-- BEGIN 特价商品-->
+		<div class="row margin-bottom-40 ">
+        <div class="col-md-12 col-sm-12">
+            <h3 class="j_h3">@play.i18n.Messages.get("sale.product")</h3>
+            <div class="bxslider-wrapper">
+                <ul class="bxslider" data-slides-phone="3" data-slides-tablet="3"
+                    data-slides-desktop="4" data-slide-margin="15">
+                    @for(item <- saleProducts) {
+                    <li>
+                        <div class="product-item">
+                            <a href="/product/@item.id">
+                                <div class="pi-img-wrapper">
+                                    @if(item.themes != null && item.themes.size() > 0){
+                                    <img src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(item.themes.get(0), "images" + session.get("lang"))"
+                                    }else{
+                                    <img src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(item, "images" + session.get("lang"))"
+                                    }
+                                    class="img-responsive"
+                                    alt="@BaseController.getFieldValue(item, "name" + session.get("lang"))">
+                                </div>
+                                <div class="j_title">
+                                    @BaseController.getFieldValue(item, "name" + session.get("lang"))
+                                </div>
+                            </a>
+                            <div class="pi-price" style="color:#ff373a">
+                                <a href="/product/@item.id">
+                                    @if(item.themes != null && item.themes.size() > 0){
+                                    @item.themes.get(0).price
+                                    }else{
+                                    @item.price
+                                    }
+                                </a>
+                                @biz.ConfigBiz.getStrConfig("currency.unit.name")
+                                @if(item.themes!=null && item.themes.size() > 0 && item.themes.get(0).price==0){
+                                <span style="float:right">@play.i18n.Messages.get("await")</span>
+                                }
+								<div class="j_sells">
+                                @if(Application.getSoldOut(item.themes)){
+                                @play.i18n.Messages.get("sold.out")
+                                }
+								</div>
+                            </div>
+                            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                                <div class="nav navbar-nav pi-price" style="margin-left: -15px">
+
+                                    <a href="/product/@item.id">
+                                        @if(item.themes != null && item.themes.size() > 0){
+                                        @if(biz.ConfigBiz.getFloatConfig("coin.exchange.rate")!=0){
+                                        @((item.themes.get(0).price.toDouble/biz.ConfigBiz.getFloatConfig("coin.exchange.rate")).formatted("%.2f"))
+                                        }else{
+                                        0.0
+                                        }
+                                        }else{
+                                        @item.price
+                                        }
+                                    </a>
+                                    @biz.ConfigBiz.getStrConfig("coin.short.name")
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+                <br><br><br><br>
+            </div>
+
+        </div>
+		</div>
+        <!-- END 特价商品-->
+
+    </div>
+</div>
+}

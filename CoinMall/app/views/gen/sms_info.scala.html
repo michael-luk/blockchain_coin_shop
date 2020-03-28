@@ -1,0 +1,18 @@
+@(smsInfoList: List[SmsInfo]) @front_frame(TableInfoReader.getTableComment("SmsInfo"), "SmsInfoApp", "SmsInfoController") {
+    @for(smsInfo <- smsInfoList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "id"): @smsInfo.id</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "name"): @smsInfo.name</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "phone"): @smsInfo.phone</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "checkCode"): @smsInfo.checkCode</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "sendXml"): @smsInfo.sendXml</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "returnTable"): @smsInfo.returnTable</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "receiveXml"): @smsInfo.receiveXml</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "code"): @smsInfo.code</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "returnMsg"): @smsInfo.returnMsg</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(smsInfo.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(smsInfo.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("SmsInfo", "comment"): @smsInfo.comment</li>
+        </ul>
+    }
+}

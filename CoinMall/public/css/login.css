@@ -1,0 +1,107 @@
+/****/
+body{
+	background-color:#e2e2e2;
+}
+ .main{
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 300px;
+    height: 350px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+	border:1px #e2e2e2 solid;
+	color:#666;
+	-moz-box-shadow:2px 2px 5px #B3B3B3; -webkit-box-shadow:2px 2px 5px #B3B3B3; box-shadow:2px 2px 5px #B3B3B3;
+}
+
+
+.j_main_div{
+	float:left;
+	width:100%
+}
+.j_main_div div{
+	line-height:35px;
+	margin-top:20px;
+}
+.j_main_div div:nth-child(1){
+	width:28%;
+	float:left;
+	text-align:right;
+	padding-right:2px;
+}
+.j_main_div div:nth-child(2){
+	width:72%;
+	float:left;
+}
+
+
+
+
+
+
+.j_input_code{
+	width:100px !important;
+}
+.j_code img{
+	float:left;
+	height:33px;
+	width:100px;
+	position:relative;
+	top:1px;
+}
+
+
+
+.j_main_divs{
+	clear:both;
+	height:auto;
+	overflow:auto;
+	padding-top:20px;
+	margin-bottom:40px;
+}
+.j_main_divs span{
+	width:50%;
+	float:left;
+	height:35px;
+	line-height:35px;
+}
+.j_main_divs div:nth-child(1){
+	text-align:center
+
+}
+.j_main_divs input{
+	width:90%;
+	border:1px #fdfdfd solid;
+	background-color:#f0f0f0;
+	height:35px;
+	line-height:35px;
+	padding-left:5px;
+}
+.j_main_divs div:nth-child(2){
+    text-align:center
+
+}
+
+.j_login_input{
+	border:1px #fdfdfd solid;
+	background-color:#f0f0f0;
+	height:35px;
+	line-height:35px;
+	padding-left:5px;
+	float:left;
+	width:85%;
+}
+.j_btn_sub{
+	background-color:#5abfdd;
+	border:0px;
+	padding:5px 20px;
+	border-radius:2px;
+	color:#fff;
+}
+.j_wxqq{
+	color:#418bca;
+}
+/****/

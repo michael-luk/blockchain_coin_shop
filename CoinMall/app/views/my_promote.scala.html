@@ -1,0 +1,153 @@
+@(user: User)
+    @front_frame("XWC Mall", "", "") {
+        <link href='@routes.Assets.at("css/article.css")' rel="stylesheet" type="text/css">
+        <link href='@routes.Assets.at("css/pop.css")' rel="stylesheet" type="text/css">
+        <div class="main padding-top-10">
+            <div class="container">
+                <div class="row">
+                        <!--BEGIN LEFT-->
+
+                        <!--BEGIN RIGHT-->
+                    <div class="col-sm-12 col-xs-12 col-md-12 j_article_right">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12 col-md-12 j_article_title">
+                                @play.i18n.Messages.get("my.promote.barcode")
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12 col-md-12">
+                                <img style="width: 200px; height: 200px" src='/showimg/barcode/@(user.resellerCode + ".jpg")'>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 col-md-12 j_article_title">
+                                @play.i18n.Messages.get("my.promote.number")：
+                                @(user.downlineCount)
+                            </div>
+                            <div class="col-sm-12 col-xs-12 col-md-12 j_article_title">
+                                @play.i18n.Messages.get("reseller.money")：
+                                @(user.currentResellerProfitMoney) @biz.ConfigBiz.getStrConfig("currency.unit.name")
+                                &nbsp;&nbsp;<button type="button" class="btn btn-primary btn-xs"
+                                onclick="fundoutMoney('Money', @user.id, @user.currentResellerProfitMoney, '@play.i18n.Messages.get("fundout.zero")')">
+                                @play.i18n.Messages.get("fundout.all")
+                                </button>
+                                <br>
+                                <br>
+                                <input type="text" id="bank" value="@user.resellerProfitMoneyBank" placeholder="@play.i18n.Messages.get("fundout.bank")" />
+                                <br>
+                                <br>
+                                <input type="text" id="account" value="@user.resellerProfitMoneyBankAccount" placeholder="@play.i18n.Messages.get("fundout.bank.account")" />
+                                <br>
+                                <br>
+                                <input type="text" id="no" value="@user.resellerProfitMoneyBankNo" placeholder="@play.i18n.Messages.get("fundout.bank.no")" />
+                                <button type="button" class="btn btn-success btn-xs"
+                                onclick="updateBank(@user.id, '@play.i18n.Messages.get("field.not.null")')">
+                                @play.i18n.Messages.get("edit.all")
+                                </button>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 col-md-12 j_article_title">
+                                @play.i18n.Messages.get("reseller.coin")：
+                                @(user.currentResellerProfitCoin) @biz.ConfigBiz.getStrConfig("coin.short.name")
+                                &nbsp;&nbsp;<button type="button" class="btn btn-primary btn-xs"
+                            onclick="fundoutMoney('Coin', @user.id, @user.currentResellerProfitCoin, '@play.i18n.Messages.get("fundout.zero")')">
+                                @play.i18n.Messages.get("fundout.all")
+                                </button>
+                                <br>
+                                <br>
+                                <input type="text" id="address" style="width:300px" value="@user.resellerProfitCoinAddress" placeholder="@play.i18n.Messages.get("fundout.address")" />
+                                <button type="button" class="btn btn-success btn-xs"
+                                onclick="updateAddress(@user.id, '@play.i18n.Messages.get("field.not.null")')">
+                                @play.i18n.Messages.get("edit")
+                                </button>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                        <div class="col-sm-12 col-xs-12 col-md-12 j_article_li">
+                            <div><span class="j_article_li_title">
+                            @play.i18n.Messages.get("my.promote.link")</span>
+                                <span class="j_article_li_date"></span>
+                            </div>
+                            <div id="a" class="panel-collapse">
+                                <div class="panel-body">
+                                    <input style="width:300px" type="text" value="@biz.ConfigBiz.getStrConfig("domain.name")?r=@user.resellerCode" />
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                        <!--END RIGHT-->
+                </div>
+            </div>
+        </div>
+
+        <div class="disappare" style="display: none;">
+            <p><i class="icon iconfont icon-chenggong"></i></p>
+            <h4 class="j_disappare_text"></h4>
+        </div>
+
+        <script type="text/javascript">
+                function updateAddress(id, notNullMsg) {
+                    var data = $('#address').val();
+                    if (data == '' || data == null) {
+                        $(".j_disappare_text").text(notNullMsg);
+                        $(".disappare").show().delay(2000).hide(300);
+                        return
+                    }
+
+                    $.ajax({
+                        url: "/user/fundout/address/" + id + "/" + data,
+                        type: "PUT",
+                        success: function (data) {
+                            $(".j_disappare_text").text(data.message);
+                            $(".disappare").show().delay(2000).hide(300);
+                        }
+                    })
+                }
+
+                function updateBank(id, notNullMsg) {
+                    var data1 = $('#bank').val();
+                    var data2 = $('#account').val();
+                    var data3 = $('#no').val();
+                    if (data1 == '' || data2 == '' || data3 == '') {
+                        $(".j_disappare_text").text(notNullMsg);
+                        $(".disappare").show().delay(2000).hide(300);
+                        return
+                    }
+
+                    $.ajax({
+                        url: "/user/fundout/bank/" + id,
+                        type: "PUT",
+                        data: {
+                            'resellerProfitMoneyBank': data1,
+                            'resellerProfitMoneyBankNo': data3,
+                            'resellerProfitMoneyBankAccount': data2,
+                        },
+                        success: function (data) {
+                            $(".j_disappare_text").text(data.message);
+                            $(".disappare").show().delay(2000).hide(300);
+                        }
+                    })
+                }
+
+                function fundoutMoney(key, id, num, zeroMsg) {
+                    if (num == '' || num == 0) {
+                        $(".j_disappare_text").text(zeroMsg);
+                        $(".disappare").show().delay(2000).hide(300);
+                        return
+                    }
+
+                    $.ajax({
+                        url: "/user/fundout/" + key + "/" + id,
+                        type: "POST",
+                        success: function (data) {
+                            $(".j_disappare_text").text(data.message);
+                            $(".disappare").show().delay(2000).hide(300);
+                            if (data.flag)
+                                setTimeout("window.location.href = window.location.protocol + '//' + window.location.host + '/my/promote'", 2500)
+                        }
+                    })
+                }
+        </script>
+            <!--END POP-->
+    }

@@ -1,0 +1,37 @@
+
+.j_evaluate_li{
+	border-bottom:1px #e2e2e2 solid;
+}
+
+.j_evaluate_li{
+
+	background-color:#fff;
+	color:#666;
+
+	
+}
+.j_evaluate_li:last-child{
+	background-color:#333 !important;
+	border-bottom:1px red solid !important;
+}
+
+.j_evaluate_li div{
+	padding:10px;
+}
+.j_evaluate_li div+div{
+	border-left:1px #f0f0f0 solid;
+
+}
+
+
+@media (max-width: 768px) {
+	.j_evaluate_li div{
+		height:45px;
+	}
+	.j_evaluate_li{
+		font-size:1.2rem;
+	}
+	.j_evaluate_page{
+		display:none;
+	}
+}

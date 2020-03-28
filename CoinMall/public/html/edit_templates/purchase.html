@@ -1,0 +1,407 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4User" class="form-control" placeholder='按{{searchFieldNameUserComment}}搜' style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4User()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.Purchase.user}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridParentUsers" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        		    <br>
+        		</div>
+        	</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4Theme" class="form-control" placeholder="按{{searchFieldNameThemeComment}}搜" style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4Theme()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.Purchase.themes}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridFriendsTheme" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        		    <br>
+        		</div>
+        	</div>
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.status}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="status" ng-model="currentObj.status" ng-options="item.id as item.name disable when item.id == -100 for item in status" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.quantity}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="quantity" ng-model="currentObj.quantity" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.pids}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="pids" ng-model="currentObj.pids" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.tids}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="tids" ng-model="currentObj.tids" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.amount}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="amount" ng-model="currentObj.amount" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.coinAmount}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="coinAmount" ng-model="currentObj.coinAmount" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.coinPayAddr}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="coinPayAddr" ng-model="currentObj.coinPayAddr" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.images}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="images" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'images', currentObj, false)"/><div ng-repeat="imageName in currentObj.images.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'images', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.coinPayTrans}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="coinPayTrans" ng-model="currentObj.coinPayTrans" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.useVipPoint}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="useVipPoint" ng-model="currentObj.useVipPoint" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.vipPointDiscount}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="vipPointDiscount" ng-model="currentObj.vipPointDiscount" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.useBalance}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="useBalance" ng-model="currentObj.useBalance" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.balanceDiscount}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="balanceDiscount" ng-model="currentObj.balanceDiscount" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipName}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="shipName" ng-model="currentObj.shipName" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipPhone}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="shipPhone" ng-model="currentObj.shipPhone" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipProvince}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="shipProvince" ng-model="currentObj.shipProvince" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipCity}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="shipCity" ng-model="currentObj.shipCity" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipZone}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="shipZone" ng-model="currentObj.shipZone" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipLocation}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="shipLocation" ng-model="currentObj.shipLocation" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.buyerMessage}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="buyerMessage" ng-model="currentObj.buyerMessage" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipTime}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" id="shipTime" name="shipTime" ng-model="currentObj.shipTime" class="col-xs-10 col-sm-5 button_border" />
+                    <script type='text/javascript'>
+                        $('#shipTime').datetimepicker({
+                            language: 'zh-CN',
+                            format: 'yyyy-mm-dd',
+                            minView: 'month',
+                            todayBtn: true,
+                            todayHighlight: true,
+                            autoclose: true
+                        });
+                    </script>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.shipNo}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="shipNo" ng-model="currentObj.shipNo" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.payReturnCode}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="payReturnCode" ng-model="currentObj.payReturnCode" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.payReturnMsg}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="payReturnMsg" ng-model="currentObj.payReturnMsg" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.payResultCode}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="payResultCode" ng-model="currentObj.payResultCode" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.payTransitionId}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="payTransitionId" ng-model="currentObj.payTransitionId" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.payAmount}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="payAmount" ng-model="currentObj.payAmount" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.payTime}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" id="payTime" name="payTime" ng-model="currentObj.payTime" class="col-xs-10 col-sm-5 button_border" />
+                    <script type='text/javascript'>
+                        $('#payTime').datetimepicker({
+                            language: 'zh-CN',
+                            format: 'yyyy-mm-dd',
+                            minView: 'month',
+                            todayBtn: true,
+                            todayHighlight: true,
+                            autoclose: true
+                        });
+                    </script>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.payBank}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="payBank" ng-model="currentObj.payBank" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.paySign}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="paySign" ng-model="currentObj.paySign" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.description1}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="description1" ng-model="currentObj.description1" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.description2}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="description2" ng-model="currentObj.description2" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Purchase.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.Purchase.name}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.Purchase.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.quantity.$error.maxlength'>{{objFieldInfo.Purchase.quantity}} 超出长度！</li>
+                        <li ng-show='myform.pids.$error.maxlength'>{{objFieldInfo.Purchase.pids}} 超出长度！</li>
+                        <li ng-show='myform.tids.$error.maxlength'>{{objFieldInfo.Purchase.tids}} 超出长度！</li>
+                        <li ng-show='myform.amount.$error.maxlength'>{{objFieldInfo.Purchase.amount}} 超出长度！</li>
+                        <li ng-show='myform.coinAmount.$error.maxlength'>{{objFieldInfo.Purchase.coinAmount}} 超出长度！</li>
+                        <li ng-show='myform.coinPayAddr.$error.maxlength'>{{objFieldInfo.Purchase.coinPayAddr}} 超出长度！</li>
+                        <li ng-show='myform.coinPayTrans.$error.maxlength'>{{objFieldInfo.Purchase.coinPayTrans}} 超出长度！</li>
+                        <li ng-show='myform.useVipPoint.$error.maxlength'>{{objFieldInfo.Purchase.useVipPoint}} 超出长度！</li>
+                        <li ng-show='myform.vipPointDiscount.$error.maxlength'>{{objFieldInfo.Purchase.vipPointDiscount}} 超出长度！</li>
+                        <li ng-show='myform.useBalance.$error.maxlength'>{{objFieldInfo.Purchase.useBalance}} 超出长度！</li>
+                        <li ng-show='myform.balanceDiscount.$error.maxlength'>{{objFieldInfo.Purchase.balanceDiscount}} 超出长度！</li>
+                        <li ng-show='myform.shipName.$error.maxlength'>{{objFieldInfo.Purchase.shipName}} 超出长度！</li>
+                        <li ng-show='myform.shipPhone.$error.maxlength'>{{objFieldInfo.Purchase.shipPhone}} 超出长度！</li>
+                        <li ng-show='myform.shipProvince.$error.maxlength'>{{objFieldInfo.Purchase.shipProvince}} 超出长度！</li>
+                        <li ng-show='myform.shipCity.$error.maxlength'>{{objFieldInfo.Purchase.shipCity}} 超出长度！</li>
+                        <li ng-show='myform.shipZone.$error.maxlength'>{{objFieldInfo.Purchase.shipZone}} 超出长度！</li>
+                        <li ng-show='myform.shipLocation.$error.maxlength'>{{objFieldInfo.Purchase.shipLocation}} 超出长度！</li>
+                        <li ng-show='myform.buyerMessage.$error.maxlength'>{{objFieldInfo.Purchase.buyerMessage}} 超出长度！</li>
+                        <li ng-show='myform.shipTime.$error.maxlength'>{{objFieldInfo.Purchase.shipTime}} 超出长度！</li>
+                        <li ng-show='myform.shipNo.$error.maxlength'>{{objFieldInfo.Purchase.shipNo}} 超出长度！</li>
+                        <li ng-show='myform.payReturnCode.$error.maxlength'>{{objFieldInfo.Purchase.payReturnCode}} 超出长度！</li>
+                        <li ng-show='myform.payReturnMsg.$error.maxlength'>{{objFieldInfo.Purchase.payReturnMsg}} 超出长度！</li>
+                        <li ng-show='myform.payResultCode.$error.maxlength'>{{objFieldInfo.Purchase.payResultCode}} 超出长度！</li>
+                        <li ng-show='myform.payTransitionId.$error.maxlength'>{{objFieldInfo.Purchase.payTransitionId}} 超出长度！</li>
+                        <li ng-show='myform.payAmount.$error.maxlength'>{{objFieldInfo.Purchase.payAmount}} 超出长度！</li>
+                        <li ng-show='myform.payTime.$error.maxlength'>{{objFieldInfo.Purchase.payTime}} 超出长度！</li>
+                        <li ng-show='myform.payBank.$error.maxlength'>{{objFieldInfo.Purchase.payBank}} 超出长度！</li>
+                        <li ng-show='myform.paySign.$error.maxlength'>{{objFieldInfo.Purchase.paySign}} 超出长度！</li>
+                        <li ng-show='myform.description1.$error.maxlength'>{{objFieldInfo.Purchase.description1}} 超出长度！</li>
+                        <li ng-show='myform.description2.$error.maxlength'>{{objFieldInfo.Purchase.description2}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.Purchase.comment}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+@(infoList: List[Info]) @front_frame(TableInfoReader.getTableComment("Info"), "InfoApp", "InfoController") {
+    @for(info <- infoList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Info", "id"): @info.id</li>
+            <li>@TableInfoReader.getFieldComment("Info", "name"): @info.name</li>
+            <li>@TableInfoReader.getFieldComment("Info", "showIndex"): @info.showIndex</li>
+            <li>@TableInfoReader.getFieldComment("Info", "classify"): @info.classify</li>
+            <li>@TableInfoReader.getFieldComment("Info", "nameEn"): @info.nameEn</li>
+            <li>@TableInfoReader.getFieldComment("Info", "nameHk"): @info.nameHk</li>
+            <li>@TableInfoReader.getFieldComment("Info", "nameJa"): @info.nameJa</li>
+            <li>@TableInfoReader.getFieldComment("Info", "phone"): @info.phone</li>
+            <li>@TableInfoReader.getFieldComment("Info", "url"): @info.url</li>
+            <li>@TableInfoReader.getFieldComment("Info", "visible"): @info.visible</li>
+            <li>@TableInfoReader.getFieldComment("Info", "status"): @EnumInfoReader.getEnumName("Info", "status", info.status)</li>
+            <li>@TableInfoReader.getFieldComment("Info", "images"): @info.images</li>
+            <li>@TableInfoReader.getFieldComment("Info", "smallImages"): @info.smallImages</li>
+            <li>@TableInfoReader.getFieldComment("Info", "imagesEn"): @info.imagesEn</li>
+            <li>@TableInfoReader.getFieldComment("Info", "smallImagesEn"): @info.smallImagesEn</li>
+            <li>@TableInfoReader.getFieldComment("Info", "imagesHk"): @info.imagesHk</li>
+            <li>@TableInfoReader.getFieldComment("Info", "smallImagesHk"): @info.smallImagesHk</li>
+            <li>@TableInfoReader.getFieldComment("Info", "imagesJa"): @info.imagesJa</li>
+            <li>@TableInfoReader.getFieldComment("Info", "smallImagesJa"): @info.smallImagesJa</li>
+            <li>@TableInfoReader.getFieldComment("Info", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(info.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Info", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(info.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Info", "description"): @info.description</li>
+            <li>@TableInfoReader.getFieldComment("Info", "descriptionTwo"): @info.descriptionTwo</li>
+            <li>@TableInfoReader.getFieldComment("Info", "descriptionEn"): @info.descriptionEn</li>
+            <li>@TableInfoReader.getFieldComment("Info", "descriptionTwoEn"): @info.descriptionTwoEn</li>
+            <li>@TableInfoReader.getFieldComment("Info", "descriptionHk"): @info.descriptionHk</li>
+            <li>@TableInfoReader.getFieldComment("Info", "descriptionTwoHk"): @info.descriptionTwoHk</li>
+            <li>@TableInfoReader.getFieldComment("Info", "descriptionJa"): @info.descriptionJa</li>
+            <li>@TableInfoReader.getFieldComment("Info", "descriptionTwoJa"): @info.descriptionTwoJa</li>
+            <li>@TableInfoReader.getFieldComment("Info", "comment"): @info.comment</li>
+        </ul>
+    }
+}

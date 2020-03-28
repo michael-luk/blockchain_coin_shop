@@ -1,0 +1,45 @@
+@(themes: List[Theme])
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/classify.css")' rel="stylesheet" type="text/css">
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/controllers/my_favorites_controller.js")'></script>
+    <div class="main padding-top-20" ng-app="MyFavoriteApp" ng-controller="MyFavoriteController">
+        <div class="container">
+            <div class="row">
+
+            @for(item <- themes) {
+                <div class="col-sm-6 col-xs-6 col-md-2">
+                    <div class="thumbnail product-item">
+                        <a href="/product/@item.product.id">
+                            <img src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(item, "images" + session.get("lang"))"
+                            alt="@BaseController.getFieldValue(item, "name" + session.get("lang"))">
+                        </a>
+                        <div>
+                            <div class="j_title"><a href="/product/@item.product.id">
+                                <span style="display : none">@item.product.name</span>
+                                @BaseController.getFieldValue(item.product, "name" + session.get("lang")) -
+                                @BaseController.getFieldValue(item, "name" + session.get("lang"))
+                            </a></div>
+                            <div class="pi-price">
+                                <a href="/product/@item.product.id">
+                                    @item.price
+                                </a> @biz.ConfigBiz.getStrConfig("currency.unit.name")
+                                <i id="favorite_icon_@item.id" ng-click="setFavorite(@item.id)"
+                                class="icon iconfont icon-redshoucang j_shoucang">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+
+        <!--BEGIN POP-->
+    <div class="disappare" style="display: none;">
+        <p><i class="icon iconfont icon-chenggong"></i></p>
+        <h4 class="j_disappare_text">@play.i18n.Messages.get("add.favorite.success")</h4>
+    </div>
+        <!--END POP-->
+}

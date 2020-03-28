@@ -1,0 +1,192 @@
+@(item: Product, signature: me.chanjar.weixin.common.bean.WxJsapiSignature)
+@front_frame("XWC Mall", "ProductDetailsApp", "ProductDetailsController") {
+    <link href='@routes.Assets.at("css/inner.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("plugins/spinner/bootstrap-spinner.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("plugins/emoji/dist/css/index.css")' rel="stylesheet" type="text/css">
+    @*<link href='@routes.Assets.at("plugins/car/car.css")' rel="stylesheet" type="text/css">*@
+    @*<script src='@routes.Assets.at("plugins/car/car.js")' type="text/javascript"></script>*@
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/controllers/product_details_controller.js")'></script>
+
+    <style>
+    .j_old_price{
+        font-size:1.4rem;
+        color:#777;
+        margin-left:10px;
+    }
+    .j_pro_contents{
+        text-align:center;
+    }
+    </style>
+
+    <div ng-app="ProductDetailsApp" ng-controller="ProductDetailsController" ng-init="init(@item.id)"
+    class="main padding-top-20 margin-bottom-40">
+        <div class="container">
+                <!--START 头-->
+            <div class="row j_inner_top">
+                    <!--BEGIN LEFT-->
+                <div class="col-sm-12 col-xs-12 col-md-6 j_p_l">
+                    <img src="/showimg/upload/{{selectedTheme.images@session.get("lang")}}" class="j_pro_img">
+                </div>
+                    <!--END LEFT-->
+
+                    <!--BEGIN RIGHT-->
+                <div class="col-sm-12 col-xs-12 col-md-6">
+                    <div class="j_pro_title">@BaseController.getFieldValue(item, "name" + session.get("lang"))</div>
+                    <div class="j_pro_price">
+                        <span ng-bind="selectedTheme.price"></span> @biz.ConfigBiz.getStrConfig("currency.unit.name") <span class="j_old_price">(@play.i18n.Messages.get("original.price")@item.originalPrice.toInt@biz.ConfigBiz.getStrConfig("currency.unit.name"))</span>
+                        <!--<div class="navbar-header" >
+                            <div class="navbar-toggle" data-toggle="collapse" style="float:left;margin: unset;padding: unset">
+                            </div>
+                        </div> -->
+                        <div class="collapse navbar-collapse navbar-responsive-collapse">
+                            <div class="nav navbar-nav" style="margin-left: -16px">
+                                <span ng-bind="(selectedTheme.price/@biz.ConfigBiz.getFloatConfig("coin.exchange.rate")) | number:2" ></span> @biz.ConfigBiz.getStrConfig("coin.short.name") <span class="j_old_price">(@play.i18n.Messages.get("original.price")@((item.originalPrice.toDouble/biz.ConfigBiz.getFloatConfig("coin.exchange.rate")).formatted("%.2f"))@biz.ConfigBiz.getStrConfig("coin.short.name"))</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="j_pro_inv">@play.i18n.Messages.get("sold.num")
+                        ：<span class="j_inventory" ng-bind="selectedTheme.soldNumber"></span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        @play.i18n.Messages.get("inventory")：
+                        <span class="j_sell" ng-bind="selectedTheme.inventory"></span>
+
+                        <span style="margin-left:10%;color:red" ng-if="selectedTheme.price==0">@play.i18n.Messages.get("await")</span>
+                        <span style="margin-left: 20%;color:darkorange" ng-if="selectedTheme.inventory==0&&selectedTheme.price!=0">@play.i18n.Messages.get("sold.out")</span>
+                    </div>
+                    <div class="j_pro_info">
+                        <span ng-bind-html="selectedTheme.description@session.get("lang")"></span>
+                    </div>
+                    <div class="j_pro_spec">
+                    @for(theme <- item.themes.filter(o => o.status == 0)) {
+                        <span class="j_spec" ng-style="{'background-color': selectedTheme.id == @theme.id ? '#d5d5d5' : '#fff'}"
+                        ng-click="changeSelectTheme(@theme.id)">
+                        @BaseController.getFieldValue(theme, "name" + session.get("lang"))
+                        </span>
+                    }
+                    </div>
+                    <div class="j_pro_add">
+                        <div class="j_pro_shoucang">@play.i18n.Messages.get("favorite")：
+                            <i ng-click="setFavorite()"
+                            ng-class="{true:'icon iconfont icon-redshoucang j_shoucang_1',false:'icon iconfont icon-shangpinshoucang1 j_shoucang_1'}[isFavorite]">
+                            </i>
+                        </div>
+                        <div class="input-append spinner">
+                                <!---->
+                            <div class="j_add_car">
+                                <span>
+                                    <a class="add-button j_quantitys" data-quantitys="1"
+                                    ng-click="add2Cart('@BaseController.getFieldValue(item, "name" + session.get("lang"))', '@play.i18n.Messages.get("add.cart.success")', '@play.i18n.Messages.get("inventory.issue")')">
+                                    @play.i18n.Messages.get("add.cart")
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="add-on">
+                                <a class="spin-up" ng-click="addQuantity(1)"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a class="spin-down" ng-click="addQuantity(-1)"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                            </div>
+                            <input type="text" ng-model="quantity" class="j_add" id="quantity" readonly="value">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!--END 头-->
+            <div class="margin-top-10">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">@play.i18n.Messages.get("product.details")</a>
+                    </li>
+                    <li>
+                        <a href="#evaluate" data-toggle="tab">@play.i18n.Messages.get("product.comment")</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--BEGIN 内容-->
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <div class="row j_pro_contents margin-top-10 margin-bottom-40">
+                            <!--BEGIN 商品详情-->
+                        <div class="row j_pro_contents margin-top-10 margin-bottom-40">
+                            <div><span ng-bind-html='selectedTheme.descriptionTwo@session.get("lang")' style="font-size:20px;color:red"></span></div><BR>
+                            <div ng-repeat='image in selectedTheme.smallImages@session.get("lang") .split(",")'>
+                                <img src="/showimg/upload/{{image}}">
+                            </div>
+                        </div>
+                            <!--END 商品详情-->
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="evaluate">
+                        <!--BEGIN 商品评价-->
+                    <div class="evaluate_div">
+                            <!--BEGIN-->
+                        <div class="evaluate_li" ng-hide="comments.length > 0">
+                            <div class="col-sm-12 col-xs-12 col-md-12">
+                                <div class="text-center">@play.i18n.Messages.get("product.comment.notfound")</div>
+                            </div>
+                        </div>
+                            <!--END-->
+                            <!--BEGIN-->
+                        <div class="evaluate_li" ng-repeat="comment in comments">
+                            <div class="col-sm-12 col-xs-12 col-md-12">
+                                <div class="buy_date"><span ng-bind="comment.createdAt"></span></div>
+                                <div><span ng-bind-html="comment.name"></span></div>
+                                <div class="text-right buy_date"><span class="evaluate_title">by</span> <span ng-bind="comment.comment"></span></div>
+                            </div>
+                        </div>
+                            <!--END-->
+                    </div>
+                        <!--END 商品评价-->
+                </div>
+            </div>
+                <!--END 内容-->
+        </div>
+
+        <script language="javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+        <script type="text/javascript">
+                wx.config({
+                    debug: false,
+                    appId: '@biz.ConfigBiz.getStrConfig("weixin.appid")',
+                    timestamp: '@signature.getTimestamp()',
+                    nonceStr: '@signature.getNoncestr()',
+                    signature: '@signature.getSignature()',
+                    jsApiList: [
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                    ]
+                });
+                wx.ready(function () {
+                    wx.onMenuShareAppMessage({
+                        title: '@BaseController.getFieldValue(item, "name" + session.get("lang"))',
+                        desc: '@play.i18n.Messages.get("wx.share.text")',
+                        link: window.location.href,
+                        imgUrl: window.location.protocol + '//' + window.location.host + '/showimg/mid_thumb/@biz.ProductBiz.getDefaultThemeFieldByLang(item, "images", session.get("lang")).split(",")(0)',
+                        type: 'link',
+                        dataUrl: '',
+                        success: function () {
+                        },
+                        cancel: function () {
+                        }
+                    });
+
+                    wx.onMenuShareTimeline({
+                        title: '@BaseController.getFieldValue(item, "name" + session.get("lang"))',
+                        link: window.location.href,
+                        imgUrl: window.location.protocol + '//' + window.location.host + '/showimg/mid_thumb/@biz.ProductBiz.getDefaultThemeFieldByLang(item, "images", session.get("lang")).split(",")(0)',
+                        success: function () {
+                        },
+                        cancel: function () {
+                        }
+                    });
+
+                    wx.error(function (res) {
+                    });
+                });
+        </script>
+    </div>
+    <div class="disappare" style="display: none;">
+        <p><i class="icon iconfont icon-chenggong"></i></p>
+        <h4 class="j_disappare_text">@play.i18n.Messages.get("add.cart.success")</h4>
+    </div>
+}

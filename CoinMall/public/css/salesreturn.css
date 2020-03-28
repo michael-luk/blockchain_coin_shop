@@ -1,0 +1,124 @@
+label{
+	font-weight:normal;
+	padding-right:0px !important;
+}
+.j_user_return{
+	background-color:#FFF;
+	border-bottom:1px #e2e2e2 solid;
+	color:#666;
+
+}
+.j_user_return_info{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.j_user_return_default{
+	color:#F90 !important;
+}
+.j_user_add{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.padding-top-8{
+	padding-top:8px;
+}
+.j_user_address_s{
+    border-bottom:1px #f5f5f5 solid; 
+	margin:0 10px;
+}
+.j_user_add_method{
+	padding:10px 20px;
+}
+
+label {cursor:pointer; padding-top:6px;}
+label i {font-style:normal;display:inline-block;width:20px;height:20px;text-align:center;line-height:20px;color:#fff;vertical-align:middle;margin:-2px 2px 1px 0px;border:#5bc0de 1px solid;}
+input[type="checkbox"],input[type="radio"] {display:none;}
+input[type="radio"] + i {border-radius:10px;}
+input[type="checkbox"]:checked + i,input[type="radio"]:checked + i {background:#5bc0de;}
+input[type="checkbox"]:disabled + i,input[type="radio"]:disabled + i {border-color:#ccc;}
+input[type="checkbox"]:checked:disabled + i,input[type="radio"]:checked:disabled + i {background:#ccc;}
+
+.radio, .checkbox{
+padding-left:0;
+}
+@media (max-width: 768px) {
+	.mobile_padding{
+        padding-top:10px;
+	}
+	.j_user_add{
+		text-align:center;
+	}
+    .pc_left{
+		text-align:left;
+	}
+	
+	.form-group {
+		margin-left:0px  !important;
+		margin-right:0px  !important;
+	}
+
+}
+
+
+/* 中型设备（台式电脑，992px 起） */
+@media (min-width: 992px) { 	
+	.pc_right{
+		text-align:right
+	}
+}
+
+/* 大型设备（大台式电脑，1200px 起） */
+@media (min-width: 1200px) {
+	.pc_right{
+		text-align:right
+	}
+}
+
+
+	.order_return span{
+		height:34px;
+		line-height:34px;
+	}
+	.j_padding{
+		margin-left: -0px !important;
+        margin-right: -0px !important;
+	}
+	
+	.j_line{
+		clear:both;
+		text-align:center;
+		margin-left:5%;
+		width:90%;
+		height:5px;
+		border-top:1px #f5f5f5 solid;
+	}
+	.ok{
+		color:#5bc0de;
+	}
+	.no{
+		color:#efad4d;
+	}
+	.j_address{
+		color:#5ab75c;
+		cursor:pointer;
+	}
+	.j_address_keyin{
+		color:#1a67bd;
+		cursor:pointer;
+	}
+	.j_user_return_info span{
+		color:#999999;
+	}
+    select{  
+		width: 100px;
+		height:34px;
+		line-height:34px;
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		background: url("../images/xiala.png");
+		border:1px #c2c2c2 solid;
+		background-position: right center;
+		padding-right: 0 \9;
+		background: none \9;   
+    }

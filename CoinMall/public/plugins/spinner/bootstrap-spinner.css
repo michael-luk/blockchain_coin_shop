@@ -1,0 +1,41 @@
+.spinner .add-on {
+	padding: 2px
+}
+
+.spinner .add-on a.spin-up,.spinner .add-on a.spin-down {
+	height: 24px;
+	overflow: hidden;
+	display: block;
+	text-align: center;
+	position: relative;
+	top:-2px;
+	color: #9fa5ac;
+
+	background-color:#edeff1;
+	padding:4px 8px;
+}
+.spin-up{
+	margin-bottom:2px;
+}
+.glyphicon-chevron-up{
+	position:relative;
+	left:2px;
+}
+.glyphicon-chevron-down{
+	position:relative;
+	left:1px;
+}
+
+
+
+.spinner .add-on a.spin-up:hover,.spinner .add-on a.spin-down:hover {
+	color: #555;
+	text-decoration:none;
+}
+
+.spinner input {
+	width: 4em;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px
+}

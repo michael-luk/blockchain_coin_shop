@@ -1,0 +1,16 @@
+@(balanceUseList: List[BalanceUse]) @front_frame(TableInfoReader.getTableComment("BalanceUse"), "BalanceUseApp", "BalanceUseController") {
+    @for(balanceUse <- balanceUseList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "id"): @balanceUse.id</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "name"): @balanceUse.name</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "refUserId"): @balanceUse.refUserId</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "coin"): @balanceUse.coin</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "money"): @balanceUse.money</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "rate"): @balanceUse.rate</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "status"): @EnumInfoReader.getEnumName("BalanceUse", "status", balanceUse.status)</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(balanceUse.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(balanceUse.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("BalanceUse", "comment"): @balanceUse.comment</li>
+        </ul>
+    }
+}

@@ -1,0 +1,95 @@
+@backend_frame("Info管理", "InfoBackendApp", "InfoBackendController") {
+	<style>
+	.page-list .pagination {float:left;}
+	.page-list .pagination span {cursor: pointer;}
+	.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+	.page-list .pagination .separate span:hover {background: none;}
+	.page-list .page-total {float:left; margin: 25px 20px;}
+	.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+	.page-list .page-total input {width: 40px; padding-left:3px;}
+	.page-list .page-total select {width: 50px;}
+	</style>
+
+
+<div class="page-content" ng-init='websocketInit(@biz.ConfigBiz.getBoolConfig("websocket"), "@biz.ConfigBiz.getStrConfig("domain.name")")'>
+	<div class="page-header">
+		<p>
+			状态: <a href="#" data-toggle="tooltip" title="按状态筛选数据"><select ng-model="selectedStatus" ng-options="sta.id as sta.name for sta in status" style="padding: 6px;border-radius: 3px;">
+				<option value="-100">全部</option>
+			</select></a> | 
+			<button ng-click="addContent()" class="btn btn-primary">
+				<i class="icon-plus-sign"></i> 新增
+			</button>
+    			<button ng-click="updateContent()" class="btn btn-success">
+    				<i class="icon-edit"></i> 修改
+    			</button>
+			<button ng-click="deleteContent()" class="btn btn-danger">
+				<i class="icon-trash"></i> 刪除
+			</button> | 
+            <input type="text" ng-model="queryKeyword" class="form-control" placeholder="按@TableInfoReader.getFieldComment("Info", TableInfoReader.getSearchField("Info"))搜" style="display: inline-block; width: 140px;text-align: center;" />
+			<button ng-click="searchContent()" class="btn btn-primary">
+				<i class="icon-search"></i> 搜索
+			</button> | <input id="startTime" type="text" ng-model="startTime" placeholder="开始时间" style="text-align: center;height: 33px; border: 1px solid #ece4e4;" > -
+			<input id="endTime" type="text" ng-model="endTime" placeholder="结束时间" style="text-align: center;height: 33px;border: 1px solid #ece4e4;" >
+			<button ng-click="refresh()" class="btn btn-warning">
+				<i class="icon-calendar"></i> 日期筛选
+			</button> | 
+			<button ng-click="report()" class="btn btn-success">
+				<i class="icon-print"></i> 报表
+			</button> | <span ng-bind="chatMsg"></span>
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="gridStyle" style="min-height: 500px;" ui-grid="gridOptions" ui-grid-resize-columns ui-grid-selection ui-grid-edit ui-grid-auto-fit-columns></div>
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>
+            
+<script type="text/javascript">
+    var hasImageField = @TableInfoReader.hasImageField("Info");
+    var searchFieldName = '@TableInfoReader.getSearchField("Info")'
+    var objFieldInfo = {};
+	var objEnumInfo = {}
+    
+    // 处理自己的字段注释, status枚举, enum枚举
+    objFieldInfo.Info = {};
+    objFieldInfo.Info.name = '@TableInfoReader.getFieldComment("Info", "name")';
+    objFieldInfo.Info.showIndex = '@TableInfoReader.getFieldComment("Info", "showIndex")';
+    objFieldInfo.Info.classify = '@TableInfoReader.getFieldComment("Info", "classify")';
+    objFieldInfo.Info.nameEn = '@TableInfoReader.getFieldComment("Info", "nameEn")';
+    objFieldInfo.Info.nameHk = '@TableInfoReader.getFieldComment("Info", "nameHk")';
+    objFieldInfo.Info.nameJa = '@TableInfoReader.getFieldComment("Info", "nameJa")';
+    objFieldInfo.Info.phone = '@TableInfoReader.getFieldComment("Info", "phone")';
+    objFieldInfo.Info.url = '@TableInfoReader.getFieldComment("Info", "url")';
+    objFieldInfo.Info.visible = '@TableInfoReader.getFieldComment("Info", "visible")';
+    objFieldInfo.Info.status = '@TableInfoReader.getFieldComment("Info", "status")';
+    objFieldInfo.Info.images = '@TableInfoReader.getFieldComment("Info", "images")';
+    objFieldInfo.Info.smallImages = '@TableInfoReader.getFieldComment("Info", "smallImages")';
+    objFieldInfo.Info.imagesEn = '@TableInfoReader.getFieldComment("Info", "imagesEn")';
+    objFieldInfo.Info.smallImagesEn = '@TableInfoReader.getFieldComment("Info", "smallImagesEn")';
+    objFieldInfo.Info.imagesHk = '@TableInfoReader.getFieldComment("Info", "imagesHk")';
+    objFieldInfo.Info.smallImagesHk = '@TableInfoReader.getFieldComment("Info", "smallImagesHk")';
+    objFieldInfo.Info.imagesJa = '@TableInfoReader.getFieldComment("Info", "imagesJa")';
+    objFieldInfo.Info.smallImagesJa = '@TableInfoReader.getFieldComment("Info", "smallImagesJa")';
+    objFieldInfo.Info.lastUpdateTime = '@TableInfoReader.getFieldComment("Info", "lastUpdateTime")';
+    objFieldInfo.Info.createdAt = '@TableInfoReader.getFieldComment("Info", "createdAt")';
+    objFieldInfo.Info.description = '@TableInfoReader.getFieldComment("Info", "description")';
+    objFieldInfo.Info.descriptionTwo = '@TableInfoReader.getFieldComment("Info", "descriptionTwo")';
+    objFieldInfo.Info.descriptionEn = '@TableInfoReader.getFieldComment("Info", "descriptionEn")';
+    objFieldInfo.Info.descriptionTwoEn = '@TableInfoReader.getFieldComment("Info", "descriptionTwoEn")';
+    objFieldInfo.Info.descriptionHk = '@TableInfoReader.getFieldComment("Info", "descriptionHk")';
+    objFieldInfo.Info.descriptionTwoHk = '@TableInfoReader.getFieldComment("Info", "descriptionTwoHk")';
+    objFieldInfo.Info.descriptionJa = '@TableInfoReader.getFieldComment("Info", "descriptionJa")';
+    objFieldInfo.Info.descriptionTwoJa = '@TableInfoReader.getFieldComment("Info", "descriptionTwoJa")';
+    objFieldInfo.Info.comment = '@TableInfoReader.getFieldComment("Info", "comment")';
+
+	objEnumInfo.Info = {}
+
+	objEnumInfo.Info.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Info", "status"); i++) {
+		objEnumInfo.Info.status[i] = '@EnumInfoReader.getEnumNameLinkString("Info", "status")'.split(',')[i];
+	}
+</script>
+}

@@ -1,0 +1,121 @@
+@(user: User)
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/user.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("css/address.css")' rel="stylesheet" type="text/css">
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/controllers/my_address_controller.js")'></script>
+
+        <!---->
+    <div class="j_user_banner padding-top-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 j_user_banner_img">
+                    <img src="@routes.Assets.at("images/model3.jpg")" />
+                </div>
+            </div>
+        </div>
+    </div>
+        <!---->
+
+
+    <div class="main mobile_border_bottom" ng-app="MyShipInfoApp" ng-controller="MyShipInfoController"
+    ng-init="init(@user.id)">
+        <div class="container j_main">
+
+            <div class="row">
+                    <!--BEGIN LEFT-->
+                <div class="col-sm-12 col-xs-12 col-md-2 j_user_left mobile_hides" >
+                    <div class="j_user text-center margin-top-10">
+                        <div class="j_user_face"><img src="@user.headImage"></div>
+                        <div class="j_user_name">@user.name (No.@user.id)</div>
+                        <div class="j_user_level"><span>@play.i18n.Messages.get("credit") @user.vipPoint</span></div>
+                        <div class="j_user_reg">@play.i18n.Messages.get("register.time")：
+                            @LyLib.Utils.DateUtil.Date2Str(user.createdAt, "yyyy-MM-dd")
+                        </div>
+                    </div>
+                </div>
+                    <!--END LEFT-->
+
+                    <!--BEGIN RIGHT-->
+                <div class="col-sm-12 col-xs-12 col-md-10 j_user_right" >
+                    <div class="row j_user_top">
+                        <div class="col-sm-12 col-xs-12 col-md-12" >
+                            <div>@play.i18n.Messages.get("my.shipinfo.manage")</div>
+                        </div>
+                    </div>
+
+                        <!--BEGIN ADDRESS LI-->
+                    <div class="row j_user_address" ng-repeat="shipInfo in shipInfos">
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="row j_user_address_info">
+                                <div class="col-sm-6 col-xs-6 col-md-6" >
+                                    <div>
+                                        <span class="j_user_address_default" ng-show="shipInfo.isDefault">
+                                            [@play.i18n.Messages.get("default.shipinfo")]
+                                        </span>
+                                        <span ng-bind="shipInfo.name"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-6 col-md-6 text-right" >
+                                    <div>
+                                        @play.i18n.Messages.get("address.phone")：
+                                        <span ng-bind="shipInfo.phone"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_address_s">
+                                <span ng-bind="shipInfo.province"></span>
+                                <span ng-bind="shipInfo.city"></span>
+                                <span ng-bind="shipInfo.zone"></span>
+                                <span ng-bind="shipInfo.location"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12 mobile_padding j_user_add_method" >
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6 col-md-6">
+                                    <label><input type="radio" name="abc"
+                                    ng-click="setDefault($index, '@play.i18n.Messages.get("action.success")')"
+                                    ng-checked="shipInfo.isDefault"><i>✓</i>
+                                        @play.i18n.Messages.get("address.set.default")</label><br>
+                                </div>
+                                <div class="col-sm-6 col-xs-6 col-md-6 text-right">
+                                    <button type="button" class="btn btn-default btn-sm"
+                                    ng-click="goEditPage($index)">
+                                    @play.i18n.Messages.get("edit")
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-sm"
+                                    ng-click="delete($index, '@play.i18n.Messages.get("action.success")')">
+                                    @play.i18n.Messages.get("delete")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!--END ADDRESS LI-->
+
+                        <!--BEGIN ADDRESS LI-->
+                    <div class="row j_user_address j_user_add  text-right">
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <button type="button" class="btn btn-primary"
+                            onclick="window.location='/my/address/new?prePage=myAddress'">
+                            @play.i18n.Messages.get("ship.info.add")
+                            </button>
+                        </div>
+                    </div>
+                        <!--END ADDRESS LI-->
+                </div>
+
+                <div class="j_clear"></div>
+                    <!--END RIGHT-->
+            </div>
+        </div>
+    </div>
+
+    <div class="disappare" style="display: none;">
+        <p><i class="icon iconfont icon-chenggong"></i></p>
+        <h4 class="j_disappare_text"></h4>
+    </div>
+}

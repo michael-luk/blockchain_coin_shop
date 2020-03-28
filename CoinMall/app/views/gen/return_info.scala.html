@@ -1,0 +1,18 @@
+@(returnInfoList: List[ReturnInfo]) @front_frame(TableInfoReader.getTableComment("ReturnInfo"), "ReturnInfoApp", "ReturnInfoController") {
+    @for(returnInfo <- returnInfoList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "id"): @returnInfo.id</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "name"): @returnInfo.name</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "contact"): @returnInfo.contact</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "phone"): @returnInfo.phone</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "refUserId"): @returnInfo.refUserId</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "refPurchaseId"): @returnInfo.refPurchaseId</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "status"): @EnumInfoReader.getEnumName("ReturnInfo", "status", returnInfo.status)</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "returnType"): @returnInfo.returnType</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "shipNo"): @returnInfo.shipNo</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(returnInfo.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(returnInfo.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("ReturnInfo", "comment"): @returnInfo.comment</li>
+        </ul>
+    }
+}

@@ -1,0 +1,81 @@
+@(user: User)
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/user.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("css/evaluate.css")' rel="stylesheet" type="text/css">
+    @*<script src="@routes.Assets.at("js/angular.min.js")"></script>*@
+    @*<script src='@routes.Assets.at("js/controllers/my_address_controller.js")'></script>*@
+
+        <!---->
+    <div class="j_user_banner padding-top-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 j_user_banner_img">
+                    <img src="@routes.Assets.at("images/model3.jpg")" />
+                </div>
+            </div>
+        </div>
+    </div>
+        <!---->
+
+
+    <div class="main mobile_border_bottom">
+        <div class="container j_main">
+
+            <div class="row">
+                    <!--BEGIN LEFT-->
+                <div class="col-sm-12 col-xs-12 col-md-2 j_user_left mobile_hides" >
+                    <div class="j_user text-center margin-top-10">
+                        <div class="j_user_face"><img src="@user.headImage"></div>
+                        <div class="j_user_name">@user.name (No.@user.id)</div>
+                        <div class="j_user_level"><span>@play.i18n.Messages.get("credit") @user.vipPoint</span></div>
+                        <div class="j_user_reg">@play.i18n.Messages.get("register.time")：
+                            @LyLib.Utils.DateUtil.Date2Str(user.createdAt, "yyyy-MM-dd")
+                        </div>
+                    </div>
+                </div>
+                    <!--END LEFT-->
+
+                    <!--BEGIN RIGHT-->
+                <div class="col-sm-12 col-xs-12 col-md-10 j_user_right" >
+                    <div class="row j_user_top">
+                        <div class="col-sm-12 col-xs-12 col-md-12" >
+                            <div>@play.i18n.Messages.get("member.comment")</div>
+                        </div>
+                    </div>
+
+                    @if(user.commentInfos == null || user.commentInfos.size() == 0) {
+                        <div class="row j_evaluate_li text-center padding-top-20 padding-bottom-20">
+                        @play.i18n.Messages.get("member.comment.notfound")
+                        </div>
+                    }
+
+                        <!--BEGIN INTEG LI-->
+                    @for(comment <- user.commentInfos){
+                        @if(comment.status == 0) {
+                            <div class="row j_evaluate_li">
+                                <div class="buy_date">to @comment.product.name</div>
+                                <div class="text-left">
+                                @Html(comment.name)
+                                </div>
+                                <div class="text-right buy_date">at @LyLib.Utils.DateUtil.Date2Str(comment.createdAt)</div>
+                            </div>
+                        }
+                    }
+                        <!--END INTEG LI-->
+
+                        <!--BEGIN PAGE-->
+                    <div class="row j_evaluate_page">
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <ul class="pagination">
+                            </ul>
+                        </div>
+                    </div>
+                        <!--END PAGE-->
+                </div>
+
+                <div class="j_clear"></div>
+                    <!--END RIGHT-->
+            </div>
+        </div>
+    </div>
+}

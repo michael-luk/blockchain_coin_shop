@@ -1,0 +1,54 @@
+@(userList: List[User]) @front_frame(TableInfoReader.getTableComment("User"), "UserApp", "UserController") {
+    @for(user <- userList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("User", "id"): @user.id</li>
+            <li>@TableInfoReader.getFieldComment("User", "name"): @user.name</li>
+            <li>@TableInfoReader.getFieldComment("User", "openId"): @user.openId</li>
+            <li>@TableInfoReader.getFieldComment("User", "wxOpenId"): @user.wxOpenId</li>
+            <li>@TableInfoReader.getFieldComment("User", "unionId"): @user.unionId</li>
+            <li>@TableInfoReader.getFieldComment("User", "facebookId"): @user.facebookId</li>
+            <li>@TableInfoReader.getFieldComment("User", "email"): @user.email</li>
+            <li>@TableInfoReader.getFieldComment("User", "isEmailVerified"): @user.isEmailVerified</li>
+            <li>@TableInfoReader.getFieldComment("User", "emailKey"): @user.emailKey</li>
+            <li>@TableInfoReader.getFieldComment("User", "emailOverTime"): @LyLib.Utils.DateUtil.Date2Str(user.emailOverTime)</li>
+            <li>@TableInfoReader.getFieldComment("User", "headImage"): @user.headImage</li>
+            <li>@TableInfoReader.getFieldComment("User", "images"): @user.images</li>
+            <li>@TableInfoReader.getFieldComment("User", "sexEnum"): @EnumInfoReader.getEnumName("User", "sexEnum", user.sexEnum)</li>
+            <li>@TableInfoReader.getFieldComment("User", "phone"): @user.phone</li>
+            <li>@TableInfoReader.getFieldComment("User", "vipPoint"): @user.vipPoint</li>
+            <li>@TableInfoReader.getFieldComment("User", "balance"): @user.balance</li>
+            <li>@TableInfoReader.getFieldComment("User", "coinAddress"): @user.coinAddress</li>
+            <li>@TableInfoReader.getFieldComment("User", "coinBalance"): @user.coinBalance</li>
+            <li>@TableInfoReader.getFieldComment("User", "cardNumber"): @user.cardNumber</li>
+            <li>@TableInfoReader.getFieldComment("User", "country"): @user.country</li>
+            <li>@TableInfoReader.getFieldComment("User", "province"): @user.province</li>
+            <li>@TableInfoReader.getFieldComment("User", "city"): @user.city</li>
+            <li>@TableInfoReader.getFieldComment("User", "zone"): @user.zone</li>
+            <li>@TableInfoReader.getFieldComment("User", "address"): @user.address</li>
+            <li>@TableInfoReader.getFieldComment("User", "birth"): @LyLib.Utils.DateUtil.Date2Str(user.birth)</li>
+            <li>@TableInfoReader.getFieldComment("User", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(user.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("User", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(user.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("User", "lastLoginIp"): @user.lastLoginIp</li>
+            <li>@TableInfoReader.getFieldComment("User", "lastLoginTime"): @LyLib.Utils.DateUtil.Date2Str(user.lastLoginTime)</li>
+            <li>@TableInfoReader.getFieldComment("User", "lastLoginIpArea"): @user.lastLoginIpArea</li>
+            <li>@TableInfoReader.getFieldComment("User", "status"): @EnumInfoReader.getEnumName("User", "status", user.status)</li>
+            <li>@TableInfoReader.getFieldComment("User", "userRoleEnum"): @EnumInfoReader.getEnumName("User", "userRoleEnum", user.userRoleEnum)</li>
+            <li>@TableInfoReader.getFieldComment("User", "comment"): @user.comment</li>
+            <li>@TableInfoReader.getFieldComment("User", "uplineUserId"): @user.uplineUserId</li>
+            <li>@TableInfoReader.getFieldComment("User", "uplineUserName"): @user.uplineUserName</li>
+            <li>@TableInfoReader.getFieldComment("User", "becomeDownlineTime"): @LyLib.Utils.DateUtil.Date2Str(user.becomeDownlineTime)</li>
+            <li>@TableInfoReader.getFieldComment("User", "resellerCode"): @user.resellerCode</li>
+            <li>@TableInfoReader.getFieldComment("User", "resellerCodeImage"): @user.resellerCodeImage</li>
+            <li>@TableInfoReader.getFieldComment("User", "downlineCount"): @user.downlineCount</li>
+            <li>@TableInfoReader.getFieldComment("User", "downlineOrderCount"): @user.downlineOrderCount</li>
+            <li>@TableInfoReader.getFieldComment("User", "downlineProductCount"): @user.downlineProductCount</li>
+            <li>@TableInfoReader.getFieldComment("User", "currentTotalOrderAmount"): @user.currentTotalOrderAmount</li>
+            <li>@TableInfoReader.getFieldComment("User", "currentResellerProfitMoney"): @user.currentResellerProfitMoney</li>
+            <li>@TableInfoReader.getFieldComment("User", "currentResellerProfitCoin"): @user.currentResellerProfitCoin</li>
+            <li>@TableInfoReader.getFieldComment("User", "resellerProfitMoneyBankNo"): @user.resellerProfitMoneyBankNo</li>
+            <li>@TableInfoReader.getFieldComment("User", "resellerProfitMoneyBank"): @user.resellerProfitMoneyBank</li>
+            <li>@TableInfoReader.getFieldComment("User", "resellerProfitMoneyBankAccount"): @user.resellerProfitMoneyBankAccount</li>
+            <li>@TableInfoReader.getFieldComment("User", "resellerProfitCoinAddress"): @user.resellerProfitCoinAddress</li>
+        </ul>
+    }
+}

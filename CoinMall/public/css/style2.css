@@ -1,0 +1,96 @@
+.j_n_row{
+	margin-top:2px;
+}
+.j_jimg{
+	margin-left:0px;
+}
+@media (max-width: 2000px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+	.j_ninput{
+		width:400px !important;
+	}
+}
+
+@media (max-width: 1024px){
+	.j_ninput{
+		width:300px !important;
+	}
+	.navbar-form{
+		padding-top:0 !important
+	}
+}
+@media (max-width: 900px){
+	.j_ninput{
+		width:250px !important;
+	}
+	.navbar-form{
+		padding-top:0 !important
+	}
+}
+
+
+@media (max-width: 768px){
+	.j_ninput{
+		width:250px !important;
+	}
+	.navbar-form{
+		padding-top:0 !important
+	}
+}
+@media (max-width: 400px){
+	.j_ncar{
+		display:none;
+	}
+	.j_n_row{
+		margin-top:8px;
+	}
+	.j_ninput{
+		width:70%!important;;
+		margin-right:5% !important;
+		float:left;
+	}
+	.j_nbutton{
+		width:25% !important;
+	}
+	.navbar-nav{
+		margin:0 !important;
+	}
+}
+
+@media (max-width: 360px){
+	.j_ncar{
+		display:none;
+	}
+	.j_n_row{
+		margin-top:8px;
+	}
+	.j_ninput{
+		width:70%!important;;
+		margin-right:5% !important;
+		float:left;
+	}
+	.j_nbutton{
+		width:25% !important;
+	}
+	.navbar-nav{
+		margin:0 !important;
+	}
+}
+@media (max-width: 320px){
+	.j_ncar{
+		display:none;
+	}
+	.j_n_row{
+		margin-top:8px;
+	}
+	.j_ninput{
+		width:70%!important;;
+		margin-right:5% !important;
+		float:left;
+	}
+	.j_nbutton{
+		width:25% !important;
+	}
+	.navbar-nav{
+		margin:0 !important;
+	}
+}

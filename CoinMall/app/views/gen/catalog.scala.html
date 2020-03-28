@@ -1,0 +1,31 @@
+@(catalogList: List[Catalog]) @front_frame(TableInfoReader.getTableComment("Catalog"), "CatalogApp", "CatalogController") {
+    @for(catalog <- catalogList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Catalog", "id"): @catalog.id</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "showIndex"): @catalog.showIndex</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "name"): @catalog.name</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "nameEn"): @catalog.nameEn</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "nameHk"): @catalog.nameHk</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "nameJa"): @catalog.nameJa</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "images"): @catalog.images</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "smallImages"): @catalog.smallImages</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "imagesEn"): @catalog.imagesEn</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "smallImagesEn"): @catalog.smallImagesEn</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "imagesHk"): @catalog.imagesHk</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "smallImagesHk"): @catalog.smallImagesHk</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "imagesJa"): @catalog.imagesJa</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "smallImagesJa"): @catalog.smallImagesJa</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(catalog.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(catalog.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "description"): @catalog.description</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "descriptionTwo"): @catalog.descriptionTwo</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "descriptionEn"): @catalog.descriptionEn</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "descriptionTwoEn"): @catalog.descriptionTwoEn</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "descriptionHk"): @catalog.descriptionHk</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "descriptionTwoHk"): @catalog.descriptionTwoHk</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "descriptionJa"): @catalog.descriptionJa</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "descriptionTwoJa"): @catalog.descriptionTwoJa</li>
+            <li>@TableInfoReader.getFieldComment("Catalog", "comment"): @catalog.comment</li>
+        </ul>
+    }
+}

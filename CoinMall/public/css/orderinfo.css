@@ -1,0 +1,83 @@
+.order_tip{
+
+}
+.order_r{
+	float:right;
+	text-align:right
+}
+.order_tip{
+	float:left;
+	color:#999;
+}
+.order_address{
+	color:#999;
+}
+
+.order_tel{
+	padding-left:20px
+}
+.pay_success{
+	color:#5bb85d
+}
+.orderinfo{
+	background-color:#fff;
+	padding:10px 0;
+	color:#666;
+	border-bottom:1px #f5f5f5 solid;
+	word-break:break-all
+}
+.orderinfo img{
+	max-width:80%;
+}
+.order_li{
+	margin:0 0px;
+	padding-top:10px;
+    border-bottom:1px #f5f5f5 solid;
+}
+.order_total{
+	margin:0 10px;
+	padding:25px 0 10px;
+}
+.user_ly{
+	color:#5bc0de;
+}
+.price{
+	color:#F60;
+}
+.total{
+	font-size:1.6rem;
+	color:#F60;
+}
+.order_p_name{
+	word-wrap:break-word;
+}
+.order_top{
+	padding-bottom:10px;
+	padding-top:0px !important;
+	color:#999;
+    border-bottom:1px #f5f5f5 solid;
+}
+.order_n{
+	border-bottom:1px #f5f5f5 solid;
+	padding-bottom:10px;
+}
+@media (max-width: 768px) {
+	.orderinfo img{
+	    max-width:100%;
+    }
+	.order_li{
+		padding-top:10px;
+		margin:0 13px;
+	}
+	.order_li div{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.order_address{
+		font-size:1.2rem;
+	}
+	.mobile_l{
+		height:50px;
+	}
+
+}

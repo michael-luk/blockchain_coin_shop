@@ -1,0 +1,112 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.phone}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="phone" ng-model="currentObj.phone" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.checkCode}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="checkCode" ng-model="currentObj.checkCode" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.sendXml}}:
+                </label>
+		        <div class="col-sm-9">
+                    <div simditor ng-model="currentObj.sendXml" style="width:550px"></div><br>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.returnTable}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="returnTable" ng-model="currentObj.returnTable" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.receiveXml}}:
+                </label>
+		        <div class="col-sm-9">
+                    <div simditor ng-model="currentObj.receiveXml" style="width:550px"></div><br>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.code}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="code" ng-model="currentObj.code" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.returnMsg}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="returnMsg" ng-model="currentObj.returnMsg" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.SmsInfo.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.SmsInfo.name}} 超出长度！</li>
+                        <li ng-show='myform.phone.$error.maxlength'>{{objFieldInfo.SmsInfo.phone}} 超出长度！</li>
+                        <li ng-show='myform.checkCode.$error.maxlength'>{{objFieldInfo.SmsInfo.checkCode}} 超出长度！</li>
+                        <li ng-show='myform.sendXml.$error.maxlength'>{{objFieldInfo.SmsInfo.sendXml}} 超出长度！</li>
+                        <li ng-show='myform.returnTable.$error.maxlength'>{{objFieldInfo.SmsInfo.returnTable}} 超出长度！</li>
+                        <li ng-show='myform.receiveXml.$error.maxlength'>{{objFieldInfo.SmsInfo.receiveXml}} 超出长度！</li>
+                        <li ng-show='myform.code.$error.maxlength'>{{objFieldInfo.SmsInfo.code}} 超出长度！</li>
+                        <li ng-show='myform.returnMsg.$error.maxlength'>{{objFieldInfo.SmsInfo.returnMsg}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.SmsInfo.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.SmsInfo.comment}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

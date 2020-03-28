@@ -1,0 +1,12 @@
+@(title: String, text: String, btn: String, url: String)
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/tip.css")' rel="stylesheet" type="text/css">
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h3>@title</h3>
+            <p>@text</p>
+            <p><a class="btn btn-primary btn-lg" href="@url" role="button">@btn</a>
+            </p>
+        </div>
+    </div>
+}

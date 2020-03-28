@@ -1,0 +1,239 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4Catalog" class="form-control" placeholder="按{{searchFieldNameCatalogComment}}搜" style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4Catalog()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.Product.catalogs}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridFriendsCatalog" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        		    <br>
+        		</div>
+        	</div>
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.showNo}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="showNo" ng-model="currentObj.showNo" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.nameEn}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="nameEn" ng-model="currentObj.nameEn" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.nameHk}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="nameHk" ng-model="currentObj.nameHk" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.nameJa}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="nameJa" ng-model="currentObj.nameJa" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.soldNumber}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="soldNumber" ng-model="currentObj.soldNumber" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.unit}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="unit" ng-model="currentObj.unit" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.images}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="images" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'images', currentObj, false)"/><div ng-repeat="imageName in currentObj.images.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'images', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.imagesEn}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="imagesEn" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'imagesEn', currentObj, false)"/><div ng-repeat="imageName in currentObj.imagesEn.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'imagesEn', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.imagesHk}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="imagesHk" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'imagesHk', currentObj, false)"/><div ng-repeat="imageName in currentObj.imagesHk.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'imagesHk', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.imagesJa}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="imagesJa" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'imagesJa', currentObj, false)"/><div ng-repeat="imageName in currentObj.imagesJa.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'imagesJa', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.description}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="description" ng-model="currentObj.description" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.descriptionEn}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionEn" ng-model="currentObj.descriptionEn" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.descriptionHk}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionHk" ng-model="currentObj.descriptionHk" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.descriptionJa}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionJa" ng-model="currentObj.descriptionJa" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.price}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="price" ng-model="currentObj.price" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.originalPrice}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="originalPrice" ng-model="currentObj.originalPrice" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.coinPrice}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="coinPrice" ng-model="currentObj.coinPrice" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.isSale}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="checkbox" name="isSale" ng-model="currentObj.isSale" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Product.status}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="status" ng-model="currentObj.status" ng-options="item.id as item.name disable when item.id == -100 for item in status" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.showNo.$error.maxlength'>{{objFieldInfo.Product.showNo}} 超出长度！</li>
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.Product.name}} 超出长度！</li>
+                        <li ng-show='myform.nameEn.$error.maxlength'>{{objFieldInfo.Product.nameEn}} 超出长度！</li>
+                        <li ng-show='myform.nameHk.$error.maxlength'>{{objFieldInfo.Product.nameHk}} 超出长度！</li>
+                        <li ng-show='myform.nameJa.$error.maxlength'>{{objFieldInfo.Product.nameJa}} 超出长度！</li>
+                        <li ng-show='myform.soldNumber.$error.maxlength'>{{objFieldInfo.Product.soldNumber}} 超出长度！</li>
+                        <li ng-show='myform.unit.$error.maxlength'>{{objFieldInfo.Product.unit}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.Product.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.description.$error.maxlength'>{{objFieldInfo.Product.description}} 超出长度！</li>
+                        <li ng-show='myform.descriptionEn.$error.maxlength'>{{objFieldInfo.Product.descriptionEn}} 超出长度！</li>
+                        <li ng-show='myform.descriptionHk.$error.maxlength'>{{objFieldInfo.Product.descriptionHk}} 超出长度！</li>
+                        <li ng-show='myform.descriptionJa.$error.maxlength'>{{objFieldInfo.Product.descriptionJa}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.Product.comment}} 超出长度！</li>
+                        <li ng-show='myform.price.$error.maxlength'>{{objFieldInfo.Product.price}} 超出长度！</li>
+                        <li ng-show='myform.originalPrice.$error.maxlength'>{{objFieldInfo.Product.originalPrice}} 超出长度！</li>
+                        <li ng-show='myform.coinPrice.$error.maxlength'>{{objFieldInfo.Product.coinPrice}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

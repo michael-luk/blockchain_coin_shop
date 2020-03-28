@@ -1,0 +1,30 @@
+@(productList: List[Product]) @front_frame(TableInfoReader.getTableComment("Product"), "ProductApp", "ProductController") {
+    @for(product <- productList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Product", "id"): @product.id</li>
+            <li>@TableInfoReader.getFieldComment("Product", "showNo"): @product.showNo</li>
+            <li>@TableInfoReader.getFieldComment("Product", "name"): @product.name</li>
+            <li>@TableInfoReader.getFieldComment("Product", "nameEn"): @product.nameEn</li>
+            <li>@TableInfoReader.getFieldComment("Product", "nameHk"): @product.nameHk</li>
+            <li>@TableInfoReader.getFieldComment("Product", "nameJa"): @product.nameJa</li>
+            <li>@TableInfoReader.getFieldComment("Product", "soldNumber"): @product.soldNumber</li>
+            <li>@TableInfoReader.getFieldComment("Product", "unit"): @product.unit</li>
+            <li>@TableInfoReader.getFieldComment("Product", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(product.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Product", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(product.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Product", "images"): @product.images</li>
+            <li>@TableInfoReader.getFieldComment("Product", "imagesEn"): @product.imagesEn</li>
+            <li>@TableInfoReader.getFieldComment("Product", "imagesHk"): @product.imagesHk</li>
+            <li>@TableInfoReader.getFieldComment("Product", "imagesJa"): @product.imagesJa</li>
+            <li>@TableInfoReader.getFieldComment("Product", "description"): @product.description</li>
+            <li>@TableInfoReader.getFieldComment("Product", "descriptionEn"): @product.descriptionEn</li>
+            <li>@TableInfoReader.getFieldComment("Product", "descriptionHk"): @product.descriptionHk</li>
+            <li>@TableInfoReader.getFieldComment("Product", "descriptionJa"): @product.descriptionJa</li>
+            <li>@TableInfoReader.getFieldComment("Product", "comment"): @product.comment</li>
+            <li>@TableInfoReader.getFieldComment("Product", "price"): @product.price</li>
+            <li>@TableInfoReader.getFieldComment("Product", "originalPrice"): @product.originalPrice</li>
+            <li>@TableInfoReader.getFieldComment("Product", "coinPrice"): @product.coinPrice</li>
+            <li>@TableInfoReader.getFieldComment("Product", "isSale"): @product.isSale</li>
+            <li>@TableInfoReader.getFieldComment("Product", "status"): @EnumInfoReader.getEnumName("Product", "status", product.status)</li>
+        </ul>
+    }
+}

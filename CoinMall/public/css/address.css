@@ -1,0 +1,51 @@
+label{
+	font-weight:normal;
+	padding-right:0px !important;
+}
+.j_user_address{
+	background-color:#FFF;
+	border-bottom:1px #e2e2e2 solid;
+	color:#666;
+
+}
+.j_user_address_info{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.j_user_address_default{
+	color:#F90;
+}
+.j_user_add{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.padding-top-8{
+	padding-top:8px;
+}
+.j_user_address_s{
+    border-bottom:1px #f5f5f5 solid; 
+	margin:0 10px;
+}
+.j_user_add_method{
+	padding:10px 20px;
+}
+
+label {cursor:pointer; padding-top:6px;}
+label i {font-style:normal;display:inline-block;width:20px;height:20px;text-align:center;line-height:20px;color:#fff;vertical-align:middle;margin:-2px 2px 1px 0px;border:#5bc0de 1px solid;}
+input[type="checkbox"],input[type="radio"] {display:none;}
+input[type="radio"] + i {border-radius:10px;}
+input[type="checkbox"]:checked + i,input[type="radio"]:checked + i {background:#5bc0de;}
+input[type="checkbox"]:disabled + i,input[type="radio"]:disabled + i {border-color:#ccc;}
+input[type="checkbox"]:checked:disabled + i,input[type="radio"]:checked:disabled + i {background:#ccc;}
+
+.radio, .checkbox{
+padding-left:0;
+}
+@media (max-width: 768px) {
+	.mobile_padding{
+        padding-top:10px;
+	}
+	.j_user_add{
+		text-align:center;
+	}
+}

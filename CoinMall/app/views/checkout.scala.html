@@ -1,0 +1,386 @@
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/car.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("css/pop.css")' rel="stylesheet" type="text/css">
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/controllers/checkout_controller.js")'></script>
+    @*<script src='@routes.Assets.at("plugins/clipboard.min.js")'></script>*@
+
+    <style>
+            .j_balance_h {
+                background-color: #fff;
+                padding: 0 10px;
+                font-size: 1.2rem;
+            }
+
+            .j_balance_title {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-bottom: 1px #c2c2c2 solid;
+                font-size: 1.4rem;
+                color: #666;
+            }
+
+            .j_balance_add {
+                color: #666;
+                font-size: 1.4rem;
+            }
+
+            .j_balance_add span:nth-child(2), .j_balance_add span:nth-child(3), .j_balance_add span:nth-child(4) {
+                position: relative;
+                top: -2px;
+                padding: 0 5px;
+            }
+
+            .j_balance_add span:nth-child(4) {
+                float: right;
+                color: #999
+            }
+
+            .j_radio {
+                cursor: pointer;
+            }
+
+            .j_choose_pay {
+                padding: 10px 20px;
+                border: 1px #c2c2c2 solid;
+                font-size: 1.2rem;
+                cursor: pointer;
+                margin-right:20px;
+            }
+
+            .j_pay_action {
+                padding: 10px 20px;
+                border: 1px #F90 solid;
+            }
+
+            .j_pay_action {
+                background-color: #fff;
+                position: relative;
+                border: 1px solid #f60;
+            }
+
+            .j_pay_action:after {
+                border: solid transparent;
+                content: ' ';
+                height: 0;
+                right: -10px;
+                position: absolute;
+
+                bottom: -10px;
+
+                -moz-transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                transform: rotate(45deg);
+
+            }
+
+            .j_pay_action:after {
+                border-width: 10px;
+                border-left-color: #f60;
+                bottom: -10px;
+            }
+
+            .car_del {
+                color: #39F;
+                cursor: pointer;
+            }
+
+            @@media
+
+            (
+            max-width:
+
+            320
+            px
+
+            )
+            {
+            .j_balance_add {
+                color: #666;
+                font-size: 1.2rem;
+            }
+
+            }
+
+    </style>
+
+    <div ng-app="CheckoutApp" ng-controller="CheckoutController" ng-init="init(@session.get("userid"), @biz.ConfigBiz.getFloatConfig("coin.exchange.rate"), @biz.ConfigBiz.getFloatConfig("coin.price.discount"), @biz.ConfigBiz.getFloatConfig("coin.pay.range"))">
+        <div class="main padding-top-20">
+            <div class="container">
+                <div class="row" >
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20">
+                        <span class="color_black">@play.i18n.Messages.get("checkout.form")</span>
+                    </div>
+                </div>
+                <div class="row j_balance_h">
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20 j_balance_title">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6 col-md-6 padding-top-5">
+                                <span>@play.i18n.Messages.get("ship.info")</span>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 col-md-6 text-right">
+                                <span>
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                    onclick="window.location='/my/address/new?prePage=checkout'">
+                                    @play.i18n.Messages.get("ship.info.add")
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <!--BEGIN ADD LI-->
+                <div class="row j_balance_h">
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20 j_balance_add" ng-repeat="info in shipInfos">
+                        <span>
+                            <input type="radio" class="j_radio" name="optionsRadiosinline" id="optionsRadios3"
+                            ng-click="selectShipInfo($index)" ng-checked="info.isDefault">
+                        </span>
+                        <span ng-bind="info.name"></span>
+                        <span ng-bind="info.province + info.city + info.zone + info.location"></span>
+                        <span ng-bind="info.phone"></span>
+                    </div>
+                </div>
+                    <!--END ADD LI-->
+
+                <div class="row j_balance_h">
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20 j_balance_title">
+                        <span>@play.i18n.Messages.get("checkout.pay.with")</span>
+                    </div>
+                </div>
+                <div class="row j_balance_h">
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20 j_car_m_title"
+                            style="padding-top: 10px; ">
+                                @if(!"pc".equals(session.get("platform")) && !"wap".equals(session.get("platform"))){
+                                        <!--wx支付方式-->
+                                    <input type="hidden" name="pay_id" id="pay_id" value="1">
+                                    <span class="j_choose_pay j_pay_action" id="1">
+                                    @play.i18n.Messages.get("wechat.pay")
+                                    </span>
+                                    <span class="j_choose_pay j_xwc" id="2">
+                                    @play.i18n.Messages.get("other.pay")
+                                    </span>
+                                }else{
+                                        <!--pc支付方式-->
+                                    <input type="hidden" name="pay_id" id="pay_id" value="2">
+                                    <span class="j_choose_pay j_pay_action j_xwc" id="2">
+                                    @play.i18n.Messages.get("coin.pay")
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row j_balance_h">
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20 j_balance_title">
+                        @play.i18n.Messages.get("balance"): <span id="noBalance">@play.i18n.Messages.get("member.comment.notfound")</span><div id="myBalance"><span ng-bind="myBalance"></span> @biz.ConfigBiz.getStrConfig("coin.short.name"),
+                        @play.i18n.Messages.get("use.balance") <input type="number" step="0.01" style="width: 65px;text-align:center;" ng-model="balanceUse" />
+                        @play.i18n.Messages.get("pay.balance") <span ng-bind="discountByBalance | number:2"></span>
+                        @biz.ConfigBiz.getStrConfig("currency.unit.name")</div>
+                    </div>
+                </div>
+                <div class="row j_balance_h">
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20 j_balance_title" >
+                        <span>@play.i18n.Messages.get("checkout.products")</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container j_car" style="background-color: #fff" >
+                <div class="row j_row_bor j_car_tops" style="border-bottom: 1px #ecebeb solid;
+                    margin: 0 10px;">
+                    <div class="col-xs-3 col-md-2">
+                        <span class="">@play.i18n.Messages.get("cart.product")</span>
+                    </div>
+                    <div class="col-xs-9 col-md-10">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5">
+                                <span>@play.i18n.Messages.get("cart.product.name")</span>
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+                                <span>@play.i18n.Messages.get("cart.spec")</span>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <span >@play.i18n.Messages.get("cart.price")</span>
+                            </div>
+                            <div class="col-xs-12 col-md-2 text-center">
+                                <span>@play.i18n.Messages.get("cart.quantity")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <!--BEGIN LIST  id="car_list_1" id="1" 相对应-->
+                <div class="row j_row_bor car_li" id="car_list_1" ng-repeat="item in cart.items" ng-if="item.select">
+                    <div class="col-xs-3 col-md-2 j_mobile_padding">
+                        <span class=""><a href="/product/{{item.theme.refProductId}}">
+                            <img src="/showimg/thumb/{{item.theme.images@session.get("lang")}}"></a></span>
+                    </div>
+
+                    <div class="col-xs-9 col-md-10 j_mobile_padding">
+                        <div class="row">
+                            <div class="col-xs-7 col-md-5 j_car_height">
+                                <a href="/product/{{item.theme.refProductId}}"><span class="j_car_pro_title" ng-bind="item.productName">
+                                </span></a>
+                            </div>
+                            <div class="col-xs-5 col-md-3 j_center_price j_car_height" >
+                                <div class="j_car_pro_spec"><span ng-bind="item.theme.name@session.get("lang")">
+                                </span></div>
+                            </div>
+                            <div class="col-xs-7 col-md-2">
+                                <div class="j_car_pro_price">
+                                    <span ng-bind="item.theme.price"></span>
+                                    <span> @biz.ConfigBiz.getStrConfig("currency.unit.name")</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-5 col-md-2 text-center">
+                                <span class="mobile_has">@play.i18n.Messages.get("cart.quantity")：</span>
+                                <span id="quantity" ng-bind="item.num"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                    <!--END LIST-->
+
+                    <!--总金额-->
+                <input type="hidden" name="total" id="total" value="0">
+
+                <div class="row j_car_total j_car_total1" >
+                    <div class="col-sm-12 col-xs-12 col-md-12 text-right">
+                        @play.i18n.Messages.get("cart.total"):
+                        <span class="j_car_pro_total" ng-bind="actualAmount | number:2"></span>
+                        @*<span class="j_car_pro_total" ng-bind="cart | selectProductAmout"></span>*@
+                        @biz.ConfigBiz.getStrConfig("currency.unit.name")
+                    </div>
+                </div>
+
+
+                <div class="row j_car_total j_car_bottom" >
+                    <div class="col-sm-12 col-xs12 col-md-12 text-right">
+                        @play.i18n.Messages.get("order.buyer.msg")：
+                        <input type="text" ng-model="newOrder.buyerMessage" class="j_ly"/>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 col-md-12 text-right" ng-click='addOrder(@biz.ConfigBiz.getFloatConfig("coin.exchange.rate"), @biz.ConfigBiz.getFloatConfig("coin.price.discount"), "@play.i18n.Messages.get("no.ship.info.issue")")'>
+                        <span class="j_car_balance">@play.i18n.Messages.get("order.create")</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div style="height: 40px;
+            background-color: #f9f9f9"></div>
+
+        <div class="disappare" style="display: none;">
+            <p><i class="icon iconfont icon-chenggong"></i></p>
+            <h4 class="j_disappare_text"></h4>
+        </div>
+
+        <div class="disappare-bigger" style="display: none;">
+            <p><i class="icon iconfont icon-chenggong"></i></p>
+            <h4 class="j_disappare_text"></h4>
+        </div>
+
+            <!--BEGIN POP-->
+        <div class="j_copy">
+            <span class="j_copy_text"></span>
+        </div>
+
+        <div class="myd" id="md"></div>
+
+        <div class="pop_pay" style="height:370px">
+            <div class="text-center">@play.i18n.Messages.get("order.amount"): <span ng-bind="newOrder.coinAmount - newOrder.useBalance | number:2"></span> @biz.ConfigBiz.getStrConfig("coin.short.name")<br>
+                (@play.i18n.Messages.get("order.expiration.msg"))
+            </div>
+            <div class="text-center" style="color:red">
+                (@play.i18n.Messages.get("order.expiration.tip"))
+            </div>
+            <p><img src="/showimg/barcode/{{newOrder.images}}"></p>
+            <div class="pop_pay_text">
+                <span id="pop_pay_copytext" ng-bind="newOrder.coinPayAddr"></span>
+            </div>
+            <!-- <div class="pop_pay_copy text-center">
+                @*<button data-clipboard-target="#pop_pay_copytext"*@
+                @*aria-label="@play.i18n.Messages.get("copy.success")" type="button"*@
+                @*class="btn btn-default pop_pay_action_copy">@play.i18n.Messages.get("copy")</button>*@
+            </div> -->
+            <div>
+                <div style="float: left">
+                    <button type="button" id="pay_later" class="btn btn-primary">@play.i18n.Messages.get("pay.later")</button>
+                </div>
+                <div style="float: right;">
+                    <button type="button" id="pay_done" class="btn btn-success">@play.i18n.Messages.get("pay.done")</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pop_xwc pop_xwc_order">
+            <i class="pop_colse_xwc icon iconfont icon-guanbi"></i>
+            <div class="text-center">@play.i18n.Messages.get("pay.with.coin")</div>
+            <div class="pop_xwc_text">
+                <span><input type="text" style="text-align:center" class="xwc_input" ng-model="payCoinName" /></span>
+            </div>
+            <div class="pop_xwc_copy text-center">
+                <button type="button" class="btn btn-default"
+                ng-click="setPayCoin('@play.i18n.Messages.get("set.coin.pay.ok")', '@play.i18n.Messages.get("set.coin.pay.error")')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+            jQuery(document).ready(function () {
+                //选择支付方式
+                $(".j_choose_pay").click(function () {
+                    $(".j_choose_pay").removeClass('j_pay_action');
+                    $(this).addClass('j_pay_action');
+                    var pay_id = parseInt($(this).attr("id"));
+                    $("#pay_id").val(pay_id);
+                });
+            });
+
+            $(function () {
+                $("#pay_later").click(function () {
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/my/order';
+                });
+                $("#pay_done").click(function () {
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/my/order';
+                });
+
+//                //复制按钮
+//                var clipboard = new Clipboard('.pop_pay_action_copy');
+//                clipboard.on('success', function (e) {
+//                    var msg = e.trigger.getAttribute('aria-label');
+//                    $(".j_copy_text").text(msg);
+//                    $(".j_copy").show().delay(2000).hide(300);
+//                    e.clearSelection();
+//                });
+            })
+    </script>
+
+    @if(!"pc".equals(session.get("platform")) && !"wap".equals(session.get("platform"))){
+        <script type="text/javascript">
+            //点击其他支付方式
+            $(".j_xwc").click(function () {
+                $(".pop_xwc").show(300);
+                $(".myd").show();
+
+                $('html,body').addClass('ovfHiden'); //使网页不可滚动
+                $(".searchbox").show();
+            });
+
+            //关闭其他支付方式窗口
+            $(".pop_colse_xwc").click(function () {
+                $(".pop_xwc").hide(300);
+                $(".myd").hide();
+
+                $('html,body').removeClass('ovfHiden'); //使网页恢复可滚
+                $(".searchbox").hide();
+            });
+        </script>
+    }
+        <!--END POP-->
+}

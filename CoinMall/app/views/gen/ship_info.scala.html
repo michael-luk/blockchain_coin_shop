@@ -1,0 +1,18 @@
+@(shipInfoList: List[ShipInfo]) @front_frame(TableInfoReader.getTableComment("ShipInfo"), "ShipInfoApp", "ShipInfoController") {
+    @for(shipInfo <- shipInfoList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "id"): @shipInfo.id</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "refUserId"): @shipInfo.refUserId</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "isDefault"): @shipInfo.isDefault</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "name"): @shipInfo.name</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "phone"): @shipInfo.phone</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "province"): @shipInfo.province</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "city"): @shipInfo.city</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "zone"): @shipInfo.zone</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "location"): @shipInfo.location</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(shipInfo.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(shipInfo.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("ShipInfo", "comment"): @shipInfo.comment</li>
+        </ul>
+    }
+}

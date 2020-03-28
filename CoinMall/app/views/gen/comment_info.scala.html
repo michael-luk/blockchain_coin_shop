@@ -1,0 +1,15 @@
+@(commentInfoList: List[CommentInfo]) @front_frame(TableInfoReader.getTableComment("CommentInfo"), "CommentInfoApp", "CommentInfoController") {
+    @for(commentInfo <- commentInfoList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "id"): @commentInfo.id</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "name"): @commentInfo.name</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "refUserId"): @commentInfo.refUserId</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "refProductId"): @commentInfo.refProductId</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "refPurchaseId"): @commentInfo.refPurchaseId</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "status"): @EnumInfoReader.getEnumName("CommentInfo", "status", commentInfo.status)</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(commentInfo.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(commentInfo.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("CommentInfo", "comment"): @commentInfo.comment</li>
+        </ul>
+    }
+}

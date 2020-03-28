@@ -1,0 +1,45 @@
+@(purchaseList: List[Purchase]) @front_frame(TableInfoReader.getTableComment("Purchase"), "PurchaseApp", "PurchaseController") {
+    @for(purchase <- purchaseList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Purchase", "id"): @purchase.id</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "name"): @purchase.name</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "refUserId"): @purchase.refUserId</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "status"): @EnumInfoReader.getEnumName("Purchase", "status", purchase.status)</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(purchase.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(purchase.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "quantity"): @purchase.quantity</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "pids"): @purchase.pids</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "tids"): @purchase.tids</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "amount"): @purchase.amount</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "coinAmount"): @purchase.coinAmount</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "coinPayAddr"): @purchase.coinPayAddr</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "images"): @purchase.images</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "coinPayTrans"): @purchase.coinPayTrans</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "useVipPoint"): @purchase.useVipPoint</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "vipPointDiscount"): @purchase.vipPointDiscount</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "useBalance"): @purchase.useBalance</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "balanceDiscount"): @purchase.balanceDiscount</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipName"): @purchase.shipName</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipPhone"): @purchase.shipPhone</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipProvince"): @purchase.shipProvince</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipCity"): @purchase.shipCity</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipZone"): @purchase.shipZone</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipLocation"): @purchase.shipLocation</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "buyerMessage"): @purchase.buyerMessage</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipTime"): @LyLib.Utils.DateUtil.Date2Str(purchase.shipTime)</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "shipNo"): @purchase.shipNo</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payReturnCode"): @purchase.payReturnCode</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payReturnMsg"): @purchase.payReturnMsg</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payResultCode"): @purchase.payResultCode</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payTransitionId"): @purchase.payTransitionId</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payAmount"): @purchase.payAmount</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payTime"): @LyLib.Utils.DateUtil.Date2Str(purchase.payTime)</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payBank"): @purchase.payBank</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "payRefOrderNo"): @purchase.payRefOrderNo</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "paySign"): @purchase.paySign</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "description1"): @purchase.description1</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "description2"): @purchase.description2</li>
+            <li>@TableInfoReader.getFieldComment("Purchase", "comment"): @purchase.comment</li>
+        </ul>
+    }
+}

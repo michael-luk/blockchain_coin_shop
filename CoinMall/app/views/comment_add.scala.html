@@ -1,0 +1,107 @@
+@(user: User, order: Purchase, theme: Theme)
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/user.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("css/orderinfo.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("plugins/emoji/dist/css/jquery.emoji.css")' rel="stylesheet" type="text/css">
+    <link href='@routes.Assets.at("plugins/emoji/dist/css/index.css")' rel="stylesheet" type="text/css">
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/controllers/comment_add_controller.js")'></script>
+
+        <!---->
+    <div class="j_user_banner padding-top-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 j_user_banner_img">
+                    <img src="@routes.Assets.at("images/model3.jpg")" />
+                </div>
+            </div>
+        </div>
+    </div>
+        <!---->
+
+    <div class="main mobile_border_bottom" ng-app="CommentAddApp" ng-controller="CommentAddController">
+        <div class="container j_main">
+            <div class="row">
+                    <!--BEGIN LEFT-->
+                <div class="col-sm-12 col-xs-12 col-md-2 j_user_left mobile_hides" >
+                    <div class="j_user text-center margin-top-10">
+                        <div class="j_user_face"><img src="@user.headImage"></div>
+                        <div class="j_user_name">@user.name (No.@user.id)</div>
+                        <div class="j_user_level"><span>@play.i18n.Messages.get("credit") @user.vipPoint</span></div>
+                        <div class="j_user_reg">@play.i18n.Messages.get("register.time")：
+                            @LyLib.Utils.DateUtil.Date2Str(user.createdAt, "yyyy-MM-dd")
+                        </div>
+                    </div>
+                </div>
+                    <!--END LEFT-->
+
+                    <!--BEGIN RIGHT-->
+                <div class="col-sm-12 col-xs-12 col-md-10 j_user_right" >
+                    <div class="col-md-12 evaluate_push">
+                        <div class="j_clear"></div>
+                        <div class="j_clear"></div>
+                        <div id="editor" contenteditable="true"></div>
+                        <button id="btn" class="btn btn-sm btn-warning j_bq">
+                        @play.i18n.Messages.get("product.comment.emoji")</button>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-info" ng-disabled="!isCommentAllow"
+                            ng-click="addComment('@session.get("userid")', '@play.i18n.Messages.get("not.login")', '@play.i18n.Messages.get("product.comment.null")', '@play.i18n.Messages.get("action.success")')">
+                            @play.i18n.Messages.get("product.comment.submit")</button>
+                        </div>
+                        <div class="j_clear"></div>
+                        <div class="j_clear"></div>
+                    </div>
+                </div>
+                <div class="j_clear"></div>
+                    <!--END RIGHT-->
+            </div>
+        </div>
+    </div>
+
+    <div class="disappare" style="display: none;">
+        <p><i class="icon iconfont icon-chenggong"></i></p>
+        <h4 class="j_disappare_text"></h4>
+    </div>
+
+    <script src='@routes.Assets.at("plugins/emoji/lib/script/highlight.pack.js")'></script>
+    <script src='@routes.Assets.at("plugins/emoji/lib/script/jquery.mousewheel-3.0.6.min.js")'></script>
+    <script src='@routes.Assets.at("plugins/emoji/lib/script/jquery.mCustomScrollbar.min.js")'></script>
+    <script src='@routes.Assets.at("plugins/emoji/dist/js/jquery.emoji.min.js")'></script>
+    <script>
+            hljs.initHighlightingOnLoad();
+
+            $("#editor").emoji({
+                button: "#btn",
+                showTab: false,
+                animation: 'slide',
+                icons: [{
+                    name: "QQ表情",
+                    path: "/assets/plugins/emoji/dist/img/qq/",
+                    maxNum: 51,
+                    excludeNums: [41, 45, 54],
+                    file: ".gif"
+                }]
+            });
+            var j_w = $(window).width() - 10;
+
+            $(".j_bq").one("click", function () {
+                var j_top = $(".j_bq").offset().top;
+                $(".emoji_container").css("top", j_top - 218);
+                $(".emoji_container").append("<div class='j_close'>Close</div>");
+
+                if (j_w > 600) {
+                    var j_left = $(".j_bq").offset().left;
+                    $(".emoji_container").css("left", j_left);
+                }
+            });
+
+            $('.emoji_container').on('click', '.j_close', function () {
+                $(".emoji_container").hide(500);
+            })
+
+            if (j_w < 600) {
+                $(".emoji_container").css("width", j_w);
+                $(".emoji_container").css("left", 5);
+            }
+    </script>
+}

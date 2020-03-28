@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <title>@biz.ConfigBiz.getStrConfig("app.name")</title>
+    </head>
+    <body>
+        loading...
+        <script type="text/javascript">
+                var browser = {
+                    versions: function () {
+                        var u = navigator.userAgent, app = navigator.appVersion;
+                        return {
+                            trident: u.indexOf('Trident') > -1,
+                            presto: u.indexOf('Presto') > -1,
+                            webKit: u.indexOf('AppleWebKit') > -1,
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/),
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                            iPhone: u.indexOf('iPhone') > -1,
+                            iPad: u.indexOf('iPad') > -1,
+                            webApp: u.indexOf('Safari') == -1
+                        };
+                    }(),
+                    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+                }
+
+                function wap() {
+                    location.href = '/?platform=wap&r=@session.get("resellerCode")'
+                }
+
+                if (browser.versions.mobile) {
+                    var ua = navigator.userAgent.toLowerCase();
+                    if (ua.match(/MicroMessenger/i) == "micromessenger") location.href = '/?platform=wx&r=@session.get("resellerCode")'
+                    else if (ua.match(/WeiBo/i) == "weibo") wap()
+                    else if (ua.match(/QQ/i) == "qq") wap()
+                    else if (browser.versions.ios) wap()
+                    else if (browser.versions.android) wap()
+                } else {
+                    location.href = '/?platform=pc&r=@session.get("resellerCode")'
+                }
+        </script>
+    </body>
+</html>

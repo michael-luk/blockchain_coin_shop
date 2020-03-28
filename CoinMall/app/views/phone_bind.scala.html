@@ -1,0 +1,19 @@
+@front_frame("手机绑定", "PhoneBindApp", "PhoneBindController") {
+    <div id="m_mid">
+        <div class="m_phone">
+            <p><input type="text" class="m_input h_30 m_inpout_phone" ng-model="phoneNumber" placeholder="请输入您的手机号码" /></p>
+        </div>
+        <div class="m_code">
+            <p>
+                <input type="text" class="m_input h_30 m_inpout_code" ng-model="smsCaptcha" placeholder="手机验证码" />
+                <input type="button" class="m_code_btn m_btn  h_30" id="btnSendCode" ng-click="getSmsCaptcha()" value="获取验证码" />
+            </p>
+        </div>
+
+        <div class="phone_tip" id="smsInfo">为了验证您的身份，我们将会给您发送短信验证码</div>
+        <div class="m_t_100"><input type="button" class="m_sub_btn w_70 h_40 m_btn" id="btnBind" ng-click='doBind()' value="绑定手机" /></div>
+    </div>
+    <script src="@routes.Assets.at("js/jquery-2.0.3.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/controllers/phone_bind_controller.js")'></script>
+}

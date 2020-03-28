@@ -1,0 +1,179 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.account}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="account" ng-model="currentObj.account" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" required />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.category}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="category" ng-model="currentObj.category" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.amount}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="amount" ng-model="currentObj.amount" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.fee}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="fee" ng-model="currentObj.fee" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.confirmations}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="confirmations" ng-model="currentObj.confirmations" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.blockhash}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="blockhash" ng-model="currentObj.blockhash" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.blockindex}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="blockindex" ng-model="currentObj.blockindex" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.blocktime}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="blocktime" ng-model="currentObj.blocktime" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.txid}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="txid" ng-model="currentObj.txid" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.time}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="time" ng-model="currentObj.time" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.timereceived}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="timereceived" ng-model="currentObj.timereceived" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.toInfo}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="toInfo" ng-model="currentObj.toInfo" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.fromInfo}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="fromInfo" ng-model="currentObj.fromInfo" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.CoinRecord.message}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="message" ng-model="currentObj.message" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.account.$error.maxlength'>{{objFieldInfo.CoinRecord.account}} 超出长度！</li>
+                        <li ng-show='myform.name.$error.required'>{{objFieldInfo.CoinRecord.name}} 不能为空！</li>
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.CoinRecord.name}} 超出长度！</li>
+                        <li ng-show='myform.category.$error.maxlength'>{{objFieldInfo.CoinRecord.category}} 超出长度！</li>
+                        <li ng-show='myform.amount.$error.maxlength'>{{objFieldInfo.CoinRecord.amount}} 超出长度！</li>
+                        <li ng-show='myform.fee.$error.maxlength'>{{objFieldInfo.CoinRecord.fee}} 超出长度！</li>
+                        <li ng-show='myform.confirmations.$error.maxlength'>{{objFieldInfo.CoinRecord.confirmations}} 超出长度！</li>
+                        <li ng-show='myform.blockhash.$error.maxlength'>{{objFieldInfo.CoinRecord.blockhash}} 超出长度！</li>
+                        <li ng-show='myform.blockindex.$error.maxlength'>{{objFieldInfo.CoinRecord.blockindex}} 超出长度！</li>
+                        <li ng-show='myform.blocktime.$error.maxlength'>{{objFieldInfo.CoinRecord.blocktime}} 超出长度！</li>
+                        <li ng-show='myform.txid.$error.maxlength'>{{objFieldInfo.CoinRecord.txid}} 超出长度！</li>
+                        <li ng-show='myform.time.$error.maxlength'>{{objFieldInfo.CoinRecord.time}} 超出长度！</li>
+                        <li ng-show='myform.timereceived.$error.maxlength'>{{objFieldInfo.CoinRecord.timereceived}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.CoinRecord.comment}} 超出长度！</li>
+                        <li ng-show='myform.toInfo.$error.maxlength'>{{objFieldInfo.CoinRecord.toInfo}} 超出长度！</li>
+                        <li ng-show='myform.fromInfo.$error.maxlength'>{{objFieldInfo.CoinRecord.fromInfo}} 超出长度！</li>
+                        <li ng-show='myform.message.$error.maxlength'>{{objFieldInfo.CoinRecord.message}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

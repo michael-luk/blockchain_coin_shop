@@ -1,0 +1,69 @@
+@backend_frame("SmsInfo管理", "SmsInfoBackendApp", "SmsInfoBackendController") {
+	<style>
+	.page-list .pagination {float:left;}
+	.page-list .pagination span {cursor: pointer;}
+	.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+	.page-list .pagination .separate span:hover {background: none;}
+	.page-list .page-total {float:left; margin: 25px 20px;}
+	.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+	.page-list .page-total input {width: 40px; padding-left:3px;}
+	.page-list .page-total select {width: 50px;}
+	</style>
+
+
+<div class="page-content" ng-init='websocketInit(@biz.ConfigBiz.getBoolConfig("websocket"), "@biz.ConfigBiz.getStrConfig("domain.name")")'>
+	<div class="page-header">
+		<p>
+			<button ng-click="addContent()" class="btn btn-primary">
+				<i class="icon-plus-sign"></i> 新增
+			</button>
+    			<button ng-click="updateContent()" class="btn btn-success">
+    				<i class="icon-edit"></i> 修改
+    			</button>
+			<button ng-click="deleteContent()" class="btn btn-danger">
+				<i class="icon-trash"></i> 刪除
+			</button> | 
+            <input type="text" ng-model="queryKeyword" class="form-control" placeholder="按@TableInfoReader.getFieldComment("SmsInfo", TableInfoReader.getSearchField("SmsInfo"))搜" style="display: inline-block; width: 140px;text-align: center;" />
+			<button ng-click="searchContent()" class="btn btn-primary">
+				<i class="icon-search"></i> 搜索
+			</button> | <input id="startTime" type="text" ng-model="startTime" placeholder="开始时间" style="text-align: center;height: 33px; border: 1px solid #ece4e4;" > -
+			<input id="endTime" type="text" ng-model="endTime" placeholder="结束时间" style="text-align: center;height: 33px;border: 1px solid #ece4e4;" >
+			<button ng-click="refresh()" class="btn btn-warning">
+				<i class="icon-calendar"></i> 日期筛选
+			</button> | 
+			<button ng-click="report()" class="btn btn-success">
+				<i class="icon-print"></i> 报表
+			</button> | <span ng-bind="chatMsg"></span>
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="gridStyle" style="min-height: 500px;" ui-grid="gridOptions" ui-grid-resize-columns ui-grid-selection ui-grid-edit ui-grid-auto-fit-columns></div>
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>
+            
+<script type="text/javascript">
+    var hasImageField = @TableInfoReader.hasImageField("SmsInfo");
+    var searchFieldName = '@TableInfoReader.getSearchField("SmsInfo")'
+    var objFieldInfo = {};
+	var objEnumInfo = {}
+    
+    // 处理自己的字段注释, status枚举, enum枚举
+    objFieldInfo.SmsInfo = {};
+    objFieldInfo.SmsInfo.name = '@TableInfoReader.getFieldComment("SmsInfo", "name")';
+    objFieldInfo.SmsInfo.phone = '@TableInfoReader.getFieldComment("SmsInfo", "phone")';
+    objFieldInfo.SmsInfo.checkCode = '@TableInfoReader.getFieldComment("SmsInfo", "checkCode")';
+    objFieldInfo.SmsInfo.sendXml = '@TableInfoReader.getFieldComment("SmsInfo", "sendXml")';
+    objFieldInfo.SmsInfo.returnTable = '@TableInfoReader.getFieldComment("SmsInfo", "returnTable")';
+    objFieldInfo.SmsInfo.receiveXml = '@TableInfoReader.getFieldComment("SmsInfo", "receiveXml")';
+    objFieldInfo.SmsInfo.code = '@TableInfoReader.getFieldComment("SmsInfo", "code")';
+    objFieldInfo.SmsInfo.returnMsg = '@TableInfoReader.getFieldComment("SmsInfo", "returnMsg")';
+    objFieldInfo.SmsInfo.lastUpdateTime = '@TableInfoReader.getFieldComment("SmsInfo", "lastUpdateTime")';
+    objFieldInfo.SmsInfo.createdAt = '@TableInfoReader.getFieldComment("SmsInfo", "createdAt")';
+    objFieldInfo.SmsInfo.comment = '@TableInfoReader.getFieldComment("SmsInfo", "comment")';
+
+
+</script>
+}

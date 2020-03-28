@@ -1,0 +1,636 @@
+
+admin:
+    - !!models.Admin
+        name: "admin_1"
+        password: "e10adc3949ba59abbe56e057f20f883e"
+        descriptions: "0"
+        lastLoginIp: "0"
+        lastLoginIpArea: "0"
+        status: 0
+        userRoleEnum: 0
+        comment: "0"
+
+    - !!models.Admin
+        name: "admin_2"
+        password: "e10adc3949ba59abbe56e057f20f883e"
+        descriptions: "1"
+        lastLoginIp: "1"
+        lastLoginIpArea: "1"
+        status: 0
+        userRoleEnum: 1
+        comment: "1"
+
+    - !!models.Admin
+        name: "admin_3"
+        password: "e10adc3949ba59abbe56e057f20f883e"
+        descriptions: "2"
+        lastLoginIp: "2"
+        lastLoginIpArea: "2"
+        status: 0
+        userRoleEnum: 2
+        comment: "2"
+
+adminJournal:
+    - !!models.AdminJournal
+        name: "adminJournal_1"
+        actor: "0"
+        actorLevel: "0"
+
+    - !!models.AdminJournal
+        name: "adminJournal_2"
+        actor: "1"
+        actorLevel: "1"
+
+    - !!models.AdminJournal
+        name: "adminJournal_3"
+        actor: "2"
+        actorLevel: "2"
+
+catalog:
+    - !!models.Catalog
+        showIndex: 0
+        name: "数码产品"
+        nameEn: "3C"
+        nameHk: "數碼電子"
+        nameJa: "0"
+        description: "数码产品"
+        descriptionTwo: "0"
+        descriptionEn: "3C"
+        descriptionTwoEn: "0"
+        descriptionHk: "數碼電子"
+        descriptionTwoHk: "0"
+        descriptionJa: "0"
+        descriptionTwoJa: "0"
+        comment: "0"
+
+    - !!models.Catalog
+        showIndex: 1
+        name: "护肤品"
+        nameEn: "Skin Healthcare"
+        nameHk: "護膚品"
+        nameJa: "1"
+        description: "护肤品"
+        descriptionTwo: "1"
+        descriptionEn: "Skin Healthcare"
+        descriptionTwoEn: "1"
+        descriptionHk: "護膚品"
+        descriptionTwoHk: "1"
+        descriptionJa: "1"
+        descriptionTwoJa: "1"
+        comment: "1"
+
+    - !!models.Catalog
+        showIndex: 2
+        name: "日用品"
+        nameEn: "House Living"
+        nameHk: "日常用品"
+        nameJa: "2"
+        description: "日用品"
+        descriptionTwo: "2"
+        descriptionEn: "House Living"
+        descriptionTwoEn: "2"
+        descriptionHk: "日常用品"
+        descriptionTwoHk: "2"
+        descriptionJa: "2"
+        descriptionTwoJa: "2"
+        comment: "2"
+
+config:
+    - !!models.Config
+        name: "config_1"
+        content: "0"
+        typeEnum: 0
+        comment: "0"
+
+    - !!models.Config
+        name: "config_2"
+        content: "1"
+        typeEnum: 1
+        comment: "1"
+
+    - !!models.Config
+        name: "config_3"
+        content: "2"
+        typeEnum: 2
+        comment: "2"
+
+info:
+    - !!models.Info
+        name: "如何注册"
+        showIndex: 0
+        classify: "帮助中心"
+        nameEn: "How to register"
+        nameHk: "如何註冊"
+        nameJa: "0"
+        phone: "0"
+        url: "0"
+        visible: True
+        status: 0
+        description: "请采用微信登录本商城"
+        descriptionTwo: "0"
+        descriptionEn: "Use wechat to login to the mall"
+        descriptionTwoEn: "0"
+        descriptionHk: "請使用微信登入系統"
+        descriptionTwoHk: "0"
+        descriptionJa: "0"
+        descriptionTwoJa: "0"
+        comment: "0"
+
+    - !!models.Info
+        name: "如何支付"
+        showIndex: 1
+        classify: "帮助中心"
+        nameEn: "How to pay"
+        nameHk: "如何支付"
+        nameJa: "1"
+        phone: "1"
+        url: "1"
+        visible: True
+        status: 0
+        description: "请使用白币 White Coin 进行支付"
+        descriptionTwo: "1"
+        descriptionEn: "Use White Coin to pay"
+        descriptionTwoEn: "1"
+        descriptionHk: "請使用白幣 White Coin 進行支付"
+        descriptionTwoHk: "1"
+        descriptionJa: "1"
+        descriptionTwoJa: "1"
+        comment: "1"
+
+    - !!models.Info
+        name: "货源是真实可靠的吗"
+        showIndex: 2
+        classify: "常见问题"
+        nameEn: "About the product?"
+        nameHk: "貨源是真實可靠的嗎?"
+        nameJa: "2"
+        phone: "2"
+        url: "2"
+        visible: True
+        status: 0
+        description: "本商城所有商品皆是正品行货, 请放心购买"
+        descriptionTwo: "2"
+        descriptionEn: "All of our products are original."
+        descriptionTwoEn: "2"
+        descriptionHk: "本商城所有商品皆為正品行貨, 請放心選購"
+        descriptionTwoHk: "2"
+        descriptionJa: "2"
+        descriptionTwoJa: "2"
+        comment: "2"
+
+    - !!models.Info
+        name: "我们开张啦"
+        showIndex: 1
+        classify: "公告"
+        nameEn: "Opening!"
+        nameHk: "我们开张啦"
+        nameJa: "我们开张啦"
+        phone: "2"
+        url: "2"
+        visible: True
+        status: 0
+        description: "我们开张啦"
+        descriptionTwo: "2"
+        descriptionEn: "We are opening"
+        descriptionTwoEn: "2"
+        descriptionHk: "我们开张啦"
+        descriptionTwoHk: "2"
+        descriptionJa: "我们开张啦"
+        descriptionTwoJa: "2"
+        comment: "2"
+
+product:
+    - !!models.Product
+        showNo: "0"
+        name: "iPhoneX"
+        nameEn: "iPhoneX"
+        nameHk: "iPhoneX"
+        nameJa: "iPhoneX"
+        soldNumber: 0
+        unit: "台"
+        description: "iPhoneX"
+        descriptionEn: "iPhoneX"
+        descriptionHk: "iPhoneX"
+        descriptionJa: "iPhoneX"
+        comment: "0"
+        price: 0.0
+        originalPrice: 0.0
+        coinPrice: 5333.0
+        isSale: True
+        status: 0
+
+    - !!models.Product
+        showNo: "1"
+        name: "小米Mix"
+        nameEn: "Xiaomi Mix"
+        nameHk: "小米Mix(大陸行)"
+        nameJa: "1"
+        soldNumber: 0
+        unit: "台"
+        description: "小米Mix"
+        descriptionEn: "Xiaomi Mix"
+        descriptionHk: "小米Mix(大陸行)"
+        descriptionJa: "1"
+        comment: "1"
+        price: 1.0
+        originalPrice: 1.0
+        coinPrice: 2666.0
+        isSale: False
+        status: 0
+
+    - !!models.Product
+        showNo: "2"
+        name: "SKII神仙水"
+        nameEn: "SKII Skin cleaner"
+        nameHk: "SKII神仙水"
+        nameJa: "2"
+        soldNumber: 0
+        unit: "套"
+        description: "SKII神仙水"
+        descriptionEn: "SKII Skin cleaner"
+        descriptionHk: "SKII神仙水"
+        descriptionJa: "2"
+        comment: "2"
+        price: 2.0
+        originalPrice: 2.0
+        coinPrice: 799.0
+        isSale: True
+        status: 1
+
+    - !!models.Product
+        showNo: "3"
+        name: "松下电动牙刷"
+        nameEn: "Panasonic auto tooth brush"
+        nameHk: "松下電動牙刷"
+        nameJa: "2"
+        soldNumber: 0
+        unit: "套"
+        description: "松下电动牙刷"
+        descriptionEn: "Panasonic auto tooth brush"
+        descriptionHk: "松下電動牙刷"
+        descriptionJa: "2"
+        comment: "2"
+        price: 2.0
+        originalPrice: 2.0
+        coinPrice: 999.0
+        isSale: True
+        status: 1
+
+purchase:
+    - !!models.Purchase
+        name: "purchase_1"
+        status: 0
+        quantity: "0"
+        pids: "0"
+        tids: "0"
+        amount: 0.0
+        coinAmount: 0.0
+        coinPayAddr: "0"
+        images: "0"
+        coinPayTrans: "0"
+        useVipPoint: 0
+        vipPointDiscount: 0.0
+        shipName: "0"
+        shipPhone: "0"
+        shipProvince: "0"
+        shipCity: "0"
+        shipZone: "0"
+        shipLocation: "0"
+        buyerMessage: "0"
+        payReturnCode: "0"
+        payReturnMsg: "0"
+        payResultCode: "0"
+        payTransitionId: "0"
+        payAmount: "0"
+        description1: "0"
+        description2: "0"
+        comment: "0"
+
+    - !!models.Purchase
+        name: "purchase_2"
+        status: 1
+        quantity: "1"
+        pids: "1"
+        tids: "1"
+        amount: 1.0
+        coinAmount: 1.0
+        coinPayAddr: "1"
+        images: "1"
+        coinPayTrans: "1"
+        useVipPoint: 1
+        vipPointDiscount: 1.0
+        shipName: "1"
+        shipPhone: "1"
+        shipProvince: "1"
+        shipCity: "1"
+        shipZone: "1"
+        shipLocation: "1"
+        buyerMessage: "1"
+        payReturnCode: "1"
+        payReturnMsg: "1"
+        payResultCode: "1"
+        payTransitionId: "1"
+        payAmount: "1"
+        description1: "1"
+        description2: "1"
+        comment: "1"
+
+    - !!models.Purchase
+        name: "purchase_3"
+        status: 2
+        quantity: "2"
+        pids: "2"
+        tids: "2"
+        amount: 2.0
+        coinAmount: 2.0
+        coinPayAddr: "2"
+        images: "2"
+        coinPayTrans: "2"
+        useVipPoint: 2
+        vipPointDiscount: 2.0
+        shipName: "2"
+        shipPhone: "2"
+        shipProvince: "2"
+        shipCity: "2"
+        shipZone: "2"
+        shipLocation: "2"
+        buyerMessage: "2"
+        payReturnCode: "2"
+        payReturnMsg: "2"
+        payResultCode: "2"
+        payTransitionId: "2"
+        payAmount: "2"
+        description1: "2"
+        description2: "2"
+        comment: "2"
+
+shipInfo:
+    - !!models.ShipInfo
+        isDefault: True
+        name: "李磊"
+        phone: "18666955466"
+        province: "广东省"
+        city: "深圳市"
+        zone: "福田区"
+        location: "盛景大厦405"
+        comment: "0"
+
+    - !!models.ShipInfo
+        isDefault: False
+        name: "陈明"
+        phone: "13154664488"
+        province: "广东省"
+        city: "广州市"
+        zone: "天河区"
+        location: "天河大厦5612"
+        comment: "1"
+
+    - !!models.ShipInfo
+        isDefault: True
+        name: "刘鑫"
+        phone: "15674889955"
+        province: "北京市"
+        city: "朝阳区"
+        zone: ""
+        location: "邮电小区1153"
+        comment: "2"
+
+smsInfo:
+    - !!models.SmsInfo
+        name: "smsInfo_1"
+        phone: "0"
+        checkCode: "0"
+        sendXml: "0"
+        returnTable: "0"
+        receiveXml: "0"
+        code: "0"
+        returnMsg: "0"
+        comment: "0"
+
+    - !!models.SmsInfo
+        name: "smsInfo_2"
+        phone: "1"
+        checkCode: "1"
+        sendXml: "1"
+        returnTable: "1"
+        receiveXml: "1"
+        code: "1"
+        returnMsg: "1"
+        comment: "1"
+
+    - !!models.SmsInfo
+        name: "smsInfo_3"
+        phone: "2"
+        checkCode: "2"
+        sendXml: "2"
+        returnTable: "2"
+        receiveXml: "2"
+        code: "2"
+        returnMsg: "2"
+        comment: "2"
+
+theme:
+    - !!models.Theme
+        showIndex: 0
+        name: "银色"
+        nameEn: "Silver"
+        nameHk: "銀"
+        nameJa: "シルバー"
+        soldNumber: 0
+        inventory: 100
+        status: 0
+        images: "1516286977200"
+        smallImages: "1516286991450"
+        imagesEn: "1516287550461"
+        smallImagesEn: "1516287653817"
+        imagesHk: "1516287550461"
+        smallImagesHk: "1516287653817"
+        imagesJa: "1516287481367"
+        smallImagesJa: "1516287911716"
+        description: "Apple 苹果 iPhone X 全面屏手机 银色 全网通"
+        descriptionTwo: "0"
+        descriptionEn: "iPhone x features an all-screen design with a 5.8-Inch super Retina HD display with HDR and true tone. Face ID lets you unlock and use Apple pay with just a glance. Powered by A11 Bionic, the most powerful and smartest chip ever in a smartphone. Supports augmented reality experiences in games and apps."
+        descriptionTwoEn: "0"
+        descriptionHk: "Apple 蘋果 iPhone X 全面屏手機 銀 全網通"
+        descriptionTwoHk: "0"
+        descriptionJa: "Super Retina HDディスプレイ 5.8インチ（対角）オールスクリーンOLED Multi-Touchディスプレイ HDRディスプレイ 2,436 x 1,125ピクセル解像度、458ppi 1,000,000:1コントラスト比（標準） True Toneディスプレイ 広色域ディスプレイ（P3） 3D Touch 最大輝度625cd/m2（標準） 耐指紋性撥油コーティング 複数の言語と文字の同時表示をサポート"
+        descriptionTwoJa: "0"
+        comment: "0"
+        price: 1.0
+        coinPrice: 0.0
+
+    - !!models.Theme
+        showIndex: 1
+        name: "星空灰色"
+        nameEn: "Space Gray"
+        nameHk: "太空灰"
+        nameJa: "スペースグレー"
+        soldNumber: 0
+        inventory: 100
+        status: 0
+        images: "1516287256966"
+        smallImages: "1516286991450"
+        imagesEn: "1516287554555"
+        smallImagesEn: "1516287653817"
+        imagesHk: "1516287256966"
+        smallImagesHk: "1516286991450"
+        imagesJa: "1516287486242"
+        smallImagesJa: "1516287911716"
+        description: "Apple 苹果 iPhone X 全面屏手机 深空灰色 全网通"
+        descriptionTwo: "1"
+        descriptionEn: "iPhone x features an all-screen design with a 5.8-Inch super Retina HD display with HDR and true tone. Face ID lets you unlock and use Apple pay with just a glance. Powered by A11 Bionic, the most powerful and smartest chip ever in a smartphone. Supports augmented reality experiences in games and apps."
+        descriptionTwoEn: "1"
+        descriptionHk: "Apple 蘋果 iPhone X 全面屏手機 太空灰 全網通"
+        descriptionTwoHk: "1"
+        descriptionJa: "【国内版SIMフリー】 iPhoneX 256GB　スペースグレー　MQC12J/A　Apple　白ロム　日本　5.8インチ"
+        descriptionTwoJa: "1"
+        comment: "1"
+        price: 1.2
+        coinPrice: 0.0
+
+    - !!models.Theme
+        showIndex: 2
+        name: "基础版"
+        nameEn: "Basic"
+        nameHk: "基準型"
+        nameJa: "128GB"
+        soldNumber: 0
+        inventory: 200
+        status: 0
+        images: "1516288517466"
+        smallImages: "1516288561216,1516288563982"
+        imagesEn: "1516288517466"
+        smallImagesEn: "1516288561216,1516288563982"
+        imagesHk: "1516288517466"
+        smallImagesHk: "1516288561216,1516288563982"
+        imagesJa: "1516288517466"
+        smallImagesJa: "1516288561216,1516288563982"
+        description: "2"
+        descriptionTwo: "2"
+        descriptionEn: "2"
+        descriptionTwoEn: "2"
+        descriptionHk: "2"
+        descriptionTwoHk: "2"
+        descriptionJa: "2"
+        descriptionTwoJa: "2"
+        comment: "2"
+        price: 0.8
+        coinPrice: 0.0
+
+user:
+    - !!models.User
+        name: "user_1"
+        openId: "0"
+        unionId: "0"
+        wxOpenId: "0"
+        email: "0"
+        isEmailVerified: True
+        emailKey: "0"
+        headImage: "0"
+        images: "0"
+        sexEnum: 0
+        phone: "0"
+        vipPoint: 0
+        cardNumber: "0"
+        country: "0"
+        province: "0"
+        city: "0"
+        zone: "0"
+        address: "0"
+        lastLoginIp: "0"
+        lastLoginIpArea: "0"
+        status: 0
+        userRoleEnum: 0
+        comment: "0"
+
+    - !!models.User
+        name: "user_2"
+        openId: "1"
+        unionId: "1"
+        wxOpenId: "1"
+        email: "1"
+        isEmailVerified: False
+        emailKey: "1"
+        headImage: "1"
+        images: "1"
+        sexEnum: 1
+        phone: "1"
+        vipPoint: 1
+        cardNumber: "1"
+        country: "1"
+        province: "1"
+        city: "1"
+        zone: "1"
+        address: "1"
+        lastLoginIp: "1"
+        lastLoginIpArea: "1"
+        status: 0
+        userRoleEnum: 1
+        comment: "1"
+
+    - !!models.User
+        name: "user_3"
+        openId: "2"
+        unionId: "2"
+        wxOpenId: "2"
+        email: "2"
+        isEmailVerified: True
+        emailKey: "2"
+        headImage: "2"
+        images: "2"
+        sexEnum: 2
+        phone: "2"
+        vipPoint: 2
+        cardNumber: "2"
+        country: "2"
+        province: "2"
+        city: "2"
+        zone: "2"
+        address: "2"
+        lastLoginIp: "2"
+        lastLoginIpArea: "2"
+        status: 0
+        userRoleEnum: 2
+        comment: "2"
+
+commentInfo:
+    - !!models.CommentInfo
+        name: "commentInfo_1"
+        status: 0
+        comment: "0"
+
+    - !!models.CommentInfo
+        name: "commentInfo_2"
+        status: 1
+        comment: "1"
+
+    - !!models.CommentInfo
+        name: "commentInfo_3"
+        status: 2
+        comment: "2"
+
+returnInfo:
+    - !!models.ReturnInfo
+        name: "returnInfo_1"
+        contact: "0"
+        phone: "0"
+        status: 0
+        returnType: 0
+        comment: "0"
+
+    - !!models.ReturnInfo
+        name: "returnInfo_2"
+        contact: "1"
+        phone: "1"
+        status: 1
+        returnType: 1
+        comment: "1"
+
+    - !!models.ReturnInfo
+        name: "returnInfo_3"
+        contact: "2"
+        phone: "2"
+        status: 2
+        returnType: 2
+        comment: "2"
+

@@ -1,0 +1,121 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" required />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.password}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="password" ng-model="currentObj.password" class="col-xs-10 col-sm-5 button_border" required />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.descriptions}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptions" ng-model="currentObj.descriptions" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.lastLoginIp}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="lastLoginIp" ng-model="currentObj.lastLoginIp" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.lastLoginTime}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" id="lastLoginTime" name="lastLoginTime" ng-model="currentObj.lastLoginTime" class="col-xs-10 col-sm-5 button_border" />
+                    <script type='text/javascript'>
+                        $('#lastLoginTime').datetimepicker({
+                            language: 'zh-CN',
+                            format: 'yyyy-mm-dd',
+                            minView: 'month',
+                            todayBtn: true,
+                            todayHighlight: true,
+                            autoclose: true
+                        });
+                    </script>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.lastLoginIpArea}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="lastLoginIpArea" ng-model="currentObj.lastLoginIpArea" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.status}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="status" ng-model="currentObj.status" ng-options="item.id as item.name disable when item.id == -100 for item in status" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.userRoleEnum}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="userRoleEnum" ng-model="currentObj.userRoleEnum" ng-options="item.id as item.name disable when item.id == -100 for item in userRoleEnum" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Admin.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.name.$error.required'>{{objFieldInfo.Admin.name}} 不能为空！</li>
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.Admin.name}} 超出长度！</li>
+                        <li ng-show='myform.password.$error.required'>{{objFieldInfo.Admin.password}} 不能为空！</li>
+                        <li ng-show='myform.password.$error.maxlength'>{{objFieldInfo.Admin.password}} 超出长度！</li>
+                        <li ng-show='myform.descriptions.$error.maxlength'>{{objFieldInfo.Admin.descriptions}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.Admin.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.lastLoginIp.$error.maxlength'>{{objFieldInfo.Admin.lastLoginIp}} 超出长度！</li>
+                        <li ng-show='myform.lastLoginTime.$error.maxlength'>{{objFieldInfo.Admin.lastLoginTime}} 超出长度！</li>
+                        <li ng-show='myform.lastLoginIpArea.$error.maxlength'>{{objFieldInfo.Admin.lastLoginIpArea}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.Admin.comment}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

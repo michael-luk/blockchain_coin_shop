@@ -1,0 +1,88 @@
+@(user: User)
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/user.css")' rel="stylesheet" type="text/css">
+    <div class="j_user_banner padding-top-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 j_user_banner_img">
+                    <img src="@routes.Assets.at("images/model3.jpg")" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main mobile_border_bottom" >
+        <div class="container j_main">
+            <div class="row">
+                    <!--BEGIN LEFT-->
+                <div class="col-sm-12 col-xs-12 col-md-2 j_user_left" >
+                    <div class="j_user text-center margin-top-10">
+                        <div class="j_user_face"><img src="@user.headImage"></div>
+                        <div class="j_user_name">@user.name (No.@user.id)</div>
+                        <div class="j_user_level"><span>@play.i18n.Messages.get("credit") @user.vipPoint</span>
+                            @*<br><br><span>@play.i18n.Messages.get("balance") @user.balance @biz.ConfigBiz.getStrConfig("coin.short.name")</span>*@
+                        </div>
+                        <div class="j_user_reg">@play.i18n.Messages.get("register.time")：
+                            @LyLib.Utils.DateUtil.Date2Str(user.createdAt, "yyyy-MM-dd")
+                        </div>
+                    </div>
+                </div>
+                    <!--END LEFT-->
+
+                    <!--BEGIN RIGHT-->
+                <div class="col-sm-12 col-xs-12 col-md-10 j_user_right" >
+                    <div class="row j_user_info">
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/my/order"><i class="icon iconfont icon-dingdan"></i>
+                                    @play.i18n.Messages.get("member.orders")</a></div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/my/favorites"><i class="icon iconfont icon-shangpinshoucang"></i>
+                                    @play.i18n.Messages.get("member.favors")</a></div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/my/shipinfo"><i class="icon iconfont icon-dizhi"></i>
+                                    @play.i18n.Messages.get("member.shipinfo")</a></div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/my/comment"><i class="icon iconfont icon-pinglun"></i>
+                                    @play.i18n.Messages.get("member.comment")</a></div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/my/return"><i class="icon iconfont icon-servicewuyoutuihuanhuo"></i>
+                                    @play.i18n.Messages.get("member.return")</a></div>
+                        </div>
+                        @*<div class="col-sm-12 col-xs-12 col-md-12">*@
+                            @*<div class="j_user_info_div">*@
+                                @*<a href="/my/viprecord"><i class="icon iconfont icon-mingxi"></i>
+                                    @play.i18n.Messages.get("member.vip.record")</a></div>*@
+                        @*</div>*@
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/my/promote"><i class="icon iconfont icon-fenxiao"></i>
+                                    @play.i18n.Messages.get("member.promote")</a></div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/my/balance"><i class="icon iconfont icon-mingxi"></i>
+                                    @play.i18n.Messages.get("member.balance")</a></div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12">
+                            <div class="j_user_info_div">
+                                <a href="/help"><i class="icon iconfont icon-bangzhuzhongxin"></i>
+                                    @play.i18n.Messages.get("member.help")</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="j_clear"></div>
+                    <!--END RIGHT-->
+
+            </div>
+        </div>
+    </div>
+}

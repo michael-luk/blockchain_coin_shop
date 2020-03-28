@@ -1,0 +1,282 @@
+.main img{
+    max-width:60%; 
+}
+.j_car_title{
+    font-size:2.4rem;
+    color:#4c4c4c;
+    
+}
+
+.main{
+    border-top:1px #b5b5b5 solid;
+}
+.j_row_bor{
+    border-bottom:1px #ecebeb solid; 
+    margin:0 5px;
+}
+.j_row_bor > div{
+    padding-top:10px;
+    padding-bottom:8px;
+}
+
+
+
+.j_car{
+
+}
+.j_car_m_title{
+	font-size:1.6rem;
+	color:#3a4b5d;
+}
+
+.j_car_pro_title{
+	color:#777;
+	font-size:1.6rem;
+}
+.j_car_pro_price{
+	font-size:1.6rem;
+	color:#f4987a;
+}
+.j_car_pro_prices{
+	font-size:1.6rem;
+	color:#f4987a;
+}
+
+
+.j_pro_add{
+	padding:15px 0;
+}
+.j_add{
+	float:left;
+	background-color:#edeff1;
+	border:0;
+
+}
+.add-on{
+	float:left;
+}
+.j_add_car{
+	cursor:pointer;
+}
+.add-button:link{
+	text-decoration:none;
+	outline:none
+}
+.add-button:visited{
+	text-decoration:none;
+	outline:none
+}
+.add-button:hover{
+	text-decoration:none;
+	outline:none
+}
+
+
+
+
+.j_car_total{
+	padding:20px 20px 50px;
+	color:#f4987a;
+}
+.j_car_pro_total{
+	font-size:1.8rem;
+	color:#f4987a;
+}
+
+.j_car_continue{
+	padding:10px 20px;
+	background-color:#9d9d9d;
+	color:#e2e2e2;
+	cursor:pointer;
+}
+
+.j_car_balance{
+	padding:10px 20px;
+	background-color:#010101;
+	color:#fff;
+	cursor:pointer;
+}
+.glyphicon{
+	cursor:pointer;
+}
+.car_del{
+	color:#39F;
+	cursor:pointer;
+}
+@media (max-width: 768px) {
+.j_car_title{
+	display:none;
+}
+.j_car_tops{
+	display:none;
+}
+.j_mobile_pro_prices{
+	display:none;
+}
+.main img{
+    max-width:75%; 
+}
+
+.j_center_price{
+	text-align:center;
+}
+.j_center{
+	text-align:center;
+	position:relative;
+	top:15px;
+}
+.j_car_height{
+    height:45px;
+	word-wrap:nowrap;
+	text-overflow: ellipsis;
+    overflow: hidden;
+}
+.j_mobile_padding{
+	padding-left:10px;
+	padding-right:10px;
+}
+.j_mobile_padding div{
+	padding-left:2px;
+	padding-right:2px;
+}
+
+.j_car_pro_title{
+	color:#777;
+	font-size:1.4rem;
+	
+}
+.j_car_pro_price{
+	font-size:1.4rem;
+	color:#f4987a;
+}
+.j_car_pro_prices{
+	font-size:1.4rem;
+	color:#f4987a;
+}
+
+
+}
+
+
+
+
+
+/****/
+.checkbox{
+    float:left;
+	padding-left:0px !important;
+	padding-top:24px;
+}
+.checkimg{
+	width:20px;
+	height:20px;
+	float:left;
+	border:0px !important;
+}
+.checkbox_yes{
+	background-image:url(../images/checkbox_yes.png);
+}
+.checkbox_no{
+	background-image:url(../images/checkbox_no.png);
+}
+.checkbox input[type='checkbox'] { 
+	opacity: 0; 
+} 
+
+
+
+
+
+
+
+.j_car_choose{
+	padding:10px 20px !important;
+	color:#999
+}
+.j_car_choose span{
+	float:left;
+	padding-top:24px;
+}
+
+.checkbox_all label:before {
+	top: 23px; 
+} 
+.checkbox_all label:after { 
+	top: 27px; 
+} 
+
+.mobile_has{
+	display:none;
+}
+/****/
+@media (max-width: 768px) {
+	.mobile_has{
+		display:inline;
+		font-size:1.2rem;
+		color:#999;
+	}
+	.spinner input{
+		width:3em !important;
+		padding-top:8px !important;
+		padding-bottom:8px !important;
+		padding-left:0px !important;
+		padding-right:0px !important;
+	}
+    .mobile_n{
+        padding-left:0px !important; padding-right:0px !important;	
+    }
+	.spinner .add-on a.spin-up, .spinner .add-on a.spin-down {
+		float:left;
+		height: 36px !important;
+		padding: 9px 10px 2px 8px!important;
+	}
+	.spinner .add-on a.spin-down {
+		margin-left:2px;
+        padding: 10px 10px 2px 8px !important;
+    }
+	.glyphicon-chevron-down {
+        left: 0px !important;
+    }
+	.j_car{
+	
+	}
+	.j_car_choose{
+		padding-left:13px !important;
+	}
+	.mobile_choose{
+		padding-left:18px;
+	}
+	.checkbox{
+		padding-top:20px;
+	}
+	.j_ly{
+		width:50%;
+	}
+.j_car_bottom{
+	padding-left:0px;
+	padding-right:0px;
+}
+}
+	.j_ly{
+		margin-bottom:20px;
+		border:1px #e2e2e2 solid;
+		background-color:#fff;
+		
+	}
+	.j_car_total1{
+	padding:20px 20px 30px;
+	}
+
+
+
+.no_pro{
+	text-align:center;
+	padding:40px 0px;
+	color:#CCC;
+	font-size:1.6rem;
+}
+.xwc_input{
+	border:1px #e2e2e2 solid;
+	background-color:#fff;
+	width:80%;
+}

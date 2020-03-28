@@ -1,0 +1,142 @@
+/* bx-slider styles */
+.bxslider li {
+	list-style: none;
+	display: inline-block;
+}
+.bxslider-wrapper {
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+.bxslider-wrapper-similar-products {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.bxslider-wrapper .bx-wrapper {
+	padding-left: 0;
+	padding-right: 0;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.bxslider-wrapper-similar-products .bx-wrapper {
+	position: relative;
+}
+.bxslider-wrapper .bx-controls-direction {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.bxslider-wrapper .bx-controls-direction {
+	top: -40px;
+}
+.bx-viewport {
+	padding-right: 5px !important;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.bx-viewport li {
+	padding-bottom: 5px;
+}
+.bx-wrapper .bx-controls-direction a {
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	margin-left: 5px;
+	position: static;
+	border-radius: 26px !important;
+}
+.bx-wrapper .bx-controls-direction a.bx-prev {
+    background: #fff url(../images/bx-fa-angles.png) no-repeat 8px 8px;
+}
+.bx-wrapper .bx-controls-direction a.bx-next {
+    background: #fff url(../images/bx-fa-angles.png) no-repeat -33px 8px;
+}
+.bx-wrapper .bx-controls-direction a.bx-prev:hover {
+    background: #e84d1c url(../images/bx-fa-angles.png) no-repeat 8px -31px;
+}
+.bx-wrapper .bx-controls-direction a.bx-next:hover {
+    background: #e84d1c url(../images/bx-fa-angles.png) no-repeat -33px -31px;
+}
+/*****/
+
+
+
+/****/
+.main{
+	background-color:#f9f9f9;
+}
+
+.bxslider{
+	background-color:#006;
+}
+.bxslider li{
+
+}
+.j_title{
+	color:#333;
+}
+.pi-price{
+	margin-top:5px;
+	color:#c2c2c2;
+	font-size:1.6rem;
+	font-weight:bold;
+}
+
+.list-group-item{
+	border:0px;
+	padding:5px 15px;
+	margin-bottom:2px;
+}
+.sidebar-menu .fa-angle-right {
+	margin-right: 5px;
+}
+.j_h3{
+	margin-top:0px;
+}
+.icon-zhishi{
+	font-size:1.2rem;
+}
+.product-item {
+	padding: 12px 12px 16px;
+	background: #fff;
+	position: relative;
+	cursor:pointer;
+}
+.product-item:hover {
+	box-shadow: 5px 5px rgba(234, 234, 234, 0.9);
+}
+
+.j_list_group{
+	margin-bottom:0px;
+}
+
+
+
+
+
+
+/****/
+
+
+	
+
+/****/
+   .thumbnail{
+	   border:0px;
+   }
+   .thumbnail img{
+	   padding:5px;
+   }
+   .j_gouwuche{
+	position:absolute;
+	right:10px;
+	font-size:1.8rem;
+   }
+/****/
+
+@media (max-width: 768px) {
+	.j_mobile_sidebar{
+		margin-bottom:20px;
+	}
+}
+

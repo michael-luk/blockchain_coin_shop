@@ -1,0 +1,76 @@
+@backend_frame("ShipInfo管理", "ShipInfoBackendApp", "ShipInfoBackendController") {
+	<style>
+	.page-list .pagination {float:left;}
+	.page-list .pagination span {cursor: pointer;}
+	.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+	.page-list .pagination .separate span:hover {background: none;}
+	.page-list .page-total {float:left; margin: 25px 20px;}
+	.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+	.page-list .page-total input {width: 40px; padding-left:3px;}
+	.page-list .page-total select {width: 50px;}
+	</style>
+
+
+<div class="page-content" ng-init='websocketInit(@biz.ConfigBiz.getBoolConfig("websocket"), "@biz.ConfigBiz.getStrConfig("domain.name")")'>
+	<div class="page-header">
+		<p>
+			@TableInfoReader.getFieldComment("ShipInfo", "user"): <a href="#" data-toggle="tooltip" title="按上级筛选数据"><select ng-model="selectedParentUserId" ng-options="parent.id as parent.name for parent in parentUsers" style="padding: 6px;border-radius: 3px;">
+				<option value="0">全部</option>
+			</select></a> | 
+			<button ng-click="addContent()" class="btn btn-primary">
+				<i class="icon-plus-sign"></i> 新增
+			</button>
+    			<button ng-click="updateContent()" class="btn btn-success">
+    				<i class="icon-edit"></i> 修改
+    			</button>
+			<button ng-click="deleteContent()" class="btn btn-danger">
+				<i class="icon-trash"></i> 刪除
+			</button> | 
+            <input type="text" ng-model="queryKeyword" class="form-control" placeholder="按@TableInfoReader.getFieldComment("ShipInfo", TableInfoReader.getSearchField("ShipInfo"))搜" style="display: inline-block; width: 140px;text-align: center;" />
+			<button ng-click="searchContent()" class="btn btn-primary">
+				<i class="icon-search"></i> 搜索
+			</button> | <input id="startTime" type="text" ng-model="startTime" placeholder="开始时间" style="text-align: center;height: 33px; border: 1px solid #ece4e4;" > -
+			<input id="endTime" type="text" ng-model="endTime" placeholder="结束时间" style="text-align: center;height: 33px;border: 1px solid #ece4e4;" >
+			<button ng-click="refresh()" class="btn btn-warning">
+				<i class="icon-calendar"></i> 日期筛选
+			</button> | 
+			<button ng-click="report()" class="btn btn-success">
+				<i class="icon-print"></i> 报表
+			</button> | <span ng-bind="chatMsg"></span>
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="gridStyle" style="min-height: 500px;" ui-grid="gridOptions" ui-grid-resize-columns ui-grid-selection ui-grid-edit ui-grid-auto-fit-columns></div>
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>
+            
+<script type="text/javascript">
+    var hasImageField = @TableInfoReader.hasImageField("ShipInfo");
+    var searchFieldName = '@TableInfoReader.getSearchField("ShipInfo")'
+    var objFieldInfo = {};
+	var objEnumInfo = {}
+    
+    // 处理自己的字段注释, status枚举, enum枚举
+    objFieldInfo.ShipInfo = {};
+    objFieldInfo.ShipInfo.refUserId = '@TableInfoReader.getFieldComment("ShipInfo", "refUserId")';
+    objFieldInfo.ShipInfo.user = '@TableInfoReader.getFieldComment("ShipInfo", "user")';
+    objFieldInfo.ShipInfo.userId = '@TableInfoReader.getFieldComment("ShipInfo", "userId")';
+    objFieldInfo.ShipInfo.isDefault = '@TableInfoReader.getFieldComment("ShipInfo", "isDefault")';
+    objFieldInfo.ShipInfo.name = '@TableInfoReader.getFieldComment("ShipInfo", "name")';
+    objFieldInfo.ShipInfo.phone = '@TableInfoReader.getFieldComment("ShipInfo", "phone")';
+    objFieldInfo.ShipInfo.province = '@TableInfoReader.getFieldComment("ShipInfo", "province")';
+    objFieldInfo.ShipInfo.city = '@TableInfoReader.getFieldComment("ShipInfo", "city")';
+    objFieldInfo.ShipInfo.zone = '@TableInfoReader.getFieldComment("ShipInfo", "zone")';
+    objFieldInfo.ShipInfo.location = '@TableInfoReader.getFieldComment("ShipInfo", "location")';
+    objFieldInfo.ShipInfo.lastUpdateTime = '@TableInfoReader.getFieldComment("ShipInfo", "lastUpdateTime")';
+    objFieldInfo.ShipInfo.createdAt = '@TableInfoReader.getFieldComment("ShipInfo", "createdAt")';
+    objFieldInfo.ShipInfo.comment = '@TableInfoReader.getFieldComment("ShipInfo", "comment")';
+
+
+	var searchFieldNameUser = '@TableInfoReader.getSearchField("User")'
+	var searchFieldNameUserComment = '@TableInfoReader.getFieldComment("User", TableInfoReader.getSearchField("User"))'
+</script>
+}

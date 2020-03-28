@@ -1,0 +1,443 @@
+@(title: String, app: String, controller: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <title>@title</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+            <!--BEGIN公共加载-->
+        <script src='@routes.Assets.at("plugins/jquery-1.10.2.min.js")' type="text/javascript"></script>
+        <script src='@routes.Assets.at("plugins/bootstrap/js/bootstrap.min.js")' type="text/javascript"></script>
+        <script type="text/javascript" src='@routes.Assets.at("js/app.js")'></script>
+        <link rel="stylesheet" href='@routes.Assets.at("plugins/bootstrap/css/bootstrap.min.css")'>
+        <link rel="stylesheet" href='@routes.Assets.at("plugins/iconfont/iconfont.css")'>
+        <link href='@routes.Assets.at("css/style.css")' rel="stylesheet" type="text/css">
+        <link href='@routes.Assets.at("css/style2.css")' rel="stylesheet" type="text/css">
+            <!--END公共加载-->
+        <script type="text/javascript" src='@routes.Assets.at("plugins/bxslider/jquery.bxslider.min.js")'></script>
+        <link href='@routes.Assets.at("plugins/bxslider/jquery.bxslider.css")' rel="stylesheet">
+        <link rel="shortcut icon" href='/showimg/images/favicon.ico' type="image/x-icon" />
+    </head>
+
+    <body>
+    <style type="text/css">
+    /*#newslist{*/
+        /*background:#f8f8f8;border:1px solid silver;padding:1px;height:30px;line-height:20px;margin:auto;background-color:lavender;;*/
+    /*}*/
+    /*#contain{*/
+        /*font-size:12px;overflow:hidden;list-style:none;height:25px;margin:0px;padding:0;*/
+    /*}*/
+    /*#contain li{*/
+        /*height:22px;line-height:22px;white-space:nowrap;overflow:hidden;*/
+    /*}*/
+</style>
+
+<script>
+  window.fbAsyncInit = function () {
+      FB.init({
+          appId: '200800030645352',
+          cookie: true,
+          xfbml: true,
+          version: 'v2.12'
+      });
+
+      FB.AppEvents.logPageView();
+
+      FB.getLoginStatus(function(response) {
+          if (response.status === 'connected'){
+              console.log('fb login check: ' + JSON.stringify(response));
+          }
+      });
+  };
+
+  (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+          return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+  function fbLogin() {
+      FB.getLoginStatus(function(response) {
+           if (response.status === 'connected'){
+               FB.api('/me', function(response) {
+                   $.ajax({
+                       url: "/fb/login?name=" + response.name + "&id=" + response.id + "&resellerCode=@(session().get("resellerCode"))",
+                       type: "GET",
+                       success: function (data) {
+                           window.location.href = window.location.protocol + '//' + window.location.host
+                       }
+                   })
+               });
+           }
+      });
+  }
+  function fbLogOut() {
+      FB.logout(function(response) {
+          $.ajax({
+              url: "/fb/logout",
+              type: "GET",
+              success: function (data) {
+                  window.location.href = window.location.protocol + '//' + window.location.host
+              }
+          })
+      });
+  }
+</script>
+            <!-- BEGIN TOP BAR -->
+        @*<div class="pre-header" style="height:30px">*@
+                @*<div class="container">*@
+                    @*<div class="row">*@
+                        @*<div id="newslist">*@
+                            @*<ul id="contain">*@
+                                @*for(items <- Application.getNewsPage()) {*@
+                                @*<li><span style="color:red">@play.i18n.Messages.get("info.bulletin")</span>：@BaseController.getFieldValue(items, "description" + session.get("lang"))</li>*@
+                                @*}*@
+                            @*</ul>*@
+                        @*</div>*@
+                    @*</div>*@
+            @*</div>*@
+        @*</div>*@
+        <div class="pre-header">
+            <div class="navbar navbar-default header" role="navigation">
+                <div class="container">
+                <div class="row">
+                        <!-- BEGIN TOP BAR LEFT PART -->
+                    <div style="float:right;width:45%">
+                        @*<ul class="list-unstyled list-inline pull-right j_t_ul">*@
+                        @*<li><a href="/i18n"><img src='@routes.Assets.at("images/top_china.png")'></a></li>*@
+                        @*<li><a href="/i18n?lang=zh-HK"><img src='@routes.Assets.at("images/top_tra.png")'></a></li>*@
+                        @*<li><a href="/i18n?lang=en"><img src='@routes.Assets.at("images/top_usa.png")'></a></li>*@
+                        @*<li><a href="/i18n?lang=ja"><img src='@routes.Assets.at("images/top_jp.png")'></a></li>*@
+                        @*</ul>*@
+                        <nav class="navbar navbar-default" role="navigation" style="float:right">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <div class="collapse navbar-collapse navbar-responsive-collapse">
+                                        <div class="nav navbar-nav" style="margin-top: 15px;color:#777">
+                                            @if(session().get("nickName") != null){
+                                                @play.i18n.Messages.get("nickname.page")@(session().get("nickName"))
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dropdown" style="float:left">
+                                    @if("pc".equals(session().get("platform")) || "wap".equals(session().get("platform"))){
+                                        @if(session().get("UNION_ID") == null && session().get("facebookId") == null){
+                                            @if("wap".equals(session().get("platform"))){
+                                                @*<a href="/wx/mp/notice" style="float:left"><img src='@routes.Assets.at("images/wx.jpg")'></a>*@
+                                            }else{
+                                                @*<a href="/wxopen/login" style="float:left"><img src='@routes.Assets.at("images/wx.jpg")'></a>*@
+                                            }
+                                            <fb:login-button scope="public_profile,email" onlogin="fbLogin();" style="float: right;margin-top: 15px"></fb:login-button>
+                                        }else{
+                                            @if(session().get("UNION_ID") != null){
+                                                <a href="/logout">@play.i18n.Messages.get("logout")</a>
+                                            }else{
+                                                <a href="#" onclick="fbLogOut()">@play.i18n.Messages.get("logout")</a>
+                                            }
+                                        }
+                                    }
+                                </li>
+                                <li class="" style="width:105px;float:right">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        @play.i18n.Messages.get("language")
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu" style="min-width: 104px">
+                                        <li><a href="/i18n"><img src='@routes.Assets.at("images/top_china.png")'>&nbsp; CN</a></li>
+                                        <li><a href="/i18n?lang=zh-HK"><img src='@routes.Assets.at("images/top_tra.png")'>&nbsp; HK</a></li>
+                                        <li><a href="/i18n?lang=en"><img src='@routes.Assets.at("images/top_usa.png")'>&nbsp; EN</a></li>
+                                        <li><a href="/i18n?lang=ja"><img src='@routes.Assets.at("images/top_jp.png")'>&nbsp; JP</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                        <!-- END TOP BAR LEFT PART -->
+                        <!-- BEGIN TOP BAR MENU -->
+                    <div class="navbar-header" style="width:50%">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse2" style="float:left">
+                            <span class="sr-only">切换导航</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="example-navbar-collapse2">
+                        @*<span class="glyphicon glyphicon-earphone"></span> <a href="tel:@biz.ConfigBiz.getStrConfig("company.phone")">*@
+                        @*<span>@biz.ConfigBiz.getStrConfig("company.phone")</span></a>*@
+                        @*&nbsp;<a href="/service" target="_blank"><b>@play.i18n.Messages.get("customer.service")</b>*@
+                        @*<span class="glyphicon glyphicon-comment"></span>*@
+                        @*</a>*@
+                        <ul class="nav navbar-nav">
+                            <li class=""><a href="/">@play.i18n.Messages.get("index.page")</a></li>
+                            <li class="dropdown j_link_before">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    @play.i18n.Messages.get("catalog.page")
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/search">
+                                        @play.i18n.Messages.get("all.page")</a></li>
+                                    <li class="divider"></li>
+                                    @for(item <- Application.getAllAvailableCatalogs()) {
+                                    <li><a href="/catalog/@item.id">
+                                        @BaseController.getFieldValue(item, "name" + session.get("lang"))</a></li>
+                                    <li class="divider"></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li class="j_link_before"><a href="/news">@play.i18n.Messages.get("news.page")</a></li>
+                            <li class="j_link_before"><a href="/help">@play.i18n.Messages.get("help.page")</a></li>
+                            <li class="j_link_before"><a href="/faq">@play.i18n.Messages.get("faq.page")</a></li>
+                            <li class="j_link_before"><a href="/member">@play.i18n.Messages.get("member.page")</a></li>
+                        </ul>
+                    </div>
+                        <!-- END TOP BAR MENU -->
+                </div>
+                </div>
+            </div>
+        </div>
+            <!-- END TOP BAR -->
+
+            <!--BEGIN NAV-->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid container j_container">
+
+                <div class="row j_n_row">
+
+                    <div class="col-md-2 col-sm-2">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                            @play.i18n.Messages.get("search.btn")
+                            </button>
+                            <a href="/" class="j_jimg" style="height: 50px;
+                                line-height: 50px"><img src='@routes.Assets.at("images/logo.png")' alt="@biz.ConfigBiz.getStrConfig("app.name")"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                            <form class="navbar-form navbar-left" style="border: 0" role="search" action="/search" method="get">
+
+                                <input class="form-control j_ninput" name="kw" placeholder="@play.i18n.Messages.get("search.placeholder")" type="text">
+
+                                <button type="submit" class="btn btn-default j_nbutton">
+                                    <span class="glyphicon glyphicon-search"> </span>
+                                    @play.i18n.Messages.get("search.btn")
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    @*<div class="col-md-2 col-sm-0 j_ncar" style="">*@
+                        @*<img src='@routes.Assets.at("images/code12.png")' style="width:90%;" alt="@biz.ConfigBiz.getStrConfig("app.name")">*@
+                    @*</div>*@
+                    <div class="col-md-1 col-sm-0 j_ncar" style="text-align: right;
+                        height: 50px;
+                        line-height: 50px;width:140px">
+                        <a href="/cart" style="color: inherit">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> @play.i18n.Messages.get("cart")<span class="badge pc_badge">@session().get("CART_NUM")</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+            <!--END NAV-->
+
+
+            <!-- BEGIN SLIDER -->
+        <div class="page-slider">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+                    <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    @for(item <- Application.getAllAvailableInfos("轮播")) {
+                        @if(Application.getAllAvailableInfos("轮播").indexOf(item) == 0){
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            }else{
+                            <li data-target="#myCarousel" data-slide-to="@Application.getAllAvailableInfos("轮播").indexOf(item)"></li>
+                            }
+                    }
+                </ol>
+                    <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    @for(item <- Application.getAllAvailableInfos("轮播")) {
+                        @if(Application.getAllAvailableInfos("轮播").indexOf(item) == 0){
+                            <div class="item active">
+                        }else{
+                            <div class="item">
+                        }
+                            <img src='/showimg/upload/@ImageController.getImageString(item.images)'>
+                        </div>
+                    }
+                </div>
+                    <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel"
+                data-slide="prev">
+                </a>
+                <a class="carousel-control right" href="#myCarousel"
+                data-slide="next">
+                </a>
+            </div>
+        </div>
+            <!-- END SLIDER -->
+
+            <!--BEGIN MAIN-->
+        @content
+            <!--END MAIN-->
+
+            <script>
+                function xx(){
+                    var container=document.getElementById("contain");
+                    container.appendChild(container.firstChild);
+                    }
+                setInterval("xx()",6000);
+            </script>
+            <script type='text/javascript'>
+                    (function(m, ei, q, i, a, j, s) {
+                        m[i] = m[i] || function() {
+                                    (m[i].a = m[i].a || []).push(arguments)
+                                };
+                        j = ei.createElement(q),
+                                s = ei.getElementsByTagName(q)[0];
+                        j.async = true;
+                        j.charset = 'UTF-8';
+                        j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+                        s.parentNode.insertBefore(j, s);
+                    })(window, document, 'script', '_MEIQIA');
+                    _MEIQIA('entId', 84133);
+            </script>
+
+            <!--BEGIN PC_FOOTER-->
+        @*<div id="pc_footer" style="display: none;">*@
+            <footer class="pc_footer" style="max-height:190px">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2 text-center" style="max-width:150px">
+                            <h6><img src='@routes.Assets.at("images/logo-footer.png")'></h6>
+                        </div>
+                        <div class="col-sm-4" style="min-width:420px">
+                            <h6>@play.i18n.Messages.get("about.us")</h6>
+                            <ul class="unstyled">
+                                <li>@play.i18n.Messages.get("about.us.company")</li>
+                                <li style="margin-top:2px">@play.i18n.Messages.get("about.us.tel")</li>
+                                <li style="margin-top:2px">@play.i18n.Messages.get("about.us.time")</li>
+                                <li style="margin-top:2px">@play.i18n.Messages.get("about.us.funds")</li>
+                                <li style="margin-top:2px">@play.i18n.Messages.get("about.us.principal")</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <h6>@play.i18n.Messages.get("contact.us")</h6>
+                            <ul class="unstyled">
+                                @*<li>@play.i18n.Messages.get("phone")：@biz.ConfigBiz.getStrConfig("company.phone")</li>*@
+                                @*<li>Q&nbsp;Q：@biz.ConfigBiz.getStrConfig("company.qq")</li>*@
+                                <li>@play.i18n.Messages.get("address")：@play.i18n.Messages.get("company.address")</li>
+
+                                @*<li>@play.i18n.Messages.get("site.verify")：@biz.ConfigBiz.getStrConfig("site.virify")</li>*@
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-2 j_hide_footer" style="width:95px">
+                            <h6>@play.i18n.Messages.get("navigation")</h6>
+                            <ul class="unstyled j_letter_spacing">
+                                <li><a href="/search">@play.i18n.Messages.get("product.page")</a></li>
+                                <li><a href="/help">@play.i18n.Messages.get("help.page")</a></li>
+                                <li><a href="/faq">@play.i18n.Messages.get("faq.page")</a></li>
+                                <li><a href="/member">@play.i18n.Messages.get("member.page")</a></li>
+                                <li><a href="https://m.kuaidi100.com" target="_blank">@play.i18n.Messages.get("order.ship.check")</a></li>
+                            </ul>
+                        </div>
+
+                        @*<div class="col-sm-1 text-left">*@
+                            @*<h6><a href="/session/clear">@play.i18n.Messages.get("wechat.mp")</a></h6>*@
+                            @*<span><img style="width: 66px; height: 66px" src='@routes.Assets.at("images/code.jpg")'></span>*@
+                        @*</div>*@
+                        @*<div class="col-sm-1 text-left">*@
+                            @*<h6><a href="/session/clear">@play.i18n.Messages.get("qq.mp")</a></h6>*@
+                            @*<span><img style="width: 66px; height: 66px" src='@routes.Assets.at("images/qqcode.png")'></span>*@
+                        @*</div>*@
+                    </div>
+                </div>
+            </footer>
+        @*</div>*@
+            <!--END PC_FOOTER-->
+
+            <!--BEGIN MOBILE_FOOTER-->
+        @*<div id="wx_footer" style="display: none;">*@
+            <nav class="navbar navbar-default navbar-fixed-bottom mobile_footer" role="navigation">
+                <ul class="nav navbar-nav text-center mobile_li">
+                    @if("HOME".equalsIgnoreCase(session().get("CURRENT_TAB"))){
+                        <li class="active">
+                    }else{
+                        <li>
+                    }
+                        <a href="/"><i class="icon iconfont icon-iconfonticonfonthome"></i>
+                            <span>@play.i18n.Messages.get("index.page")</span></a>
+                    </li>
+                    @if("SEARCH".equalsIgnoreCase(session().get("CURRENT_TAB"))){
+                        <li class="active">
+                    }else{
+                        <li>
+                    }
+                        <a href="/search"><i class="icon iconfont icon-category"></i>
+                            <span>@play.i18n.Messages.get("product.page")</span></a>
+                    </>
+                    @if("CART".equalsIgnoreCase(session().get("CURRENT_TAB"))){
+                        <li class="active">
+                    }else{
+                        <li>
+                    }
+                        <a href="/cart"><i class="icon iconfont icon-gouwuche"></i>
+                            <span>@play.i18n.Messages.get("cart")</span>
+                            <span class="badge mobile_badge">@session().get("CART_NUM")</span>
+                        </a>
+                    </li>
+                    @if("MEMBER".equalsIgnoreCase(session().get("CURRENT_TAB"))){
+                        <li class="active">
+                    }else{
+                        <li>
+                    }
+                        <a href="/member"><i class="icon iconfont icon-gerenzhongxinxia"></i>
+                            <span>@play.i18n.Messages.get("member.page")</span></a>
+                    </li>
+                </ul>
+            </nav>
+        @*</div>*@
+            <!--END MOBILE_FOOTER-->
+
+        @*<script>*@
+                @*var system = {*@
+                    @*win: false,*@
+                    @*mac: false,*@
+                    @*xll: false*@
+                @*};*@
+                @*var p = navigator.platform;*@
+                @*system.win = p.indexOf("Win") == 0;*@
+                @*system.mac = p.indexOf("Mac") == 0;*@
+                @*system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);*@
+                @*if (system.win || system.mac || system.xll) {*@
+                    @*document.getElementById("wx_footer").style.display = "none";*@
+                    @*document.getElementById("pc_footer").style.display = "";*@
+                @*} else {*@
+                    @*document.getElementById("pc_footer").style.display = "none";*@
+                    @*document.getElementById("wx_footer").style.display = "";*@
+                @*}*@
+        @*</script>*@
+            <script type="text/javascript" src='@routes.Assets.at("js/run.js")'></script>
+        @*<script src="@routes.Assets.at("js/jquery-2.0.3.min.js")"></script>*@
+        @*<script src="@routes.Assets.at("js/ourLib.js")"></script>*@
+    </body>
+</html>

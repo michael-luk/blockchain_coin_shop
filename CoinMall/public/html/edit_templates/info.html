@@ -1,0 +1,274 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" required />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.showIndex}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="showIndex" ng-model="currentObj.showIndex" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.classify}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="classify" ng-model="currentObj.classify" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.nameEn}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="nameEn" ng-model="currentObj.nameEn" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.nameHk}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="nameHk" ng-model="currentObj.nameHk" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.nameJa}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="nameJa" ng-model="currentObj.nameJa" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.phone}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="phone" ng-model="currentObj.phone" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.url}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="url" ng-model="currentObj.url" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.visible}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="checkbox" name="visible" ng-model="currentObj.visible" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.status}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="status" ng-model="currentObj.status" ng-options="item.id as item.name disable when item.id == -100 for item in status" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.images}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="images" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'images', currentObj, false)"/><div ng-repeat="imageName in currentObj.images.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'images', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.smallImages}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="smallImages" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'smallImages', currentObj, false)"/><div ng-repeat="imageName in currentObj.smallImages.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'smallImages', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.imagesEn}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="imagesEn" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'imagesEn', currentObj, false)"/><div ng-repeat="imageName in currentObj.imagesEn.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'imagesEn', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.smallImagesEn}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="smallImagesEn" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'smallImagesEn', currentObj, false)"/><div ng-repeat="imageName in currentObj.smallImagesEn.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'smallImagesEn', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.imagesHk}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="imagesHk" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'imagesHk', currentObj, false)"/><div ng-repeat="imageName in currentObj.imagesHk.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'imagesHk', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.smallImagesHk}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="smallImagesHk" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'smallImagesHk', currentObj, false)"/><div ng-repeat="imageName in currentObj.smallImagesHk.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'smallImagesHk', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.imagesJa}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="imagesJa" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'imagesJa', currentObj, false)"/><div ng-repeat="imageName in currentObj.imagesJa.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'imagesJa', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.smallImagesJa}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="smallImagesJa" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'smallImagesJa', currentObj, false)"/><div ng-repeat="imageName in currentObj.smallImagesJa.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'smallImagesJa', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.description}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="description" ng-model="currentObj.description" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.descriptionTwo}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionTwo" ng-model="currentObj.descriptionTwo" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.descriptionEn}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionEn" ng-model="currentObj.descriptionEn" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.descriptionTwoEn}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionTwoEn" ng-model="currentObj.descriptionTwoEn" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.descriptionHk}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionHk" ng-model="currentObj.descriptionHk" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.descriptionTwoHk}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionTwoHk" ng-model="currentObj.descriptionTwoHk" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.descriptionJa}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionJa" ng-model="currentObj.descriptionJa" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.descriptionTwoJa}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="descriptionTwoJa" ng-model="currentObj.descriptionTwoJa" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Info.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.name.$error.required'>{{objFieldInfo.Info.name}} 不能为空！</li>
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.Info.name}} 超出长度！</li>
+                        <li ng-show='myform.showIndex.$error.maxlength'>{{objFieldInfo.Info.showIndex}} 超出长度！</li>
+                        <li ng-show='myform.classify.$error.maxlength'>{{objFieldInfo.Info.classify}} 超出长度！</li>
+                        <li ng-show='myform.nameEn.$error.maxlength'>{{objFieldInfo.Info.nameEn}} 超出长度！</li>
+                        <li ng-show='myform.nameHk.$error.maxlength'>{{objFieldInfo.Info.nameHk}} 超出长度！</li>
+                        <li ng-show='myform.nameJa.$error.maxlength'>{{objFieldInfo.Info.nameJa}} 超出长度！</li>
+                        <li ng-show='myform.phone.$error.maxlength'>{{objFieldInfo.Info.phone}} 超出长度！</li>
+                        <li ng-show='myform.url.$error.maxlength'>{{objFieldInfo.Info.url}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.Info.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.description.$error.maxlength'>{{objFieldInfo.Info.description}} 超出长度！</li>
+                        <li ng-show='myform.descriptionTwo.$error.maxlength'>{{objFieldInfo.Info.descriptionTwo}} 超出长度！</li>
+                        <li ng-show='myform.descriptionEn.$error.maxlength'>{{objFieldInfo.Info.descriptionEn}} 超出长度！</li>
+                        <li ng-show='myform.descriptionTwoEn.$error.maxlength'>{{objFieldInfo.Info.descriptionTwoEn}} 超出长度！</li>
+                        <li ng-show='myform.descriptionHk.$error.maxlength'>{{objFieldInfo.Info.descriptionHk}} 超出长度！</li>
+                        <li ng-show='myform.descriptionTwoHk.$error.maxlength'>{{objFieldInfo.Info.descriptionTwoHk}} 超出长度！</li>
+                        <li ng-show='myform.descriptionJa.$error.maxlength'>{{objFieldInfo.Info.descriptionJa}} 超出长度！</li>
+                        <li ng-show='myform.descriptionTwoJa.$error.maxlength'>{{objFieldInfo.Info.descriptionTwoJa}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.Info.comment}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

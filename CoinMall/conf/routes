@@ -1,0 +1,314 @@
+GET           /                                      controllers.Application.index(platform :String?="", r :String ?="", lang :String?="")
+GET           /catalog/:id                           controllers.Application.catalogPage(id: Long)
+GET           /product/:id                           controllers.Application.productPage(id: Long, lang :String?="")
+GET           /notice                                controllers.Application.noticePage(title :String?="", text :String?="", btn :String?="", url :String?="")
+GET           /news                                  controllers.Application.newsPage()
+GET           /help                                  controllers.Application.helpPage()
+GET           /faq                                   controllers.Application.faqPage()
+GET           /member                                controllers.Application.memberPage()
+GET           /cart                                  controllers.Application.cartPage()
+GET           /checkout                              controllers.Application.checkOutPage()
+GET           /my/address/new                        controllers.Application.addressCreatePage(prePage :String?="")
+GET           /my/address/edit                       controllers.Application.addressEditPage(id :Long)
+GET           /my/shipinfo                           controllers.Application.myShipInfoPage()
+GET           /my/order                              controllers.Application.myOrderPage()
+GET           /my/order/:id                          controllers.Application.myOrderDetailsPage(id: Long)
+GET           /search                                controllers.Application.searchPage(kw: String?="")
+GET           /my/favorites                          controllers.Application.myFavoritePage()
+GET           /my/promote                            controllers.Application.myPromotePage()
+
+GET           /user/favorite/theme                   controllers.FavoriteController.checkFavorite(tid: Long?=0)
+PUT           /users/favorite/:tid/on                controllers.FavoriteController.addFavoriteProduct(tid: Long)
+PUT           /users/favorite/:tid/off               controllers.FavoriteController.cancelFavoriteProduct(tid: Long)
+
+GET           /cart/get                              controllers.CartController.getCart()
+PUT           /cart/set                              controllers.CartController.setCart()
+
+POST          /order                                 controllers.OrderController.newOrder()
+PUT           /orders/wxpay/update/:id               controllers.OrderController.updateOrderStatusByWxPay(id :Long)
+
+POST          /shipinfo/new                          controllers.ShipInfoController.add()
+PUT           /my/shipinfo/:id                       controllers.ShipInfoController.update(id: Long)
+DELETE        /my/shipinfo/:id                       controllers.ShipInfoController.delete(id: Long)
+
+PUT           /my/order/status/:id/:status           controllers.OrderController.updateUserOrderStatus(id: Long, status: Integer)
+
+POST          /comment                               controllers.CommentController.add()
+GET           /my/comment                            controllers.Application.myCommentPage()
+GET           /user/bought/product/:pid              controllers.OrderController.checkUserBought(pid: Long)
+
+GET           /my/return                             controllers.Application.myReturnPage()
+GET           /new/return/:oid                       controllers.Application.newReturnPage(oid: Long)
+POST          /new/return                            controllers.ReturnController.add()
+
+GET           /coin/txs                              controllers.OrderController.getCoinTxs(count :Integer?=10)
+GET           /coin/rate                             controllers.ExchangeController.getCoinRateDo()
+
+GET           /wxopen/login                          controllers.WxOpenController.login()
+GET           /wxopen/notify                         controllers.WxOpenController.loginNotify(code :String?="", state :String?="")
+
+GET           /service                               controllers.Application.servicePage()
+
+GET           /order/comment/:id                     controllers.Application.orderCommentPage(id: Long)
+GET           /comment/add                           controllers.Application.addCommentPage(oid: Long, tid: Long)
+
+PUT           /user/fundout/address/:id/:addr        controllers.UserController.updateUserFundoutAddress(id: Long, addr :String)
+PUT           /user/fundout/bank/:id                 controllers.UserController.updateUserFundoutBankInfo(id: Long)
+
+POST          /user/fundout/:key/:id                 controllers.FundoutController.addNew(key :String, id: Long)
+
+GET           /fb/login                              controllers.FacebookController.fbLogin(id: String?="", name: String?="", accessToken: String?="", resellerCode: String?="")
+GET           /fb/logout                             controllers.FacebookController.fbLogout()
+GET           /wx/mp/notice                          controllers.Application.wxMpNotice()
+
+GET           /test                                  controllers.Application.test()
+
+GET           /doudizhu/balance                      controllers.ApiController.getDoudizhuBalance(unionId: String?="")
+GET           /doudizhu/balance/:uid                 controllers.ApiController.getDoudizhuBalanceByUid(uid: Long)
+GET           /my/balance                            controllers.Application.myBalanceUsePage()
+GET           /pay/balance                           controllers.ApiController.payBalance(unionId: String?="", amount: Double, typeStr: String?="", uid: Long)
+
+# Admin
+GET           /admin/admin                           controllers.gen.AdminController.adminBackendPage()
+GET           /report/admin                          controllers.gen.AdminController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/admin                             controllers.gen.AdminController.getNew()
+
+PUT           /admin/:id                             controllers.gen.AdminController.update(id: Long)
+POST          /admin                                 controllers.gen.AdminController.add()
+
+
+# Fundout
+GET           /p/fundout                             controllers.gen.FundoutController.fundoutPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/fundout                         controllers.gen.FundoutController.fundoutBackendPage()
+GET           /report/fundout                        controllers.gen.FundoutController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/fundout                           controllers.gen.FundoutController.getNew()
+
+PUT           /fundout/:id                           controllers.gen.FundoutController.update(id: Long)
+POST          /fundout                               controllers.gen.FundoutController.add()
+
+
+# AdminJournal
+GET           /p/adminjournal                        controllers.gen.AdminJournalController.adminJournalPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/adminjournal                    controllers.gen.AdminJournalController.adminJournalBackendPage()
+GET           /report/adminjournal                   controllers.gen.AdminJournalController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/adminjournal                      controllers.gen.AdminJournalController.getNew()
+
+
+# CoinRecord
+GET           /p/coinrecord                          controllers.gen.CoinRecordController.coinRecordPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/coinrecord                      controllers.gen.CoinRecordController.coinRecordBackendPage()
+GET           /report/coinrecord                     controllers.gen.CoinRecordController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/coinrecord                        controllers.gen.CoinRecordController.getNew()
+
+POST          /coinrecord                            controllers.gen.CoinRecordController.add()
+
+
+# BalanceUse
+GET           /p/balanceuse                          controllers.gen.BalanceUseController.balanceUsePage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/balanceuse                      controllers.gen.BalanceUseController.balanceUseBackendPage()
+GET           /report/balanceuse                     controllers.gen.BalanceUseController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/balanceuse                        controllers.gen.BalanceUseController.getNew()
+
+PUT           /balanceuse/:id                        controllers.gen.BalanceUseController.update(id: Long)
+POST          /balanceuse                            controllers.gen.BalanceUseController.add()
+
+
+# Catalog
+GET           /p/catalog                             controllers.gen.CatalogController.catalogPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/catalog                         controllers.gen.CatalogController.catalogBackendPage()
+GET           /report/catalog                        controllers.gen.CatalogController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/catalog                           controllers.gen.CatalogController.getNew()
+
+PUT           /catalog/:id                           controllers.gen.CatalogController.update(id: Long)
+POST          /catalog                               controllers.gen.CatalogController.add()
+
+GET           /catalog/:id/products                  controllers.gen.CatalogController.getCatalogProducts(id: Long, page: Integer ?= 1, size: Integer ?=0)
+
+DELETE        /catalog/:id                           controllers.gen.CatalogController.delete(id: Long)
+
+
+# Config
+GET           /p/config                              controllers.gen.ConfigController.configPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/config                          controllers.gen.ConfigController.configBackendPage()
+GET           /report/config                         controllers.gen.ConfigController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/config                            controllers.gen.ConfigController.getNew()
+
+PUT           /config/:id                            controllers.gen.ConfigController.update(id: Long)
+POST          /config                                controllers.gen.ConfigController.add()
+
+
+# Info
+GET           /p/info                                controllers.gen.InfoController.infoPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/info                            controllers.gen.InfoController.infoBackendPage()
+GET           /report/info                           controllers.gen.InfoController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/info                              controllers.gen.InfoController.getNew()
+
+PUT           /info/:id                              controllers.gen.InfoController.update(id: Long)
+POST          /info                                  controllers.gen.InfoController.add()
+
+
+# Product
+GET           /p/product                             controllers.gen.ProductController.productPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/product                         controllers.gen.ProductController.productBackendPage()
+GET           /report/product                        controllers.gen.ProductController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/product                           controllers.gen.ProductController.getNew()
+
+PUT           /product/:id                           controllers.gen.ProductController.update(id: Long)
+POST          /product                               controllers.gen.ProductController.add()
+
+GET           /product/:id/catalogs                  controllers.gen.ProductController.getProductCatalogs(id: Long, page: Integer ?= 1, size: Integer ?=0)
+
+DELETE        /product/:id                           controllers.gen.ProductController.delete(id: Long)
+
+
+# Purchase
+GET           /p/purchase                            controllers.gen.PurchaseController.purchasePage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/purchase                        controllers.gen.PurchaseController.purchaseBackendPage()
+GET           /report/purchase                       controllers.gen.PurchaseController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/purchase                          controllers.gen.PurchaseController.getNew()
+
+PUT           /purchase/:id                          controllers.gen.PurchaseController.update(id: Long)
+POST          /purchase                              controllers.gen.PurchaseController.add()
+
+GET           /purchase/:id/themes                   controllers.gen.PurchaseController.getPurchaseThemes(id: Long, page: Integer ?= 1, size: Integer ?=0)
+
+DELETE        /purchase/:id                          controllers.gen.PurchaseController.delete(id: Long)
+
+
+# ShipInfo
+GET           /p/shipinfo                            controllers.gen.ShipInfoController.shipInfoPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/shipinfo                        controllers.gen.ShipInfoController.shipInfoBackendPage()
+GET           /report/shipinfo                       controllers.gen.ShipInfoController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/shipinfo                          controllers.gen.ShipInfoController.getNew()
+
+PUT           /shipinfo/:id                          controllers.gen.ShipInfoController.update(id: Long)
+POST          /shipinfo                              controllers.gen.ShipInfoController.add()
+
+
+# SmsInfo
+GET           /p/smsinfo                             controllers.gen.SmsInfoController.smsInfoPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/smsinfo                         controllers.gen.SmsInfoController.smsInfoBackendPage()
+GET           /report/smsinfo                        controllers.gen.SmsInfoController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/smsinfo                           controllers.gen.SmsInfoController.getNew()
+
+PUT           /smsinfo/:id                           controllers.gen.SmsInfoController.update(id: Long)
+POST          /smsinfo                               controllers.gen.SmsInfoController.add()
+
+
+# Theme
+GET           /p/theme                               controllers.gen.ThemeController.themePage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/theme                           controllers.gen.ThemeController.themeBackendPage()
+GET           /report/theme                          controllers.gen.ThemeController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/theme                             controllers.gen.ThemeController.getNew()
+
+PUT           /theme/:id                             controllers.gen.ThemeController.update(id: Long)
+POST          /theme                                 controllers.gen.ThemeController.add()
+
+GET           /theme/:id/purchases                   controllers.gen.ThemeController.getThemePurchases(id: Long, page: Integer ?= 1, size: Integer ?=0)
+GET           /theme/:id/users                       controllers.gen.ThemeController.getThemeUsers(id: Long, page: Integer ?= 1, size: Integer ?=0)
+
+DELETE        /theme/:id                             controllers.gen.ThemeController.delete(id: Long)
+
+
+# User
+GET           /p/user                                controllers.gen.UserController.userPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/user                            controllers.gen.UserController.userBackendPage()
+GET           /report/user                           controllers.gen.UserController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/user                              controllers.gen.UserController.getNew()
+
+PUT           /user/:id                              controllers.gen.UserController.update(id: Long)
+POST          /user                                  controllers.gen.UserController.add()
+
+GET           /user/:id/themes                       controllers.gen.UserController.getUserThemes(id: Long, page: Integer ?= 1, size: Integer ?=0)
+
+DELETE        /user/:id                              controllers.gen.UserController.delete(id: Long)
+
+
+# CommentInfo
+GET           /p/commentinfo                         controllers.gen.CommentInfoController.commentInfoPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/commentinfo                     controllers.gen.CommentInfoController.commentInfoBackendPage()
+GET           /report/commentinfo                    controllers.gen.CommentInfoController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/commentinfo                       controllers.gen.CommentInfoController.getNew()
+
+PUT           /commentinfo/:id                       controllers.gen.CommentInfoController.update(id: Long)
+POST          /commentinfo                           controllers.gen.CommentInfoController.add()
+
+
+# ReturnInfo
+GET           /p/returninfo                          controllers.gen.ReturnInfoController.returnInfoPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/returninfo                      controllers.gen.ReturnInfoController.returnInfoBackendPage()
+GET           /report/returninfo                     controllers.gen.ReturnInfoController.report(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="")
+GET           /new/returninfo                        controllers.gen.ReturnInfoController.getNew()
+
+PUT           /returninfo/:id                        controllers.gen.ReturnInfoController.update(id: Long)
+PUT           /returninfo/:id/:shipNo                controllers.gen.ReturnInfoController.updateShipNo(id: Long,shipNo: String)
+POST          /returninfo                            controllers.gen.ReturnInfoController.add()
+
+
+# Backend management
+GET           /admin                                 controllers.Application.backendPage()
+
+# Base API
+GET           /base/:modelName/all                   controllers.BaseController.getAll(modelName: String, status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /base/:modelName/:id                   controllers.BaseController.getOne(modelName: String, id: Long)
+DELETE        /base/:modelName/:id                   controllers.BaseController.delete(modelName: String, id: Long)
+# POST          /base/html/:modelName/:id            controllers.BaseController.doHtmlDeleteOne(modelName: String, id: Long)
+
+# Login auth
+GET           /login                                 controllers.Application.login()
+GET           /logout                                controllers.Application.logout()
+
+# Backend auth
+GET           /admin/login                           controllers.Application.backendLogin()
+GET           /admin/auth                            controllers.Application.backendAuthenticate()
+GET           /admin/logout                          controllers.Application.backendLogout()
+
+# check
+GET           /check                                 controllers.Application.checkAlive()
+GET           /check/cfg                             controllers.Application.cfgSelfCheck()
+
+# session
+GET           /session/clear                         controllers.Application.clearSession()
+
+# Static resource
+GET           /assets/*file                          controllers.Assets.at(path="/public", file)
+
+# image & thumb
+POST          /upload/image                          controllers.ImageController.uploadImage()
+GET           /showImage/:name                       controllers.ImageController.showImage(name: String)
+GET           /showBarcode/:name                     controllers.ImageController.showBarcode(name: String)
+GET           /showimg/:folder/:name                 controllers.ImageController.showImg(folder :String, name: String)
+GET           /genthumb                              controllers.ImageController.generateAllThumbNailImg(tagsize :Float ?=0)
+
+# Captcha on server
+GET           /captcha                               controllers.Application.captcha(tag: String?="common")
+
+# Web socket
+GET           /chat/connect                          controllers.Application.webSocket()
+GET           /chat/msg/:msg                         controllers.Application.chat(msg: String)
+GET           /chat/channels                         controllers.Application.getChannels()
+
+#i18n
+GET           /i18n                                  controllers.Application.changeLanguage(lang: String?="zh-CN")
+
+# weixin
+GET           /weixin/serververify                   controllers.WeiXinController.serverVerify(signature :String, timestamp :String, nonce :String, echostr :String)
+POST          /weixin/serververify                   controllers.WeiXinController.serverNotification()
+GET           /users/sync/info                       controllers.WeiXinController.syncUserInfo()
+GET           /wx/menu/add                           controllers.WeiXinController.addMenu()
+#GET           /MP_verify_7bHhNvR2SDqsE4cF.txt        controllers.Assets.at(path="/public", file="MP_verify_7bHhNvR2SDqsE4cF.txt")
+#GET           /MP_verify_gcFDDrUBVtMrNaxk.txt        controllers.Assets.at(path="/public", file="MP_verify_gcFDDrUBVtMrNaxk.txt")
+GET           /MP_verify_Fhdqvwk3g3gPNUky.txt        controllers.Assets.at(path="/public", file="MP_verify_Fhdqvwk3g3gPNUky.txt")
+GET           /.well-known/pki-validation/fileauth.txt        controllers.Assets.at(path="/public", file="fileauth.txt")
+GET           /dowxuser                              controllers.WeiXinController.doWxUser(code :String ?="", resellerCode :String ?="", state :String ?="")
+
+GET           /wx/msg/send                           controllers.WeiXinController.sendMsg(openId :String?="", msg :String?="")
+GET           /wxpay/pay                             controllers.WeiXinController.prepareWxPay(oid :Long ?=0)
+GET           /wxpay/pay/go                          controllers.WeiXinController.doWxPay()
+POST          /wxpay/pay/notify                      controllers.WeiXinController.getPayNotify()
+
+# sms captcha
+GET           /p/phone/bind                          controllers.Application.phoneBindPage()
+POST          /sms/captcha/get                       controllers.SmsInfoController.getVetfy()
+POST          /sms/captcha/check                     controllers.SmsInfoController.verifyCode()
+POST          /phone/bind                            controllers.SmsInfoController.phoneBind()

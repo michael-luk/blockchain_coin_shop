@@ -1,0 +1,95 @@
+@backend_frame("CommentInfo管理", "CommentInfoBackendApp", "CommentInfoBackendController") {
+	<style>
+	.page-list .pagination {float:left;}
+	.page-list .pagination span {cursor: pointer;}
+	.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+	.page-list .pagination .separate span:hover {background: none;}
+	.page-list .page-total {float:left; margin: 25px 20px;}
+	.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+	.page-list .page-total input {width: 40px; padding-left:3px;}
+	.page-list .page-total select {width: 50px;}
+	</style>
+
+
+<div class="page-content" ng-init='websocketInit(@biz.ConfigBiz.getBoolConfig("websocket"), "@biz.ConfigBiz.getStrConfig("domain.name")")'>
+	<div class="page-header">
+		<p>
+			@TableInfoReader.getFieldComment("CommentInfo", "user"): <a href="#" data-toggle="tooltip" title="按上级筛选数据"><select ng-model="selectedParentUserId" ng-options="parent.id as parent.name for parent in parentUsers" style="padding: 6px;border-radius: 3px;">
+				<option value="0">全部</option>
+			</select></a> | 
+			@TableInfoReader.getFieldComment("CommentInfo", "product"): <a href="#" data-toggle="tooltip" title="按上级筛选数据"><select ng-model="selectedParentProductId" ng-options="parent.id as parent.name for parent in parentProducts" style="padding: 6px;border-radius: 3px;">
+				<option value="0">全部</option>
+			</select></a> | 
+			@TableInfoReader.getFieldComment("CommentInfo", "purchase"): <a href="#" data-toggle="tooltip" title="按上级筛选数据"><select ng-model="selectedParentPurchaseId" ng-options="parent.id as parent.name for parent in parentPurchases" style="padding: 6px;border-radius: 3px;">
+				<option value="0">全部</option>
+			</select></a> | 
+			状态: <a href="#" data-toggle="tooltip" title="按状态筛选数据"><select ng-model="selectedStatus" ng-options="sta.id as sta.name for sta in status" style="padding: 6px;border-radius: 3px;">
+				<option value="-100">全部</option>
+			</select></a> | 
+			<button ng-click="addContent()" class="btn btn-primary">
+				<i class="icon-plus-sign"></i> 新增
+			</button>
+    			<button ng-click="updateContent()" class="btn btn-success">
+    				<i class="icon-edit"></i> 修改
+    			</button>
+			<button ng-click="deleteContent()" class="btn btn-danger">
+				<i class="icon-trash"></i> 刪除
+			</button> | 
+            <input type="text" ng-model="queryKeyword" class="form-control" placeholder="按@TableInfoReader.getFieldComment("CommentInfo", TableInfoReader.getSearchField("CommentInfo"))搜" style="display: inline-block; width: 140px;text-align: center;" />
+			<button ng-click="searchContent()" class="btn btn-primary">
+				<i class="icon-search"></i> 搜索
+			</button> | <input id="startTime" type="text" ng-model="startTime" placeholder="开始时间" style="text-align: center;height: 33px; border: 1px solid #ece4e4;" > -
+			<input id="endTime" type="text" ng-model="endTime" placeholder="结束时间" style="text-align: center;height: 33px;border: 1px solid #ece4e4;" >
+			<button ng-click="refresh()" class="btn btn-warning">
+				<i class="icon-calendar"></i> 日期筛选
+			</button> | 
+			<button ng-click="report()" class="btn btn-success">
+				<i class="icon-print"></i> 报表
+			</button> | <span ng-bind="chatMsg"></span>
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="gridStyle" style="min-height: 500px;" ui-grid="gridOptions" ui-grid-resize-columns ui-grid-selection ui-grid-edit ui-grid-auto-fit-columns></div>
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>
+            
+<script type="text/javascript">
+    var hasImageField = @TableInfoReader.hasImageField("CommentInfo");
+    var searchFieldName = '@TableInfoReader.getSearchField("CommentInfo")'
+    var objFieldInfo = {};
+	var objEnumInfo = {}
+    
+    // 处理自己的字段注释, status枚举, enum枚举
+    objFieldInfo.CommentInfo = {};
+    objFieldInfo.CommentInfo.name = '@TableInfoReader.getFieldComment("CommentInfo", "name")';
+    objFieldInfo.CommentInfo.refUserId = '@TableInfoReader.getFieldComment("CommentInfo", "refUserId")';
+    objFieldInfo.CommentInfo.user = '@TableInfoReader.getFieldComment("CommentInfo", "user")';
+    objFieldInfo.CommentInfo.userId = '@TableInfoReader.getFieldComment("CommentInfo", "userId")';
+    objFieldInfo.CommentInfo.refProductId = '@TableInfoReader.getFieldComment("CommentInfo", "refProductId")';
+    objFieldInfo.CommentInfo.product = '@TableInfoReader.getFieldComment("CommentInfo", "product")';
+    objFieldInfo.CommentInfo.productId = '@TableInfoReader.getFieldComment("CommentInfo", "productId")';
+    objFieldInfo.CommentInfo.refPurchaseId = '@TableInfoReader.getFieldComment("CommentInfo", "refPurchaseId")';
+    objFieldInfo.CommentInfo.purchase = '@TableInfoReader.getFieldComment("CommentInfo", "purchase")';
+    objFieldInfo.CommentInfo.purchaseId = '@TableInfoReader.getFieldComment("CommentInfo", "purchaseId")';
+    objFieldInfo.CommentInfo.status = '@TableInfoReader.getFieldComment("CommentInfo", "status")';
+    objFieldInfo.CommentInfo.lastUpdateTime = '@TableInfoReader.getFieldComment("CommentInfo", "lastUpdateTime")';
+    objFieldInfo.CommentInfo.createdAt = '@TableInfoReader.getFieldComment("CommentInfo", "createdAt")';
+    objFieldInfo.CommentInfo.comment = '@TableInfoReader.getFieldComment("CommentInfo", "comment")';
+
+	objEnumInfo.CommentInfo = {}
+
+	objEnumInfo.CommentInfo.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("CommentInfo", "status"); i++) {
+		objEnumInfo.CommentInfo.status[i] = '@EnumInfoReader.getEnumNameLinkString("CommentInfo", "status")'.split(',')[i];
+	}
+	var searchFieldNameUser = '@TableInfoReader.getSearchField("User")'
+	var searchFieldNameUserComment = '@TableInfoReader.getFieldComment("User", TableInfoReader.getSearchField("User"))'
+	var searchFieldNameProduct = '@TableInfoReader.getSearchField("Product")'
+	var searchFieldNameProductComment = '@TableInfoReader.getFieldComment("Product", TableInfoReader.getSearchField("Product"))'
+	var searchFieldNamePurchase = '@TableInfoReader.getSearchField("Purchase")'
+	var searchFieldNamePurchaseComment = '@TableInfoReader.getFieldComment("Purchase", TableInfoReader.getSearchField("Purchase"))'
+</script>
+}

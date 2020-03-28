@@ -1,0 +1,51 @@
+/****/
+.main{
+	background-color:#f9f9f9;
+}
+
+.j_title{
+	color:#333;
+}
+.pi-price{
+	margin-top:5px;
+	color:#c2c2c2;
+	font-size:1.6rem;
+	font-weight:bold;
+}
+
+.j_h3{
+	margin-top:0px;
+}
+
+.product-item {
+	padding: 12px 12px 16px;
+	background: #fff;
+	position: relative;
+	cursor:pointer;
+}
+.product-item:hover {
+	box-shadow: 5px 5px rgba(234, 234, 234, 0.9);
+}
+
+.j_list_group{
+	margin-bottom:0px;
+}
+
+/****/
+
+
+	
+
+/****/
+.thumbnail{
+    border:0px;
+}
+.thumbnail img{
+    padding:5px;
+}
+.j_gouwuche{
+    position:absolute;
+    right:10px;
+    font-size:1.8rem;
+}
+/****/

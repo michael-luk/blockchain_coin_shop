@@ -1,0 +1,300 @@
+config:
+    - !!models.Config
+        name: "coin.short.name"
+        content: "XWC"
+        typeEnum: 0
+        comment: "虚拟货币名字缩写"
+
+    - !!models.Config
+        name: "currency.unit.name"
+        content: "元"
+        typeEnum: 0
+        comment: "货币名字缩写"
+
+    - !!models.Config
+        name: "coin.api.host"
+        content: "218.93.208.191:20001/Api.aspx"
+        typeEnum: 0
+        comment: "钱包api地址, eg: 218.93.208.191:20001/Api.aspx"
+
+    - !!models.Config
+        name: "coin.api.account"
+        content: "xwc17"
+        typeEnum: 0
+        comment: "钱包api账号"
+
+    - !!models.Config
+        name: "coin.api.confirmations"
+        content: "3"
+        typeEnum: 1
+        comment: "钱包交易最低确认数"
+
+    - !!models.Config
+        name: "coin.api.psw"
+        content: "myxwc2017ainok"
+        typeEnum: 0
+        comment: "钱包api密码"
+
+    - !!models.Config
+        name: "coin.exchange.rate"
+        content: "100"
+        typeEnum: 2
+        comment: "币价汇率"
+
+    - !!models.Config
+        name: "coin.exchange.get.interval.seconds"
+        content: "600"
+        typeEnum: 1
+        comment: "间隔多少秒获取一次汇率"
+
+    - !!models.Config
+        name: "coin.pay.minus"
+        content: "1.0"
+        typeEnum: 2
+        comment: "币支付时预留手续费的折扣"
+
+    - !!models.Config
+        name: "reseller.rate"
+        content: "0.08"
+        typeEnum: 2
+        comment: "分销推荐佣金比例"
+
+    - !!models.Config
+        name: "reseller.withdraw.on"
+        content: "100"
+        typeEnum: 1
+        comment: "分销推荐佣金提现下限"
+
+    - !!models.Config
+        name: "order.clean.interval.mins"
+        content: "30"
+        typeEnum: 1
+        comment: "间隔多少分钟自动取消未支付订单"
+
+    - !!models.Config
+        name: "order.confirm.days"
+        content: "10"
+        typeEnum: 1
+        comment: "间隔多少天自动确认收货"
+
+    - !!models.Config
+        name: "comment.day.limit"
+        content: "15"
+        typeEnum: 1
+        comment: "评论时间设为订单发货后N日"
+
+    - !!models.Config
+        name: "comment.default"
+        content: "评价方未及时做出评价, 系统默认好评!"
+        typeEnum: 0
+        comment: "默认好评文案"
+
+    - !!models.Config
+        name: "coin.price.discount"
+        content: "0.8"
+        typeEnum: 2
+        comment: "人民币商品价格, 换算为币值后, 再打折"
+
+    - !!models.Config
+        name: "coin.pay.range"
+        content: "0.2"
+        typeEnum: 2
+        comment: "余额支付时, 若汇率导致支付额超出订单额的正负范围(单位:元)"
+
+    - !!models.Config
+        name: "ship.back.receiver"
+        content: "陈阳"
+        typeEnum: 0
+        comment: "退货收货人"
+
+    - !!models.Config
+        name: "ship.back.phone"
+        content: "18966944655"
+        typeEnum: 0
+        comment: "退货电话"
+
+    - !!models.Config
+        name: "ship.back.address"
+        content: "上海市青浦区25号302"
+        typeEnum: 0
+        comment: "退货地址"
+
+    - !!models.Config
+        name: "company.phone"
+        content: "0924096565"
+        typeEnum: 0
+        comment: "公司电话"
+
+    - !!models.Config
+        name: "company.qq"
+        content: "258165997211"
+        typeEnum: 0
+        comment: "公司QQ"
+
+    - !!models.Config
+        name: "site.virify"
+        content: "黔ICP备180035号-1"
+        typeEnum: 0
+        comment: "备案号"
+
+    - !!models.Config
+        name: "is.prod"
+        content: "yes"
+        typeEnum: 3
+        comment: "是否生产模式(yes/no)"
+
+    - !!models.Config
+        name: "admin.login"
+        content: "no"
+        typeEnum: 3
+        comment: "是否启用管理员权限(yes/no), 若不启用则后台不需要管理员登陆"
+
+    - !!models.Config
+        name: "websocket"
+        content: "no"
+        typeEnum: 3
+        comment: "是否启用即时通讯"
+
+    - !!models.Config
+        name: "app.name"
+        content: "XWC Mall"
+        typeEnum: 0
+        comment: "网站名称"
+
+    - !!models.Config
+        name: "weixin.appid"
+        content: "wx82d17f977c112f"
+        typeEnum: 0
+        comment: "微信公众号appid"
+
+    - !!models.Config
+        name: "weixin.secret"
+        content: "b60b0856fe38cff5829742ebb097a0"
+        typeEnum: 0
+        comment: "微信公众号secret"
+
+    - !!models.Config
+        name: "weixin.token"
+        content: "xwcMallTokMrWang"
+        typeEnum: 0
+        comment: "微信公众号token"
+
+    - !!models.Config
+        name: "weixin.aes"
+        content: "DYu7GTtF0htJ9R7kJ7RHVH8SGfGC4qPlCGWQn7IA0"
+        typeEnum: 0
+        comment: "微信公众号aes"
+
+    - !!models.Config
+        name: "weixin.pay.merchant.id"
+        content: "14982592"
+        typeEnum: 0
+        comment: "微信支付merchant.id"
+
+    - !!models.Config
+        name: "weixin.pay.merchant.api.key"
+        content: "b01e436ccfad8077bd26685e2233"
+        typeEnum: 0
+        comment: "微信支付api.key"
+
+    - !!models.Config
+        name: "weixin.pay.test"
+        content: "yes"
+        typeEnum: 3
+        comment: "微信支付一分钱测试"
+
+    - !!models.Config
+        name: "wxopen.appid"
+        content: "wx6b1469bba6ddd9"
+        typeEnum: 0
+        comment: "微信开放平台appid"
+
+    - !!models.Config
+        name: "wxopen.secret"
+        content: "60e0fe86b113b6b133d879d49af28"
+        typeEnum: 0
+        comment: "微信开放平台secret"
+
+    - !!models.Config
+        name: "game.coin.api.host"
+        content: "http://rdpintai.cqyunshi.com"
+        typeEnum: 0
+        comment: "斗地主接口地址如 http://rdpintai.cqyunshi.com"
+
+    - !!models.Config
+        name: "sms.server"
+        content: "sms.todaynic.com"
+        typeEnum: 0
+        comment: "第三方短信验证码服务器"
+
+    - !!models.Config
+        name: "sms.port"
+        content: "2002"
+        typeEnum: 0
+        comment: "第三方短信验证码端口"
+
+    - !!models.Config
+        name: "sms.uid"
+        content: "ms4"
+        typeEnum: 0
+        comment: "第三方短信验证码用户名"
+
+    - !!models.Config
+        name: "sms.psw"
+        content: "mtd"
+        typeEnum: 0
+        comment: "第三方短信验证码密码"
+
+    - !!models.Config
+        name: "protocol"
+        content: "https"
+        typeEnum: 0
+        comment: "协议(http或https)"
+
+    - !!models.Config
+        name: "domain.name"
+        content: "xwcll.com"
+        typeEnum: 0
+        comment: "域名 (若本地则localhost:9000, 带端口号), 不带http头"
+
+    - !!models.Config
+        name: "company.name"
+        content: "上海投资管理有限公司"
+        typeEnum: 0
+        comment: "公司名称"
+
+    - !!models.Config
+        name: "user.timeout.minute"
+        content: "300"
+        typeEnum: 1
+        comment: "用户登陆过期时间(分钟), 超过此时间需重新登陆"
+
+    - !!models.Config
+        name: "admin.timeout.minute"
+        content: "300"
+        typeEnum: 1
+        comment: "管理员登陆过期时间(分钟), 超过此时间需重新登陆"
+
+    - !!models.Config
+        name: "forget.password.email.timeout.minute"
+        content: "30"
+        typeEnum: 1
+        comment: "重置密码邮件验证的过期时间(分钟), 超过此时间需要重新申请"
+
+    - !!models.Config
+        name: "email.send.protect.second"
+        content: "20"
+        typeEnum: 1
+        comment: "邮件发送频率保护时间(秒)"
+
+    - !!models.Config
+        name: "pic.thumb.size"
+        content: "200"
+        typeEnum: 2
+        comment: "图片缩略图尺寸(如200)"
+
+    - !!models.Config
+        name: "pic.mid.thumb.size"
+        content: "500"
+        typeEnum: 2
+        comment: "图片中等缩略图尺寸(如500)"

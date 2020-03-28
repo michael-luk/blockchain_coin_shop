@@ -1,0 +1,70 @@
+@backend_frame("Config管理", "ConfigBackendApp", "ConfigBackendController") {
+	<style>
+	.page-list .pagination {float:left;}
+	.page-list .pagination span {cursor: pointer;}
+	.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+	.page-list .pagination .separate span:hover {background: none;}
+	.page-list .page-total {float:left; margin: 25px 20px;}
+	.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+	.page-list .page-total input {width: 40px; padding-left:3px;}
+	.page-list .page-total select {width: 50px;}
+	</style>
+
+
+<div class="page-content" ng-init='websocketInit(@biz.ConfigBiz.getBoolConfig("websocket"), "@biz.ConfigBiz.getStrConfig("domain.name")")'>
+	<div class="page-header">
+		<p>
+			<button ng-click="addContent()" class="btn btn-primary">
+				<i class="icon-plus-sign"></i> 新增
+			</button>
+    			<button ng-click="updateContent()" class="btn btn-success">
+    				<i class="icon-edit"></i> 修改
+    			</button>
+			<button ng-click="deleteContent()" class="btn btn-danger">
+				<i class="icon-trash"></i> 刪除
+			</button> | 
+            <input type="text" ng-model="queryKeyword" class="form-control" placeholder="按@TableInfoReader.getFieldComment("Config", TableInfoReader.getSearchField("Config"))搜" style="display: inline-block; width: 140px;text-align: center;" />
+			<button ng-click="searchContent()" class="btn btn-primary">
+				<i class="icon-search"></i> 搜索
+			</button> | <input id="startTime" type="text" ng-model="startTime" placeholder="开始时间" style="text-align: center;height: 33px; border: 1px solid #ece4e4;" > -
+			<input id="endTime" type="text" ng-model="endTime" placeholder="结束时间" style="text-align: center;height: 33px;border: 1px solid #ece4e4;" >
+			<button ng-click="refresh()" class="btn btn-warning">
+				<i class="icon-calendar"></i> 日期筛选
+			</button> | 
+			<button ng-click="report()" class="btn btn-success">
+				<i class="icon-print"></i> 报表
+			</button> | <span ng-bind="chatMsg"></span>
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="gridStyle" style="min-height: 500px;" ui-grid="gridOptions" ui-grid-resize-columns ui-grid-selection ui-grid-edit ui-grid-auto-fit-columns></div>
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>
+            
+<script type="text/javascript">
+    var hasImageField = @TableInfoReader.hasImageField("Config");
+    var searchFieldName = '@TableInfoReader.getSearchField("Config")'
+    var objFieldInfo = {};
+	var objEnumInfo = {}
+    
+    // 处理自己的字段注释, status枚举, enum枚举
+    objFieldInfo.Config = {};
+    objFieldInfo.Config.name = '@TableInfoReader.getFieldComment("Config", "name")';
+    objFieldInfo.Config.content = '@TableInfoReader.getFieldComment("Config", "content")';
+    objFieldInfo.Config.typeEnum = '@TableInfoReader.getFieldComment("Config", "typeEnum")';
+    objFieldInfo.Config.lastUpdateTime = '@TableInfoReader.getFieldComment("Config", "lastUpdateTime")';
+    objFieldInfo.Config.createdAt = '@TableInfoReader.getFieldComment("Config", "createdAt")';
+    objFieldInfo.Config.comment = '@TableInfoReader.getFieldComment("Config", "comment")';
+
+	objEnumInfo.Config = {}
+
+
+    objEnumInfo.Config.typeEnum = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Config", "typeEnum"); i++) {
+		objEnumInfo.Config.typeEnum[i] = '@EnumInfoReader.getEnumNameLinkString("Config", "typeEnum")'.split(',')[i];
+	}
+</script>
+}

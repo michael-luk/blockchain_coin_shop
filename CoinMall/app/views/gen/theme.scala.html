@@ -1,0 +1,37 @@
+@(themeList: List[Theme]) @front_frame(TableInfoReader.getTableComment("Theme"), "ThemeApp", "ThemeController") {
+    @for(theme <- themeList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Theme", "id"): @theme.id</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "showIndex"): @theme.showIndex</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "name"): @theme.name</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "nameEn"): @theme.nameEn</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "nameHk"): @theme.nameHk</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "nameJa"): @theme.nameJa</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "soldNumber"): @theme.soldNumber</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "inventory"): @theme.inventory</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "status"): @EnumInfoReader.getEnumName("Theme", "status", theme.status)</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(theme.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(theme.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "images"): @theme.images</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "smallImages"): @theme.smallImages</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "imagesEn"): @theme.imagesEn</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "smallImagesEn"): @theme.smallImagesEn</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "imagesHk"): @theme.imagesHk</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "smallImagesHk"): @theme.smallImagesHk</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "imagesJa"): @theme.imagesJa</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "smallImagesJa"): @theme.smallImagesJa</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "description"): @theme.description</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "descriptionTwo"): @theme.descriptionTwo</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "descriptionEn"): @theme.descriptionEn</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "descriptionTwoEn"): @theme.descriptionTwoEn</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "descriptionHk"): @theme.descriptionHk</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "descriptionTwoHk"): @theme.descriptionTwoHk</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "descriptionJa"): @theme.descriptionJa</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "descriptionTwoJa"): @theme.descriptionTwoJa</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "comment"): @theme.comment</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "price"): @theme.price</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "coinPrice"): @theme.coinPrice</li>
+            <li>@TableInfoReader.getFieldComment("Theme", "refProductId"): @theme.refProductId</li>
+        </ul>
+    }
+}

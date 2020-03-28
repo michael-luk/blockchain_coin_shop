@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+.gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+    width: 100%;
+    height: 100%
+}
+
+.gridStyleSmall {
+    border: 1px solid rgb(212, 212, 212);
+    width: 90%;
+    height: 90%
+}
+
+.ui-grid-row:nth-child(odd) .ui-grid-cell {
+    background-color: #fdfdfd;
+    overflow: auto;
+}
+
+.ui-grid-row:nth-child(even) .ui-grid-cell {
+    background-color: #f3f3f3;
+    overflow: auto;
+}
+
+.ui-grid-viewport {
+    overflow-anchor: none;
+}

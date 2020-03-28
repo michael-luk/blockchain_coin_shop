@@ -1,0 +1,76 @@
+@front_frame(play.i18n.Messages.get("wechat.pay"), "", "") {
+    <link href='@routes.Assets.at("css/tip.css")' rel="stylesheet" type="text/css">
+    <script type="text/javascript" src='@routes.Assets.at("js/jweixin-1.0.0.js")'></script>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h3>@flash.get("desc")</h3>
+            <p>@play.i18n.Messages.get("order.amount"):  ¥ @flash.get("orderAmount")</p>
+            <br>
+            <br>
+            <p><span id="wxpayDisplay">@play.i18n.Messages.get("pay.retry")</span> <a id="wxretry" href="/wxpay/pay?oid=@flash.get("oid")" target="_self">@play.i18n.Messages.get("pay.retry.btn")</a></p>
+            <br>
+            <br>
+            <p>
+                <a class="btn btn-success btn-lg" role="button" id="wxpaybtn" style="display: none">
+                    @play.i18n.Messages.get("wechat.pay")
+                </a>
+            </p>
+        </div>
+    </div>
+    @*<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>*@
+    <script type="text/javascript">
+            //	$('#wxpaybtn').hide()
+            //    $('#wxpayAmountDisplay').hide()
+
+            wx.config({
+                debug: false,
+                appId: '@biz.ConfigBiz.getStrConfig("weixin.appid")',
+                timestamp: @flash.get("timestamp"),
+                nonceStr: '@flash.get("nonce")',
+                signature: '@flash.get("signature")',
+                jsApiList: [
+                    'chooseWXPay'
+                ]
+            });
+
+            wx.ready(function () {
+//                    $('#wxpayDisplay').hide()
+//                    $('#wxpayAmountDisplay').show()
+                $('#wxpayDisplay').hide()
+                $('#wxretry').hide()
+                $('#wxpaybtn').show()
+                $('#wxpaybtn').click(function (event) {
+                    wx.chooseWXPay({
+                        timestamp: '@flash.get("timeStamp2")', // 支付签名时间戳
+                        nonceStr: '@flash.get("nonceStr2")', // 支付签名随机串
+                        package: '@flash.get("package")', // 统一支付接口返回的package包
+                        signType: 'MD5', // 签名方式，'MD5'
+                        paySign: '@flash.get("paySign")', // 支付签名
+                        success: function (res) {
+                            //alert(res);
+                            //alert(res.errMsg);
+                            if (res.errMsg == "chooseWXPay:ok") {
+                                $.ajax({
+                                    url: '/orders/wxpay/update/@flash.get("orderid")',
+                                    type: 'PUT',
+                                    success: function (response) {
+                                        window.location.href = window.location.protocol + '//'
+                                                + window.location.host + '/my/order'
+                                        // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                                    }
+                                });
+                            }
+                        }
+                    });
+                });
+
+                //监听错误事件 出现'invalid signature' AJAX刷新ticket,并刷新当前页面
+                wx.error(function (res) {
+                    if (res.errMsg.indexOf("invalid signature") > 0)
+                        alert("微信支付失败: 无效签名");
+                    else
+                        alert(res.errMsg);
+                });
+            });
+    </script>
+}

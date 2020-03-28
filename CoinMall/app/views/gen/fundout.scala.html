@@ -1,0 +1,19 @@
+@(fundoutList: List[Fundout]) @front_frame(TableInfoReader.getTableComment("Fundout"), "FundoutApp", "FundoutController") {
+    @for(fundout <- fundoutList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Fundout", "id"): @fundout.id</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "name"): @fundout.name</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "refUserId"): @fundout.refUserId</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "money"): @fundout.money</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "coin"): @fundout.coin</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "resellerProfitMoneyBankNo"): @fundout.resellerProfitMoneyBankNo</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "resellerProfitMoneyBank"): @fundout.resellerProfitMoneyBank</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "resellerProfitMoneyBankAccount"): @fundout.resellerProfitMoneyBankAccount</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "resellerProfitCoinAddress"): @fundout.resellerProfitCoinAddress</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "status"): @EnumInfoReader.getEnumName("Fundout", "status", fundout.status)</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(fundout.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(fundout.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Fundout", "comment"): @fundout.comment</li>
+        </ul>
+    }
+}

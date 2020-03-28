@@ -1,0 +1,153 @@
+@import LyLib.Utils.StrUtil
+@(products: List[Product], catalogName: String)
+@front_frame("XWC Mall", "", "") {
+    <link href='@routes.Assets.at("css/classify.css")' rel="stylesheet" type="text/css">
+    <div class="main padding-top-20" style="padding-bottom:60px;">
+        <div class="container">
+
+            @if(catalogName != null) {
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12 col-md-12 margin-bottom-20">
+                        <span class="color_black">@play.i18n.Messages.get("catalog.page")</span>
+                        - <span class="color_black">@catalogName</span>
+                    </div>
+                </div>
+            }
+            <div class="row">
+			<style>
+
+			</style>
+
+            @for(item <- products) {
+                <div class="col-sm-6 col-xs-6 col-md-2">
+                    <div class="thumbnail product-item">
+                        <a href="/product/@item.id">
+                            @if(item.themes != null && item.themes.size() > 0){
+                                <img class="j_img" src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(item.themes.get(0), "images" + session.get("lang"))"
+                            }else{
+                                <img class="j_img" src="/showimg/mid_thumb/@ImageController.getImageStringWithI18N(item, "images" + session.get("lang"))"
+                            }
+                            alt="@BaseController.getFieldValue(item, "name" + session.get("lang"))">
+                        </a>
+                        <div>
+                            <div class="j_title"><a href="/product/@item.id">
+                                @BaseController.getFieldValue(item, "name" + session.get("lang"))
+                            </a></div>
+                            <div class="pi-price" style="color:#ff373a"><a href="/product/@item.id">
+                                @if(item.themes != null && item.themes.size() > 0){
+                                @item.themes.get(0).price
+                                }else{
+                                @item.price
+                                }
+                            </a>
+                                @biz.ConfigBiz.getStrConfig("currency.unit.name")
+								
+								<div class="j_sells">
+                                @if(item.themes!=null && item.themes.size() > 0 && item.themes.get(0).price==0.0){
+                                <span style="float: right;color:red">@play.i18n.Messages.get("await")</span>
+                                }
+								
+								
+                                @if(Application.getSoldOut(item.themes)){
+                                <span style="color:darkorange">@play.i18n.Messages.get("sold.out")</span>
+                                }
+								</div>
+                            </div>
+                            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                                <div class="nav navbar-nav pi-price" style="margin-left: -15px">
+
+                                    <a href="/product/@item.id">
+                                        @if(item.themes != null && item.themes.size() > 0){
+                                        @if(biz.ConfigBiz.getFloatConfig("coin.exchange.rate")!=0){
+                                        @((item.themes.get(0).price.toDouble/biz.ConfigBiz.getFloatConfig("coin.exchange.rate")).formatted("%.2f"))
+                                        }else{
+                                        0.0
+                                        }
+                                        }else{
+                                        @item.price
+                                        }
+                                    </a>
+                                    @biz.ConfigBiz.getStrConfig("coin.short.name")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+
+        <!--BEGIN POP-->
+    <div class="disappare" style="display: none;">
+        <p><i class="icon iconfont icon-chenggong"></i></p>
+        <h4 class="j_disappare_text">@play.i18n.Messages.get("add.favorite.success")</h4>
+    </div>
+
+    <script type="text/javascript">
+            $(function () {
+                $(".j_shoucang").click(function () {
+                    if ($(this).hasClass("icon-shangpinshoucang1")) {
+                        $(this).removeClass("icon-shangpinshoucang1");
+                        $(this).addClass("icon-redshoucang");
+                        $(".j_disappare_text").text("@play.i18n.Messages.get("add.favorite.success")");
+                    } else {
+                        $(this).removeClass("icon-redshoucang");
+                        $(this).addClass("icon-shangpinshoucang1");
+                        $(".j_disappare_text").text("@play.i18n.Messages.get("cancel.favorite")");
+                    }
+                    $(".disappare").show().delay(2000).hide(300);
+                });
+            })
+    </script>
+        <!--END POP-->
+    <style>
+	.product-item{
+	height:auto !important;
+}
+    .j_title {
+        word-break: keep-all;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .pi-price {
+        font-size: 1.5rem;
+    }
+
+    .pi-price span {
+        font-size: 1.4rem;
+    }
+    </style>
+    <script type="text/javascript">
+	/*
+            $(document).ready(function () {
+                var p_h = 0;
+                var t_h = 0;
+                $(".product-item").each(function () {
+                    p_h = $(this).height();
+                    if (p_h > t_h) {
+                        t_h = p_h;
+                    }
+                });
+                t_h = t_h + 12 + 16;
+                $(".product-item").css("height", t_h + "px");
+				
+				
+				
+            });
+			*/
+			$(document).ready(function () {
+			var j_tmp = $(".product-item").width();
+			//alert(j_tmp);
+			j_tmp = j_tmp*1.08;
+			$(".j_img").css("height", j_tmp + "px");
+               // $(".product-item").css("height", t_h + "px");
+				
+			
+				
+            }); 
+		
+    </script>
+}

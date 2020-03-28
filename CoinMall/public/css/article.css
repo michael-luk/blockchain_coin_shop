@@ -1,0 +1,31 @@
+.j_article_banner_img img{
+	max-width:100%;
+	min-width:100%;
+}
+.j_article_right{
+	background-color:#fff;
+}
+.j_article_title{
+	font-size:1.6rem;
+	color:#333;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.j_article_li{
+	margin:10px 0;
+}
+.j_article_li_title{
+	float:left;
+}
+.j_article_li_date{
+	float:right;
+}
+.j_article_li div{
+	height:auto;
+	overflow:auto;
+	padding-bottom:10px;
+	border-bottom:1px #c2c2c2 dotted;
+}
+.panel-collapse,.panel-body{
+	border-bottom:0 !important ;
+}

@@ -1,0 +1,72 @@
+@backend_frame("CoinRecord管理", "CoinRecordBackendApp", "CoinRecordBackendController") {
+	<style>
+	.page-list .pagination {float:left;}
+	.page-list .pagination span {cursor: pointer;}
+	.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+	.page-list .pagination .separate span:hover {background: none;}
+	.page-list .page-total {float:left; margin: 25px 20px;}
+	.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+	.page-list .page-total input {width: 40px; padding-left:3px;}
+	.page-list .page-total select {width: 50px;}
+	</style>
+
+
+<div class="page-content" ng-init='websocketInit(@biz.ConfigBiz.getBoolConfig("websocket"), "@biz.ConfigBiz.getStrConfig("domain.name")")'>
+	<div class="page-header">
+		<p>
+			<button ng-click="addContent()" class="btn btn-primary">
+				<i class="icon-plus-sign"></i> 新增
+			</button>
+			@*<button ng-click="deleteContent()" class="btn btn-danger">*@
+				@*<i class="icon-trash"></i> 刪除*@
+			@*</button> | *@
+            <input type="text" ng-model="queryKeyword" class="form-control" placeholder="按@TableInfoReader.getFieldComment("CoinRecord", TableInfoReader.getSearchField("CoinRecord"))搜" style="display: inline-block; width: 140px;text-align: center;" />
+			<button ng-click="searchContent()" class="btn btn-primary">
+				<i class="icon-search"></i> 搜索
+			</button> | <input id="startTime" type="text" ng-model="startTime" placeholder="开始时间" style="text-align: center;height: 33px; border: 1px solid #ece4e4;" > -
+			<input id="endTime" type="text" ng-model="endTime" placeholder="结束时间" style="text-align: center;height: 33px;border: 1px solid #ece4e4;" >
+			<button ng-click="refresh()" class="btn btn-warning">
+				<i class="icon-calendar"></i> 日期筛选
+			</button> | 
+			<button ng-click="report()" class="btn btn-success">
+				<i class="icon-print"></i> 报表
+			</button> | <span ng-bind="chatMsg"></span>
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="gridStyle" style="min-height: 500px;" ui-grid="gridOptions" ui-grid-resize-columns ui-grid-selection ui-grid-edit ui-grid-auto-fit-columns></div>
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>
+            
+<script type="text/javascript">
+    var hasImageField = @TableInfoReader.hasImageField("CoinRecord");
+    var searchFieldName = '@TableInfoReader.getSearchField("CoinRecord")'
+    var objFieldInfo = {};
+	var objEnumInfo = {}
+    
+    // 处理自己的字段注释, status枚举, enum枚举
+    objFieldInfo.CoinRecord = {};
+    objFieldInfo.CoinRecord.account = '@TableInfoReader.getFieldComment("CoinRecord", "account")';
+    objFieldInfo.CoinRecord.name = '@TableInfoReader.getFieldComment("CoinRecord", "name")';
+    objFieldInfo.CoinRecord.category = '@TableInfoReader.getFieldComment("CoinRecord", "category")';
+    objFieldInfo.CoinRecord.amount = '@TableInfoReader.getFieldComment("CoinRecord", "amount")';
+    objFieldInfo.CoinRecord.fee = '@TableInfoReader.getFieldComment("CoinRecord", "fee")';
+    objFieldInfo.CoinRecord.confirmations = '@TableInfoReader.getFieldComment("CoinRecord", "confirmations")';
+    objFieldInfo.CoinRecord.blockhash = '@TableInfoReader.getFieldComment("CoinRecord", "blockhash")';
+    objFieldInfo.CoinRecord.blockindex = '@TableInfoReader.getFieldComment("CoinRecord", "blockindex")';
+    objFieldInfo.CoinRecord.blocktime = '@TableInfoReader.getFieldComment("CoinRecord", "blocktime")';
+    objFieldInfo.CoinRecord.txid = '@TableInfoReader.getFieldComment("CoinRecord", "txid")';
+    objFieldInfo.CoinRecord.time = '@TableInfoReader.getFieldComment("CoinRecord", "time")';
+    objFieldInfo.CoinRecord.timereceived = '@TableInfoReader.getFieldComment("CoinRecord", "timereceived")';
+    objFieldInfo.CoinRecord.createdAt = '@TableInfoReader.getFieldComment("CoinRecord", "createdAt")';
+    objFieldInfo.CoinRecord.comment = '@TableInfoReader.getFieldComment("CoinRecord", "comment")';
+    objFieldInfo.CoinRecord.toInfo = '@TableInfoReader.getFieldComment("CoinRecord", "toInfo")';
+    objFieldInfo.CoinRecord.fromInfo = '@TableInfoReader.getFieldComment("CoinRecord", "fromInfo")';
+    objFieldInfo.CoinRecord.message = '@TableInfoReader.getFieldComment("CoinRecord", "message")';
+
+
+</script>
+}

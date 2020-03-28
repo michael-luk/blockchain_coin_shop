@@ -1,0 +1,24 @@
+@(coinRecordList: List[CoinRecord]) @front_frame(TableInfoReader.getTableComment("CoinRecord"), "CoinRecordApp", "CoinRecordController") {
+    @for(coinRecord <- coinRecordList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "id"): @coinRecord.id</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "account"): @coinRecord.account</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "name"): @coinRecord.name</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "category"): @coinRecord.category</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "amount"): @coinRecord.amount</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "fee"): @coinRecord.fee</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "confirmations"): @coinRecord.confirmations</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "blockhash"): @coinRecord.blockhash</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "blockindex"): @coinRecord.blockindex</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "blocktime"): @coinRecord.blocktime</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "txid"): @coinRecord.txid</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "time"): @coinRecord.time</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "timereceived"): @coinRecord.timereceived</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(coinRecord.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "comment"): @coinRecord.comment</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "toInfo"): @coinRecord.toInfo</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "fromInfo"): @coinRecord.fromInfo</li>
+            <li>@TableInfoReader.getFieldComment("CoinRecord", "message"): @coinRecord.message</li>
+        </ul>
+    }
+}

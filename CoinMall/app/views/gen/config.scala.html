@@ -1,0 +1,13 @@
+@(configList: List[Config]) @front_frame(TableInfoReader.getTableComment("Config"), "ConfigApp", "ConfigController") {
+    @for(config <- configList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Config", "id"): @config.id</li>
+            <li>@TableInfoReader.getFieldComment("Config", "name"): @config.name</li>
+            <li>@TableInfoReader.getFieldComment("Config", "content"): @config.content</li>
+            <li>@TableInfoReader.getFieldComment("Config", "typeEnum"): @EnumInfoReader.getEnumName("Config", "typeEnum", config.typeEnum)</li>
+            <li>@TableInfoReader.getFieldComment("Config", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(config.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Config", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(config.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Config", "comment"): @config.comment</li>
+        </ul>
+    }
+}
